@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          we are live
+          SMIT is farzi CTO
         </a>
       </header>
     </div>
