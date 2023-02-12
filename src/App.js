@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          SMIT is farzi CTO
+          Learn React
         </a>
       </header>
     </div>
