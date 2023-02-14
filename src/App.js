@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { Fragment } from "react";
+import { AnimatePresence } from "framer-motion";
+import AnimatedPage from "./components/animations/animatedpage";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Home from "./pages/home/home.page";
+import View from "./pages/view/view.page";
+AOS.init();
 
 function App() {
+  const location = useLocation();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <AnimatePresence mode="wait">
+        <Routes key={location.pathname} location={location}>
+          <Route
+            path="/"
+            element={
+              <div>
+                <AnimatedPage>
+                  <Home />
+                </AnimatedPage>
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/view"
+            element={
+              <AnimatedPage>
+                <View />
+              </AnimatedPage>
+            }
+          ></Route>
+        </Routes>
+      </AnimatePresence>
+    </Fragment>
   );
 }
 
