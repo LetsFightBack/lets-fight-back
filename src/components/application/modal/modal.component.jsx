@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Modalmc from "./Inactive-Script-Modal/mc.component";
+import Modalmc from "./mc/mc.component";
 
-export default function InactiveScriptModal({ className, data, children }) {
+export default function CandidateModal({ className, data, children }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

@@ -12,9 +12,9 @@ const Modalmc = ({ handleClose, data }) => {
             <p className="h-content-1">Details</p>
             <div className="data">
               <p className="data__header">Personal Details</p>
-              <div>name: {data.name}</div>
-              <div>email: {data.email}</div>
-              <div>college: {data.college}</div>
+              <div>name: {data?.name}</div>
+              <div>email: {data?.email}</div>
+              <div>college: {data?.college}</div>
             </div>
           </div>
         </div>

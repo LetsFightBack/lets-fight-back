@@ -2,7 +2,7 @@ import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
 import AnimatedNav from "../../components/animations/animateddropdown.component";
-import { getAllCandidates } from "./fb";
+import { getAllCandidates } from "../../utils/firebase/firebase.utils";
 
 export default function View() {
   const [dropdownstate, SetDropdownstate] = useState([true, false, false, false]);
@@ -39,11 +39,11 @@ export default function View() {
     console.log(exp, condition);
     SetFilteredData(
       applicationData.filter((candidate) => {
-        let c1 = candidate.expectedCTC;
+        // let c1 = candidate.expectedCTC;
         // c1.includes()
         // c1 = c1 < exp;
 
-        let c2 = candidate.skills;
+        // let c2 = candidate.skills;
 
         let c3 = candidate.totalYearsOfexperience.includes(exp);
 
