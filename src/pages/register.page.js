@@ -59,7 +59,6 @@ export default function RegisterCandidate() {
         toast.error(error.code, {
           ...toastOptions,
         });
-        console.log("user creation encountered an error", error);
       }
     }
   };

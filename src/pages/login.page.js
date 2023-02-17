@@ -4,7 +4,7 @@ import {
 import ToastContainer from "../utils/Toast.js";
 import { toastOptions } from "../utils/Toast.js";
 import { toast } from "react-toastify";
-import { TextField, IconButton, InputAdornment, Snackbar } from "@mui/material";
+import { TextField, IconButton, InputAdornment } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./loginsignup.style.scss";
@@ -43,9 +43,6 @@ export default function LoginCandidate() {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
-  const handleClick = () => {
-    setShowPassword((prev) => !prev);
-  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -83,7 +80,6 @@ export default function LoginCandidate() {
         toast.error(errorCode, {
           ...toastOptions,
         });
-        console.log("user creation encountered an error", error);
       }
     }
 

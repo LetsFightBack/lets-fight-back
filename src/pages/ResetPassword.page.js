@@ -49,7 +49,6 @@ const ResetPassword = () => {
         toast.error("Some error occured", {
           ...toastOptions,
         });
-        console.log("encountered an error", error);
       });
   };
 

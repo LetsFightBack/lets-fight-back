@@ -6,6 +6,7 @@ import AnimatedPage from "./components/animations/animatedpage";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "./App.scss";
 import LoginCandidate from "./pages/login.page";
 import RegisterCandidate from "./pages/register.page";
 import ForgetPassword from "./pages/ForgetPassword.page";

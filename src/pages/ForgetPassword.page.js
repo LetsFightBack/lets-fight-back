@@ -2,7 +2,6 @@ import React from "react";
 import {
   sendPasswordResetEmailtoUser,
 } from "../firebase";
-import { useNavigate } from "react-router-dom";
 import { TextField} from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -23,11 +22,9 @@ const sx_form_input = {
 };
 
 const ForgetPassword = () => {
-  let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const handleChange = (e) => {
     setEmail(e.target.value);
-    console.log(email);
   };
 
   const handleSubmit = (e) => {
@@ -47,7 +44,6 @@ toast.success("Email sent successfully!", {
         toast.error("Some error occured", {
           ...toastOptions,
         });
-        console.log("encountered an error", error);
       });
   };
 
