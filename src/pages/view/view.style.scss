@@ -223,7 +223,7 @@
         width: 90%;
         height: 700px;
         min-width: 950px;
-        overflow: auto;
+        overflow-y: auto;
       }
 
       @media only screen and (max-width: 850px) {
