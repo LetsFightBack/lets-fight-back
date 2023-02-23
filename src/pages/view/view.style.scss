@@ -223,10 +223,17 @@
       .applications-container {
         width: 90%;
         height: 600px;
-        min-width: 950px;
         overflow-y: auto;
-        padding-top: 60px;
+        overflow-x: hidden;
         position: relative;
+
+        .applications {
+          display: flex;
+          flex-direction: column;
+
+          // .application {
+          // }
+        }
       }
 
       @media only screen and (max-width: 850px) {

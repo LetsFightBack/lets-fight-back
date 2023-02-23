@@ -1,8 +1,8 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-// import AnimatedNav from "../../components/animations/animateddropdown.component";
 import { getAllCandidates } from "../../utils/firebase/firebase.utils";
+import { Box, CircularProgress } from "@mui/material";
 
 export default function View() {
   // const [dropdownstate, SetDropdownstate] = useState([false]);
@@ -126,44 +126,6 @@ export default function View() {
               }}
             />
           </div>
-          {/* <hr />
-
-          <h3>Field of Job</h3>
-          <DropDown
-            filterConditions={filterConditions}
-            SetFilterConditions={SetFilterConditions}
-            dropdownstate={dropdownstate}
-            SetDropdownstate={SetDropdownstate}
-            items={[
-              "Engineer (Full Tech Stack)",
-              "Front End Engineer (Web)",
-              "Front End Engineer (Android)",
-              "Front End Engineer (iOS)",
-              "Backend Engineer",
-              "Data Engineer",
-              "System Engineer",
-              "Site Reliability Engineer",
-              "Corporate Sales",
-              "Marketing",
-              "HR and Legal",
-              "Salesforce Developer",
-              "Salesforce Administrator",
-              "Software Development - Test",
-              "Quality Analyst",
-              "Finance and Risk Management",
-              "Accounting & Reconciliation",
-              "Product and Strategy",
-              "Operations and Supply Chain",
-              "Customer Care",
-              "Educator",
-              "Security / Quality Management",
-              "Project Management",
-              "Growth Hacker",
-              "Media Personnel/Presenter",
-              "Movie/Photo Editing",
-              "R&D",
-            ]}
-          /> */}
         </div>
         <div className="main-right">
           <SearchBox
@@ -176,14 +138,21 @@ export default function View() {
             <p>Candidates</p>
           </div>
           <div className="applications-container">
-            <div className="application application__header">
-              <h2>Name</h2>
-              <p>Email</p>
-              <p>College</p>
-              <p className="bl-r">Previous Company</p>
-              <p></p>
-            </div>
-            <MultiApplication data={filteredData} />
+            {applicationData.length ? (
+              <MultiApplication data={filteredData} />
+            ) : (
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  height: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            )}
           </div>
         </div>
       </div>
@@ -196,7 +165,18 @@ const MultiApplication = ({ data }) => {
   for (let i = 0; i < data.length; i++) {
     arr.push(<Application data={data[i]} key={i} />);
   }
-  return <div className="applications">{arr}</div>;
+  return (
+    <div className="applications">
+      <div className="application application__header">
+        <h2>Name</h2>
+        <p className="application__email">Email</p>
+        <p>College</p>
+        <p className="bl-r">Company</p>
+        <p></p>
+      </div>
+      {arr}
+    </div>
+  );
 };
 
 function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
@@ -235,68 +215,6 @@ function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
     </div>
   );
 }
-
-// function DropDown({
-//   items,
-//   filterConditions,
-//   SetFilterConditions,
-//   dropdownstate,
-//   SetDropdownstate,
-// }) {
-//   const checkboxchange = (event) => {
-//     const temp = { ...filterConditions };
-//     if (temp.jobField) {
-//       const fi = temp.jobField.findIndex((item) => {
-//         return item === event.target.name;
-//       });
-//       if (fi !== -1) {
-//         temp.jobField.splice(fi, 1);
-//       } else {
-//         temp.jobField.push(event.target.name);
-//       }
-//     } else {
-//       temp.jobField = [event.target.name];
-//     }
-//     SetFilterConditions(temp);
-//   };
-
-//   const dropdownhandler = (n) => {
-//     n--;
-//     const temp = [...dropdownstate];
-//     for (let i = 0; i < 4; i++) {
-//       if (i === n) {
-//         temp[n] = !temp[n];
-//       } else {
-//         temp[i] = false;
-//       }
-//     }
-//     SetDropdownstate(temp);
-//   };
-//   return (
-//     <div className="dropdown">
-//       <button className="dropdown-btn" onClick={() => dropdownhandler(1)}>
-//         <p>All</p>
-//         <p>
-//           <i className="fa-solid fa-angle-down"></i>
-//         </p>
-//       </button>
-//       {dropdownstate[0] ? (
-//         <AnimatedNav className="dropdown-content">
-//           {items.map((item, i) => {
-//             return (
-//               <div className="inp-container" key={i}>
-//                 <input type="checkbox" name={item} onChange={(event) => checkboxchange(event)} />
-//                 <label>{item}</label>
-//               </div>
-//             );
-//           })}
-//         </AnimatedNav>
-//       ) : (
-//         ""
-//       )}
-//     </div>
-//   );
-// }
 
 function SearchBox({ isVisible, SetIsvisible, SetSearchField }) {
   return (

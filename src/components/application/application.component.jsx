@@ -5,7 +5,7 @@ const Application = ({ data }) => {
   return (
     <CandidateModal className="application" data={data}>
       <h2>{data?.name}</h2>
-      <p>
+      <p className="application__email">
         <a href=" ">{data?.email}</a>
       </p>
       <p>
