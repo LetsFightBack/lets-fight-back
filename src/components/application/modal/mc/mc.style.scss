@@ -1,3 +1,63 @@
+.mcontent {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  div {
+    box-sizing: border-box;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .h-content-1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #101828;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__header {
+    margin-top: 30px !important;
+  }
+
+  &__row {
+    max-height: 50vh;
+    overflow: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__cell {
+    width: 48%;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+
+    div {
+      min-height: 42px;
+      width: 100%;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: 2px solid #4653f6;
+    }
+
+    @media only screen and (max-width: 585px) {
+      width: 100%;
+    }
+  }
+}
+
 .modal-cover {
   z-index: 10;
   width: 100vw;
@@ -11,7 +71,7 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
 
-  .Script-Modal {
+  .Candidate-Modal {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 12;
     max-width: 800px;
@@ -29,41 +89,6 @@
 
     @media (max-width: 700px) {
       width: 90%;
-    }
-
-    .header-wrapper-mod {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      .h-img-tag {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
-    .h-content-div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-
-      p {
-        text-align: center;
-      }
-
-      .h-content-1 {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #101828;
-      }
-
-      .h-content-2 {
-        padding: 0 1rem;
-        color: #667085;
-        font-weight: 400;
-      }
     }
   }
 
@@ -99,13 +124,14 @@
     }
 
     .confirm-button {
-      background: red !important;
+      background: #4653f6 !important;
       color: white !important;
       border: none;
 
       &:active,
-      &:hover {
-        background-color: red !important;
+      &:hover,
+      &:focus {
+        background-color: #5861df !important;
         color: white !important;
       }
     }
