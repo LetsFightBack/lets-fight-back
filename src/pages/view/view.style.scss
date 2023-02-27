@@ -35,7 +35,6 @@
     align-items: flex-start;
 
     .main-left {
-      padding-bottom: 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -222,18 +221,9 @@
 
       .applications-container {
         width: 90%;
-        height: 600px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        position: relative;
-
-        .applications {
-          display: flex;
-          flex-direction: column;
-
-          // .application {
-          // }
-        }
+        height: 700px;
+        min-width: 950px;
+        overflow: auto;
       }
 
       @media only screen and (max-width: 850px) {

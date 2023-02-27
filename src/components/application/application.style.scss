@@ -1,7 +1,7 @@
 .application {
   cursor: pointer;
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 0.3fr;
+  grid-template-columns: 2.5fr 2fr 2fr 2fr 0.3fr;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -11,6 +11,7 @@
   border-left: solid 3px #464646;
   border-radius: 3px;
   color: #464646;
+  width: 100%;
   padding: 0 30px;
   margin: 5px 0;
 
@@ -32,7 +33,7 @@
 
   h2 {
     // width: 100%;
-    font-size: 16px;
+    font-size: 20px;
     margin: 0;
   }
 
@@ -58,39 +59,10 @@
       color: #464646 !important;
     }
   }
-
-  &__header {
-    border-left-color: #4653f6;
-    cursor: default;
-  }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 520px) {
   .application {
-    font-size: 14px !important;
-    grid-template-columns: 1.5fr 1fr 1fr 0.2fr;
-
-    &__email {
-      display: none;
-    }
-  }
-}
-
-@media only screen and (max-width: 430px) {
-  .application {
-    font-size: 12px !important;
-    grid-template-columns: 1.5fr 1fr 0.2fr;
-
-    h2 {
-      font-size: 14px;
-    }
-
-    &__email {
-      display: none;
-    }
-
-    .bl-r {
-      display: none;
-    }
+    font-size: 14px;
   }
 }
