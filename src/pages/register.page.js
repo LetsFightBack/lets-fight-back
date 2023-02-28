@@ -4,12 +4,14 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./loginsignup.style.scss";
+import { useNavigate } from "react-router-dom";
 
 import ToastContainer from  "../utils/Toast.js";
 import { toastOptions } from  "../utils/Toast.js";
 import { toast } from "react-toastify";
 
 export default function RegisterCandidate() {
+  const navigate = useNavigate();
   const [formFields, setFormFields] = useState({
     email: "",
     password: "",
@@ -50,6 +52,8 @@ export default function RegisterCandidate() {
       const email =  formFields.email;
       await createUserDocumentFromAuth(user, { email});
       resetFormFields();
+      
+      navigate("/view", { replace: true });
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         toast.info("Cannot create user, email already in use", {
