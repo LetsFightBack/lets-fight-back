@@ -1,10 +1,12 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
+import Page403 from "./../403/403.page"
 
 export default function View() {
+
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
@@ -88,6 +90,14 @@ export default function View() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  var userData = getLoginDetails()
+  // console.log("user-detail: ");
+  // console.log(userData);
+
+  if (userData == null || userData.email == undefined) {
+    return (<Page403></Page403>);
+  }
 
   return (
     <div className={isVisible ? "aa invisible" : "aa"}>
