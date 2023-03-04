@@ -87,19 +87,20 @@ let GalleryStyle = styled.div(
     background: #162141;
     width: 100%;
     .main_gallery {
-      width: 90%;
+      width: 85%;
       margin: auto;
     }
     .head_gallery {
+      padding-top: 4.5rem;
       font-size: 48px;
-      line-height: 150%;
+      line-height: 72px;
       text-align: center;
       color: white;
       margin-bottom: 3.75rem;
     }
     .card_gallery {
       display: flex;
-      margin-bottom: 10rem;
+      margin-bottom: 8rem;
     }
     .last {
       padding-bottom: 5rem;
@@ -136,7 +137,6 @@ let GalleryStyle = styled.div(
       }
       .card_gallery {
         width: 100%;
-        margin-bottom: 5rem;
         flex-direction: column;
       }
 
@@ -154,11 +154,13 @@ let GalleryStyle = styled.div(
       }
       .horizontal_line {
         display: block;
-        width: 155.01px;
-        margin: 0 auto 1rem auto;
+        width: 155px;
+        margin: 0rem auto 5rem auto  ;
         height: 0px;
         border: 1px solid #FFFFFF;
         background: #ffffff;
+        /* margin-bottom: 2.5rem; */
+
       }
     }
   `
