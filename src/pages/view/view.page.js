@@ -4,6 +4,11 @@ import Application from "../../components/application/application.component";
 import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Page403 from "./../403/403.page"
+import Loader from "./../../components/loader/loader.component"
+import {
+  getAuth,
+  onAuthStateChanged
+} from "firebase/auth";
 
 export default function View() {
 
@@ -91,11 +96,20 @@ export default function View() {
     };
   }, []);
 
-  var userData = getLoginDetails()
-  // console.log("user-detail: ");
-  // console.log(userData);
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    IsLoggedIn().then((data) => {
+      setUserData(data)
+    })
+    return () => { }
+  }, []);
+  console.log(`user auth: ${userData}`);
 
-  if (userData == null || userData.email == undefined) {
+  if (userData == null) {
+    return (<Loader></Loader>)
+  }
+
+  if (userData == false) {
     return (<Page403></Page403>);
   }
 
@@ -256,4 +270,27 @@ function SearchBox({ isVisible, SetIsvisible, SetSearchField }) {
       )}
     </div>
   );
+}
+
+async function IsLoggedIn() {
+  try {
+    await new Promise((resolve, reject) =>
+      onAuthStateChanged(getAuth(),
+        user => {
+          if (user) {
+            // User is signed in.
+            resolve(user)
+          } else {
+            // No user is signed in.
+            reject('no user logged in')
+          }
+        },
+        // Prevent console error
+        error => reject(error)
+      )
+    )
+    return true
+  } catch (error) {
+    return false
+  }
 }
