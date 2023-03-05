@@ -11,7 +11,13 @@ const Landing = () => {
           </span>
           FIGHT BACK
         </h1>
-        <p className="h2"> This Layoff!</p>
+        <p className="heading2_hero"> This Layoff!</p>
+        <p className="content_hero">
+          Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
+          Duledes makrogt och et jure. Mäsm besam emedan os inklusive polynygon.
+          Homong mäv faning beck. Lorem ipsum dolor sit amet consectetur,
+          adipisicing elit. Nihil, eius.{" "}
+        </p>
         <img
           src="/assets/heroImage.svg"
           alt="Hero Image"
@@ -39,17 +45,52 @@ let LandingStyle = styled.div(
       font-size: 101.779px;
       line-height: 124px;
     }
+    .heading2_hero {
+      font-size: 1.5rem;
+      line-height: 23px;
+      font-weight: 700;
+      font-family: sans-serif;
+      color: #0378a6;
+      margin-top: -5rem;
+      margin-left: 0.5rem;
+    }
     .hero_image {
       position: absolute;
-      right: -13rem;
+      right: 0rem;
       bottom: 0;
     }
+    .content_hero {
+      font-size: 1rem;
+      line-height: 24px;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      color: rgba(30, 30, 30, 0.81);
+      width: 30vw;
+      margin-top: 2rem;
+    }
     @media only screen and (max-width: 620px) {
+      .main_landing {
+        height: 72vh;
+      }
+      .heading_hero {
+    
+      font-size: 40px;
+      line-height: 49px;
+    }
+    .heading2_hero {
+      font-size: 1.5rem;
+      line-height: 23px;
+   
+      margin-top: -1rem;
+      margin-left: 0rem;
+    }
+      .content_hero {
+        width: 90vw;
+        margin-top: 2rem;
+        margin-left: 0rem;
+      }
       .hero_image {
-        right: -40rem;
-        transform: scale(0.5);
-        /* left:0rem; */
-        /* width: 100%; */
+        width: 150%;
       }
     }
   `

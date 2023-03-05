@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 const Gallery = () => {
   return (
     <GalleryStyle>
-      <div className="main_gallery">
+      <div className="main_gallery" id="gallery">
         <div className="head_gallery">People Love us !</div>
         <div className="card_gallery">
           <img src="/assets/NDTV.png" alt="" className="card_image_gallery" />
@@ -60,7 +60,7 @@ const Gallery = () => {
           />
           <div className="content_gallery">
             <div className="card_heading">Times Of India</div>
-            <p>
+            <p className="content_para">
               {" "}
               Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
               Duledes makrogt och et jure. Mäsm besam emedan os inklusive
@@ -85,14 +85,14 @@ export default Gallery;
 let GalleryStyle = styled.div(
   css`
     background: #162141;
-    width: 100%;
+    width: 100vw;
     .main_gallery {
       width: 85%;
       margin: auto;
     }
     .head_gallery {
       padding-top: 4.5rem;
-      font-size: 48px;
+      font-size: 3rem;
       line-height: 72px;
       text-align: center;
       color: white;
@@ -130,16 +130,27 @@ let GalleryStyle = styled.div(
       display: none;
     }
 
+
     @media only screen and (max-width: 620px) {
       .main_gallery {
         width: 100%;
-        overflow-x: hidden;
+        /* overflow-x: hidden; */
+      }
+      .head_gallery {
+        font-size: 2rem;
+      }
+      .card_heading{
+        font-size: 2rem;
       }
       .card_gallery {
         width: 100%;
         flex-direction: column;
+        margin-bottom: 0rem;
       }
 
+      .content_para{
+        font-size: 24px;
+      }
       .content_gallery {
         text-align: center;
         padding: 1rem 1rem;
@@ -155,13 +166,14 @@ let GalleryStyle = styled.div(
       .horizontal_line {
         display: block;
         width: 155px;
-        margin: 0rem auto 5rem auto  ;
+        margin: 4rem auto 5rem auto  ;
         height: 0px;
         border: 1px solid #FFFFFF;
         background: #ffffff;
         /* margin-bottom: 2.5rem; */
 
       }
+
     }
   `
 );

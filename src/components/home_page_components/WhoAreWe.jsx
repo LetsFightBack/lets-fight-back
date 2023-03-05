@@ -5,7 +5,7 @@ import { css } from "@emotion/react";
 const WhoAreWe = () => {
   return (
     <WhoAreWeStyle>
-      <div className="main_gallery">
+      <div className="main_gallery" id="about">
         <div className="head_gallery">WHO ARE WE?</div>
         <div className="card_gallery">
           <img
@@ -47,7 +47,7 @@ let WhoAreWeStyle = styled.div(
     }
     .head_gallery {
         padding-top: 4.5rem;
-      font-size: 48px;
+      font-size: 3rem;
       line-height:72px;
       text-align: center;
       color: white;
@@ -74,6 +74,9 @@ let WhoAreWeStyle = styled.div(
         width: 100%;
         padding-bottom: 2rem;
 
+      }
+      .head_gallery {
+      font-size: 2rem;
       }
       .card_gallery {
         width: 100%;

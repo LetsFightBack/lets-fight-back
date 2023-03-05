@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 
 const LoginHero = () => {
   return (
@@ -9,6 +10,7 @@ const LoginHero = () => {
       <div className="cards_login">
         <div className="card_login">
           <h4 className="card_head">For Candidates</h4>
+
           <button className="login_btn_hero">Login</button>
           <div className="login_signup">
             <p>
@@ -19,11 +21,23 @@ const LoginHero = () => {
         </div>
         <div className="card_login">
           <h4 className="card_head">For Recruiters</h4>
-          <button className="login_btn_hero" style={{background:"#298358"}}>Login</button>
+          <Link to="/login">
+            <button
+              className="login_btn_hero"
+              style={{ background: "#298358" }}
+            >
+              Login
+            </button>
+          </Link>
           <div className="login_signup">
             <p>
               Don’t have an account? <br></br>
-              <span className="signup_span" style={{color:"#298358"}}> Sign Up</span>{" "}
+              <Link to="/register">
+                <span className="signup_span" style={{ color: "#298358" }}>
+                  {" "}
+                  Sign Up
+                </span>{" "}
+              </Link>
             </p>
           </div>
         </div>
@@ -49,7 +63,6 @@ let LoginHeroStyle = styled.div(
     .cards_login {
       display: flex;
       justify-content: space-evenly;
-
     }
     .card_login {
       padding: 3rem 1rem;
@@ -61,7 +74,6 @@ let LoginHeroStyle = styled.div(
       border: 1px solid rgba(0, 0, 0, 0.12);
       box-shadow: 6px 8px 25px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
-
     }
     .card_head {
       font-size: 2rem;
@@ -92,20 +104,22 @@ let LoginHeroStyle = styled.div(
       cursor: pointer;
     }
     @media only screen and (max-width: 620px) {
-        .head_login {
-            padding-top: 1.5rem;
-      margin-bottom: 0.75rem;
-    }
-        .cards_login {
+      .head_login {
+        padding-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 2.5rem;
+      }
+      .card_head {
+        font-size: 2rem;
+      }
+      .cards_login {
+        flex-direction: column;
+      }
+      .card_login {
+        width: 80%;
 
-     flex-direction: column;
-    }
-    .card_login {
-    width: 80%;
-
-    margin: 3rem  auto 0 auto;
-
-    }
+        margin: 3rem auto 0 auto;
+      }
     }
   `
 );
