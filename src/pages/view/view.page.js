@@ -1,11 +1,12 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 
 export default function View() {
+
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");

@@ -30,6 +30,21 @@ export async function getAllCandidates() {
   return await getAllDocs("candidate");
 }
 
+export function getLoginDetails() {
+  var user = getAuth().currentUser
+  var userData = {}
+  if (user != null) {
+    userData = {
+      "name": user.displayName,
+      "email": user.email,
+      "photoUrl": user.photoURL,
+      "emailVerified": user.emailVerified,
+      "uid": user.uid,
+    }
+  }
+  return userData
+}
+
 export async function getAllDocs(collectionName) {
   const candidatesCollection = collection(db, collectionName);
   const snapshot = await getDocs(candidatesCollection);
