@@ -19,7 +19,8 @@ export default function Home() {
         <WhoAreWe/>
         <LoginHero/>
       <Gallery />
-      <p style={{textAlign:"center"}}>Made with 💙 by Let’s Fight Back</p>
+      <p style={{textAlign:"center"}}>Made with 💙 by <span style={{fontWeight:"800"}}> #Let’sFightBack</span></p>
+
       </HeroStyle>
     </>
   );

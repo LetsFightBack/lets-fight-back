@@ -60,7 +60,7 @@ const Gallery = () => {
           />
           <div className="content_gallery">
             <div className="card_heading">Times Of India</div>
-            <p className="content_para">
+            <p >
               {" "}
               Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
               Duledes makrogt och et jure. Mäsm besam emedan os inklusive
@@ -119,6 +119,7 @@ let GalleryStyle = styled.div(
       font-size: 3rem;
       line-height: 4.5rem;
       margin-bottom: 1rem;
+      text-decoration: underline;
     }
     .alternate_reverse {
       flex-direction: row-reverse;
@@ -136,6 +137,10 @@ let GalleryStyle = styled.div(
         width: 100%;
         /* overflow-x: hidden; */
       }
+      .last {
+        padding-bottom: 2.5rem;
+        margin-bottom: 0rem;
+      }
       .head_gallery {
         font-size: 2rem;
       }
@@ -148,9 +153,7 @@ let GalleryStyle = styled.div(
         margin-bottom: 0rem;
       }
 
-      .content_para{
-        font-size: 24px;
-      }
+  
       .content_gallery {
         text-align: center;
         padding: 1rem 1rem;
@@ -159,10 +162,7 @@ let GalleryStyle = styled.div(
         width: 90%;
         margin: auto;
       }
-      .last {
-        padding-bottom: 2.5rem;
-        margin-bottom: 0rem;
-      }
+    
       .horizontal_line {
         display: block;
         width: 155px;

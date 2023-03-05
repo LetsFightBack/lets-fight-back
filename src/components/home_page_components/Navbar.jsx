@@ -15,7 +15,7 @@ const Navbar = () => {
         }}
       >
         <div className="logo_navbar">
-          <img src="/assets/logo.svg" alt="" />
+          <img src="/assets/logoNew.svg" alt="" />
         </div>
         <div
           style={{
@@ -89,8 +89,9 @@ let NavbarStyle = styled.div(
       .login-icon {
         padding: 0 0.5rem;
       }
-      .logo_navbar {
-        transform: scale(0.6);
+      .logo_navbar img{
+        /* transform: scale(0.6); */
+        width:8rem;
       }
     }
 
@@ -104,13 +105,18 @@ let NavbarStyle = styled.div(
           }
         }
         .logo_navbar {
-          transform: scale(0.5);
+          /* transform: scale(0.5); */
+          transform: scale(0.6);
         }
         .loginbtn {
           padding: 0.2rem;
 
           font-weight: 600;
           font-size: 1rem;
+        }
+        .login-icon{
+          height: 1.2rem;
+          padding: 0.4rem 0.4rem;
         }
         .options_div{
           margin-left: -5rem;

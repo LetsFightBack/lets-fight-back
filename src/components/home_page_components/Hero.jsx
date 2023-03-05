@@ -11,7 +11,7 @@ const Landing = () => {
           </span>
           FIGHT BACK
         </h1>
-        <p className="heading2_hero"> This Layoff!</p>
+        <p className="heading2_hero"> This <span style={{textDecoration:"underline"}}>Layoff!</span> </p>
         <p className="content_hero">
           Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
           Duledes makrogt och et jure. Mäsm besam emedan os inklusive polynygon.
@@ -20,7 +20,7 @@ const Landing = () => {
         </p>
         <img
           src="/assets/heroImage.svg"
-          alt="Hero Image"
+          alt="HeroIMG "
           className="hero_image"
         />
       </div>
@@ -51,7 +51,7 @@ let LandingStyle = styled.div(
       font-weight: 700;
       font-family: sans-serif;
       color: #0378a6;
-      margin-top: -5rem;
+      margin-top: -4rem;
       margin-left: 0.5rem;
     }
     .hero_image {

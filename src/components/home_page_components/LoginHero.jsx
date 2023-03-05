@@ -11,11 +11,10 @@ const LoginHero = () => {
         <div className="card_login">
           <h4 className="card_head">For Candidates</h4>
 
-          <button className="login_btn_hero">Login</button>
+          <button className="login_btn_hero">Get Benifit</button>
           <div className="login_signup">
             <p>
               Don’t have an account? <br></br>
-              <span className="signup_span"> Sign Up</span>{" "}
             </p>
           </div>
         </div>
@@ -107,16 +106,16 @@ let LoginHeroStyle = styled.div(
       .head_login {
         padding-top: 1.5rem;
         margin-bottom: 0.75rem;
-        font-size: 2.5rem;
+        font-size: 2.2rem;
       }
       .card_head {
-        font-size: 2rem;
+        font-size: 1.8rem;
       }
       .cards_login {
         flex-direction: column;
       }
       .card_login {
-        width: 80%;
+        width: 75%;
 
         margin: 3rem auto 0 auto;
       }
