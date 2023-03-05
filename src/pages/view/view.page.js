@@ -1,10 +1,12 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
+import Paper from "@mui/material/Paper";
 
 export default function View() {
+
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
@@ -67,7 +69,8 @@ export default function View() {
         let searchCondition = true;
         if (searchField.length) {
           searchCondition =
-            candidate.fieldOfJob.includes(searchField) || candidate.skills.includes(searchField);
+            candidate.fieldOfJob.includes(searchField) ||
+            candidate.skills.includes(searchField);
         }
 
         let yearCond = candidate.totalYearsOfexperience.includes(exp);
@@ -112,7 +115,16 @@ export default function View() {
           <RadioButtons
             filterRadios={filterRadios}
             SetFilterRadios={SetFilterRadios}
-            radioText={["0-1", "1-2", "2-3", "3-5", "5-7", "7-10", "10-15", "15+"]}
+            radioText={[
+              "0-1",
+              "1-2",
+              "2-3",
+              "3-5",
+              "5-7",
+              "7-10",
+              "10-15",
+              "15+",
+            ]}
           />
           <hr />
 
@@ -122,7 +134,10 @@ export default function View() {
               placeholder="Search by CTC (LPA)"
               type="number"
               onChange={(event) => {
-                SetFilterConditions({ ...filterConditions, expectedCTC: event.target.value });
+                SetFilterConditions({
+                  ...filterConditions,
+                  expectedCTC: event.target.value,
+                });
               }}
             />
           </div>
@@ -167,11 +182,11 @@ const MultiApplication = ({ data }) => {
   }
   return (
     <div className="applications">
-      <div className="application application__header">
+      <div className="applicationHeader application__header">
         <h2>Name</h2>
-        <p className="application__email">Email</p>
-        <p>College</p>
-        <p className="bl-r">Company</p>
+        <h2 className="application__email">Email</h2>
+        <h2>College</h2>
+        <h2 className="bl-r">Company</h2>
         <p></p>
       </div>
       {arr}
