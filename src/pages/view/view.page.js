@@ -96,22 +96,22 @@ export default function View() {
     };
   }, []);
 
-  const [userData, setUserData] = useState(null);
-  useEffect(() => {
-    IsLoggedIn().then((data) => {
-      setUserData(data)
-    })
-    return () => { }
-  }, []);
-  console.log(`user auth: ${userData}`);
+  // const [userData, setUserData] = useState(null);
+  // useEffect(() => {
+  //   IsLoggedIn().then((data) => {
+  //     setUserData(data)
+  //   })
+  //   return () => { }
+  // }, []);
+  // console.log(`user auth: ${userData}`);
 
-  if (userData == null) {
-    return (<Loader></Loader>)
-  }
+  // if (userData == null) {
+  //   return (<Loader></Loader>)
+  // }
 
-  if (userData == false) {
-    return (<Page403></Page403>);
-  }
+  // if (userData == false) {
+  //   return (<Page403></Page403>);
+  // }
 
   return (
     <div className={isVisible ? "aa invisible" : "aa"}>
