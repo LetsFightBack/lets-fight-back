@@ -137,33 +137,6 @@
 
 .application:hover {
   background-color: rgb(232, 248, 250);
-  padding: 30px;
-  justify-content: center;
-  align-items: center;
-  p {
-    max-height: 27px;
-    overflow: hidden;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  h2 {
-    max-height: 32px;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .p-right {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 35px;
-    color: #464646 !important;
-    margin: 0;
-  }
 }
 
 @media only screen and (max-width: 800px) {
