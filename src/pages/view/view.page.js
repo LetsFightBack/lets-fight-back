@@ -1,9 +1,10 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import { Navigate } from "react-router-dom";
 
 export default function View() {
 
@@ -27,8 +28,17 @@ export default function View() {
   useEffect(() => {
     getAllCandidates().then((data) => {
       SetApplicationData(data);
-      console.log(data[0]);
     });
+  }, []);
+
+  const [allowed, setAllowed] = useState(false);
+
+  useEffect(() => {
+    getHRDetail().then(event => {
+      if (event.verificationStatus != "Verified") {
+        setAllowed(true);
+      }
+  });
   }, []);
 
   useEffect(() => {
@@ -94,9 +104,7 @@ export default function View() {
 
   return (
     <div className={isVisible ? "aa invisible" : "aa"}>
-      <h1>Accepted applications</h1>
-      <div className="underline"></div>
-
+      {allowed && <Navigate to="/dashboard" replace={true} />}
       <div className="main">
         <div className={isVisible ? "main-left visible" : "main-left"}>
           <p className="filter2">

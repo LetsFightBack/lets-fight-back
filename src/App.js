@@ -13,6 +13,9 @@ import ForgetPassword from "./pages/ForgetPassword.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import "./App.scss";
 import PrivateRoute from "./components/privateRoute/privateRoute.component";
+import Appbar from "./components/Navbar/Navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 AOS.init();
 
@@ -29,6 +32,7 @@ function App() {
             path="/"
             element={
               <MainPageWrapper>
+                <Appbar/>
                 <Home />
               </MainPageWrapper>
             }
@@ -37,10 +41,16 @@ function App() {
             path="/view"
             element={
               <PrivateRoute
-                component={<MainPageWrapper> <View /> </MainPageWrapper>} />
+                component={<MainPageWrapper> <Appbar/> <View /> </MainPageWrapper>} />
             }
           ></Route>
-
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute
+                component={<MainPageWrapper> <Appbar/> <Dashboard/> </MainPageWrapper>} />
+            }
+          ></Route>
           <Route
             path="/login"
             element={
