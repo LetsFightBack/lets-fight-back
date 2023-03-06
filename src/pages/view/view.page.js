@@ -1,9 +1,10 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
+import { Navigate } from "react-router-dom";
 import { AES, enc } from "crypto-js";
 const SECRET_KEY = "wq893258yt35gh8989";
 const DURATION = 1000 * 60 * 60 * 24;
@@ -27,6 +28,9 @@ export default function View() {
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
+    getAllCandidates().then((data) => {
+      SetApplicationData(data);
+    });
     function getAndSetData() {
       getAllCandidates().then((data) => {
         SetApplicationData(data);
@@ -52,6 +56,16 @@ export default function View() {
         SetApplicationData(data);
       }
     }
+  }, []);
+
+  const [allowed, setAllowed] = useState(false);
+
+  useEffect(() => {
+    getHRDetail().then(event => {
+      if (event.verificationStatus != "Verified") {
+        setAllowed(true);
+      }
+  });
   }, []);
 
   useEffect(() => {
@@ -116,9 +130,7 @@ export default function View() {
 
   return (
     <div className={isVisible ? "aa invisible" : "aa"}>
-      <h1>Accepted applications</h1>
-      <div className="underline"></div>
-
+      {allowed && <Navigate to="/dashboard" replace={true} />}
       <div className="main">
         <div className={isVisible ? "main-left visible" : "main-left"}>
           <p className="filter2">

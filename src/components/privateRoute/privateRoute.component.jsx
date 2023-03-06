@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState, useEffect } from "react";
-import Page403 from "./../../pages/403/403.page"
+import LoginCandidate from '../../pages/login.page';
 import Loader from "./../loader/loader.component"
 import {
     getAuth,
     onAuthStateChanged
 } from "firebase/auth";
+import { Navigate } from "react-router-dom";
 
 const PrivateRoute = ({ component }) => {
     const [userData, setUserData] = useState(null);
@@ -24,14 +25,14 @@ const PrivateRoute = ({ component }) => {
     }
 
     if (userData == false) {
-        return (<Page403></Page403>);
+        return (<Navigate to="/login" replace={true} />);
     }
     return (<>
         {component}
     </>)
 };
 
-async function IsLoggedIn() {
+export async function IsLoggedIn() {
     try {
         await new Promise((resolve, reject) =>
             onAuthStateChanged(getAuth(),

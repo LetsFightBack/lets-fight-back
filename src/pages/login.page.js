@@ -63,7 +63,7 @@ export default function LoginCandidate() {
         ...toastOptions,
       });
 
-      navigate("/view", { replace: true });
+      navigate("/dashboard", { replace: true });
       
     } catch (error) {
       var errorCode = error.code;

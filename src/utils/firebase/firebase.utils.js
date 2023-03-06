@@ -1,16 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, where, query, doc, setDoc } from "firebase/firestore";
 import {
   getAuth,
-  signInWithRedirect,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  confirmPasswordReset,
-  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -41,8 +32,35 @@ export function getLoginDetails() {
       "emailVerified": user.emailVerified,
       "uid": user.uid,
     }
+    return userData;
+  } else {
+    return null;
   }
-  return userData
+}
+
+export async function getHRDetail() {
+  var user = getAuth().currentUser;
+  if(user != null) {
+    const hrRef = collection(db, 'HR');
+    const q = query(hrRef, where("email", "==", user.email));
+    const snapshot = await getDocs(q);
+    const users = [];
+    snapshot.forEach((doc, i) => {
+      users.push(doc.data());
+    });
+    return users[0];
+  } else {
+    return null;
+  }
+}
+
+export async function saveDataToDB(userData) {
+  userData = {...userData, ["verificationStatus"]: "Recieved"};
+  //saving user data back to DB
+  const hrRef = doc(db, 'HR', userData.email);
+  await setDoc(hrRef, {
+    ...userData
+  });
 }
 
 export async function getAllDocs(collectionName) {
