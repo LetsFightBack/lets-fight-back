@@ -12,6 +12,7 @@ import {
   onAuthStateChanged,
   confirmPasswordReset,
   sendPasswordResetEmail,
+  sendEmailVerification,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -86,8 +87,13 @@ export const createUserDocumentFromAuth = async (
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
-
-  return await createUserWithEmailAndPassword(auth, email, password);
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+  await sendEmailVerification(userCredential.user);
+  return userCredential;
 };
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
