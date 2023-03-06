@@ -11,7 +11,12 @@ export default function CandidateModal({ className, data, children }) {
       <div className={className} onClick={handleShow}>
         {children}
       </div>
-      {show ? <Modalmc handleClose={handleClose} data={data} /> : null}
+      <Modalmc
+        handleClose={handleClose}
+        data={data}
+        key="123"
+        style={!show ? { display: "none" } : { display: "flex" }}
+      />
     </>
   );
 }
