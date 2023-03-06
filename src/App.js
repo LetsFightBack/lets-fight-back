@@ -32,7 +32,8 @@ function App() {
             path="/"
             element={
               <MainPageWrapper>
-                <Appbar/>
+                {/* TODO: Modify navbar accoring to homepage */}
+                {/* <Appbar/> */}
                 <Home />
               </MainPageWrapper>
             }

@@ -88,7 +88,7 @@ export default function Dashboard() {
         <h4 style={{textAlign: "center"}}>User Details</h4>
         <Container className="w-75">
             <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" >
+            <Form.Group >
                 <Form.Label>Name</Form.Label>
                 <Form.Control 
                 type="text" 

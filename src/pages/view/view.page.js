@@ -5,9 +5,11 @@ import { getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/fire
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Navigate } from "react-router-dom";
+import { AES, enc } from "crypto-js";
+const SECRET_KEY = "wq893258yt35gh8989";
+const DURATION = 1000 * 60 * 60 * 24;
 
 export default function View() {
-
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
@@ -29,6 +31,31 @@ export default function View() {
     getAllCandidates().then((data) => {
       SetApplicationData(data);
     });
+    function getAndSetData() {
+      getAllCandidates().then((data) => {
+        SetApplicationData(data);
+        localStorage.setItem(
+          "candidates",
+          JSON.stringify({
+            date: new Date(),
+            data: AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(),
+          })
+        );
+      });
+    }
+    let local = localStorage.getItem("candidates");
+    local = JSON.parse(local);
+    if (!local || new Date().getTime() - new Date(local.date).getTime() >= DURATION) {
+      getAndSetData();
+    } else {
+      if (!local.data) {
+        getAndSetData();
+      } else {
+        let data = AES.decrypt(local.data, SECRET_KEY);
+        data = JSON.parse(data.toString(enc.Utf8));
+        SetApplicationData(data);
+      }
+    }
   }, []);
 
   const [allowed, setAllowed] = useState(false);
@@ -79,8 +106,7 @@ export default function View() {
         let searchCondition = true;
         if (searchField.length) {
           searchCondition =
-            candidate.fieldOfJob.includes(searchField) ||
-            candidate.skills.includes(searchField);
+            candidate.fieldOfJob.includes(searchField) || candidate.skills.includes(searchField);
         }
 
         let yearCond = candidate.totalYearsOfexperience.includes(exp);
@@ -123,16 +149,7 @@ export default function View() {
           <RadioButtons
             filterRadios={filterRadios}
             SetFilterRadios={SetFilterRadios}
-            radioText={[
-              "0-1",
-              "1-2",
-              "2-3",
-              "3-5",
-              "5-7",
-              "7-10",
-              "10-15",
-              "15+",
-            ]}
+            radioText={["0-1", "1-2", "2-3", "3-5", "5-7", "7-10", "10-15", "15+"]}
           />
           <hr />
 
@@ -192,6 +209,9 @@ const MultiApplication = ({ data }) => {
     <div className="applications">
       <div className="applicationHeader application__header">
         <h2>Name</h2>
+        <h2 className="application__email">Email</h2>
+        <h2>College</h2>
+        <h2 className="bl-r">Company</h2>
         <h2 className="application__email">Email</h2>
         <h2>College</h2>
         <h2 className="bl-r">Company</h2>

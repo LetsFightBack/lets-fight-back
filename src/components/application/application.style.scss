@@ -1,5 +1,6 @@
 .application {
   padding: 10px;
+  padding: 10px;
   cursor: pointer;
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 2fr 0.3fr;
@@ -7,12 +8,12 @@
   align-items: center;
   gap: 20px;
 
-
   max-height: 55px;
   border: solid 1px #d9d9d9;
   border-radius: 1px;
   color: #464646;
-  margin: 5px 0;
+  padding: 5px 30px;
+  margin: 6px 0;
 
   p {
     max-height: 21px;
@@ -62,11 +63,11 @@
   &__header {
     border: none;
     padding-top: 10px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+      sans-serif;
     cursor: default;
   }
 }
-
 
 .applicationHeader {
   padding: 10px;
@@ -76,6 +77,73 @@
   align-items: center;
   gap: 20px;
 
+  max-height: 55px;
+  border-radius: 1px;
+  border-radius: 1px;
+  color: #464646;
+  margin: 5px 0;
+
+  p {
+    max-height: 21px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h2 {
+    max-height: 27px;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  h2 {
+    // width: 100%;
+    font-size: 16px;
+    margin: 0;
+  }
+
+  @media only screen and (max-width: 520px) {
+    h2 {
+      font-size: 16px;
+    }
+  }
+
+  .bl-r {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .p-right {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 18px;
+    color: #464646 !important;
+    margin: 0;
+    a {
+      color: #464646 !important;
+    }
+  }
+
+  &__header {
+    border: none;
+    padding-top: 10px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+      sans-serif;
+    cursor: default;
+  }
+}
+
+.applicationHeader {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 0.3fr;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 
   max-height: 55px;
   border-radius: 1px;
@@ -130,40 +198,18 @@
   &__header {
     border: none;
     padding-top: 10px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+      sans-serif;
+    border: none;
+    padding-top: 10px;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial,
+      sans-serif;
     cursor: default;
   }
 }
 
 .application:hover {
   background-color: rgb(232, 248, 250);
-  padding: 30px;
-  justify-content: center;
-  align-items: center;
-  p {
-    max-height: 27px;
-    overflow: hidden;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  h2 {
-    max-height: 32px;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .p-right {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 35px;
-    color: #464646 !important;
-    margin: 0;
-  }
 }
 
 @media only screen and (max-width: 800px) {

@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.2.3",
+    "crypto-js": "^4.1.1",
     "firebase": "^9.17.1",
     "framer-motion": "^8.5.0",
     "react": "^18.2.0",
