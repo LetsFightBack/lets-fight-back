@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  font-family: Arial, sans-serif;
 
   div {
     box-sizing: border-box;
@@ -11,14 +12,19 @@
 
   p {
     margin: 0;
+    font-weight: 500;
   }
 
-  .h-content-1 {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #101828;
-    text-align: center;
+  .mccontainer {
+    max-height: 55vh;
+    overflow: auto;
     width: 100%;
+
+    .mctitle {
+      margin-top: 25px;
+      margin-bottom: -10px;
+      font-weight: 600;
+    }
   }
 
   &__header {
@@ -26,23 +32,26 @@
   }
 
   &__row {
-    max-height: 50vh;
-    overflow: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    gap: 15px;
     width: 100%;
+
+    @media only screen and (max-width: 700px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__cell {
-    width: 48%;
+    width: 100%;
     margin: 15px 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     gap: 5px;
+    @media only screen and (max-width: 700px) {
+      grid-column: 1 / span 1 !important;
+    }
 
     div {
       min-height: 42px;
@@ -51,10 +60,40 @@
       border-radius: 5px;
       border: 2px solid #4653f6;
     }
+  }
+}
 
-    @media only screen and (max-width: 585px) {
-      width: 100%;
+.mheader {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .mhperson {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    span {
+      height: 40px;
+      width: 40px;
+      border-radius: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #4653f6;
+      color: white;
     }
+  }
+
+  .mhclose {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border-radius: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -74,7 +113,7 @@
   .Candidate-Modal {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 12;
-    max-width: 800px;
+    max-width: 1000px;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -86,6 +125,9 @@
     flex-direction: column;
     position: relative;
     margin: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
 
     @media (max-width: 700px) {
       width: 90%;
@@ -128,6 +170,11 @@
       color: white !important;
       border: none;
 
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
       &:active,
       &:hover,
       &:focus {
@@ -135,5 +182,16 @@
         color: white !important;
       }
     }
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
   }
 }
