@@ -1,9 +1,10 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates } from "../../utils/firebase/firebase.utils";
+import { getAllCandidates, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import { AES, enc } from "crypto-js";
+import Paper from "@mui/material/Paper";
 const SECRET_KEY = "wq893258yt35gh8989";
 const DURATION = 1000 * 60 * 60 * 24;
 
@@ -146,7 +147,10 @@ export default function View() {
               placeholder="Search by CTC (LPA)"
               type="number"
               onChange={(event) => {
-                SetFilterConditions({ ...filterConditions, expectedCTC: event.target.value });
+                SetFilterConditions({
+                  ...filterConditions,
+                  expectedCTC: event.target.value,
+                });
               }}
             />
           </div>
@@ -191,11 +195,11 @@ const MultiApplication = ({ data }) => {
   }
   return (
     <div className="applications">
-      <div className="application application__header">
+      <div className="applicationHeader application__header">
         <h2>Name</h2>
-        <p className="application__email">Email</p>
-        <p>College</p>
-        <p className="bl-r">Company</p>
+        <h2 className="application__email">Email</h2>
+        <h2>College</h2>
+        <h2 className="bl-r">Company</h2>
         <p></p>
       </div>
       {arr}

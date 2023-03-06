@@ -12,6 +12,7 @@ import RegisterCandidate from "./pages/register.page";
 import ForgetPassword from "./pages/ForgetPassword.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import "./App.scss";
+import PrivateRoute from "./components/privateRoute/privateRoute.component";
 
 AOS.init();
 
@@ -35,9 +36,8 @@ function App() {
           <Route
             path="/view"
             element={
-              <MainPageWrapper>
-                <View />
-              </MainPageWrapper>
+              <PrivateRoute
+                component={<MainPageWrapper> <View /> </MainPageWrapper>} />
             }
           ></Route>
 
