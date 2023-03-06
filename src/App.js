@@ -14,6 +14,9 @@ import ResetPassword from "./pages/ResetPassword.page";
 import "./App.scss";
 import PrivateRoute from "./components/privateRoute/privateRoute.component";
 import PageNotVerified from "./pages/NotVerified/NotVerified.page";
+import Appbar from "./components/Navbar/Navbar";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 AOS.init();
 
@@ -30,6 +33,8 @@ function App() {
             path="/"
             element={
               <MainPageWrapper>
+                {/* TODO: Modify navbar accoring to homepage */}
+                {/* <Appbar/> */}
                 <Home />
               </MainPageWrapper>
             }
@@ -38,10 +43,16 @@ function App() {
             path="/view"
             element={
               <PrivateRoute
-                component={<MainPageWrapper> <View /> </MainPageWrapper>} />
+                component={<MainPageWrapper> <Appbar/> <View /> </MainPageWrapper>} />
             }
           ></Route>
-
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute
+                component={<MainPageWrapper> <Appbar/> <Dashboard/> </MainPageWrapper>} />
+            }
+          ></Route>
           <Route
             path="/login"
             element={

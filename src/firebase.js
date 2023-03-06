@@ -1,6 +1,4 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import {
   getAuth,
   signInWithRedirect,
@@ -62,7 +60,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   if (!userAuth) return;
 
-  const userDocRef = doc(db, "users", userAuth.uid);
+  const userDocRef = doc(db, "HR", userAuth.email);
 
   const userSnapshot = await getDoc(userDocRef);
 
@@ -72,10 +70,12 @@ export const createUserDocumentFromAuth = async (
 
     try {
       await setDoc(userDocRef, {
-        displayName,
-        email,
-        createdAt,
-        ...additionalInformation,
+        name:displayName,
+        email:email,
+        createdAt:createdAt,
+        linkedInId:null,
+        company:null,
+        verificationStatus:"NotVerified",
       });
     } catch (error) {
       console.log("error creating the user", error.message);
