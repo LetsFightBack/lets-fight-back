@@ -62,7 +62,7 @@ export default function LoginCandidate() {
       toast.success("user sign in successful", {
         ...toastOptions,
       });
-
+      
       navigate("/view", { replace: true });
       
     } catch (error) {
