@@ -5,8 +5,8 @@ import { css } from "@emotion/react";
 const Gallery = () => {
   return (
     <GalleryStyle>
-      <div className="main_gallery" id="gallery">
-        <div className="head_gallery">People Love us !</div>
+      <div className="main_gallery" >
+        <div className="head_gallery">People Love and Support us ❤️</div>
         <div className="card_gallery">
           <img src="/assets/NDTV.png" alt="" className="card_image_gallery" />
           <div className="content_gallery">
@@ -29,9 +29,10 @@ const Gallery = () => {
           <div className="horizontal_line"></div>
         <div className="card_gallery alternate_reverse">
           <img
-            src="/assets/TheHindu.png"
+            src="/assets/TheHindu.jpeg"
             alt=""
-            className="card_image_gallery"
+
+            className="card_image_gallery "
           />
           <div className="content_gallery align_right">
             <div className="card_heading">The Hindu</div>
@@ -100,6 +101,7 @@ let GalleryStyle = styled.div(
     }
     .card_gallery {
       display: flex;
+      align-items: center;
       margin-bottom: 8rem;
     }
     .last {
@@ -109,11 +111,12 @@ let GalleryStyle = styled.div(
     .card_image_gallery {
       width: 38rem;
       height: auto;
+      border-radius: 20px;
     }
 
     .content_gallery {
       color: white;
-      padding: 1rem 3.75rem;
+      padding: 0rem 3.75rem;
     }
     .card_heading {
       font-size: 3rem;

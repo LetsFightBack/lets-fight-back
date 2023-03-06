@@ -13,14 +13,11 @@ const Landing = () => {
         </h1>
         <p className="heading2_hero"> This <span style={{textDecoration:"underline"}}>Layoff!</span> </p>
         <p className="content_hero">
-          Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
-          Duledes makrogt och et jure. Mäsm besam emedan os inklusive polynygon.
-          Homong mäv faning beck. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Nihil, eius.{" "}
+      <span className="weight800">  23489+ </span>folks from  <span className="weight800"> 78+</span> companies have been laid off in the last <span className="weight800">5</span> months and the situation is devastating for everyone around. <span className="weight800">I </span> am one of the <span className="weight800">23489</span> folks, but  I was able to get a job exactly on the <span className="weight800"> 18th</span> day from the day of my layoff, now let me help you get yours&nbsp;🚀!!
         </p>
         <img
           src="/assets/heroImage.svg"
-          alt="HeroIMG "
+          alt="HeroIMG"
           className="hero_image"
         />
       </div>
@@ -32,6 +29,11 @@ export default Landing;
 
 let LandingStyle = styled.div(
   css`
+  .weight800{
+    font-weight: 1300;
+    color: rgba(30, 30, 30, 1);
+
+  }
     .main_landing {
       width: 97.5%;
       margin: 0 0 0 auto;

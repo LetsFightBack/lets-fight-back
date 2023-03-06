@@ -18,38 +18,14 @@ const Navbar = () => {
           <img src="/assets/logoNew.svg" alt="" />
         </div>
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
         >
-          <div className="options_div">
-            <ul
-              className="nav_options"
-              style={{
-                display: "flex",
-                textDecoration: "none",
-                listStyleType: "none",
-                color: "#3C455F",
-              }}
-            > <a href="#about">
-                
-              <li>About </li></a>
-              <a href="#gallery">
-                <li>Gallery </li>
-              </a>
-              <a href="#about">
-                
-                <li>Contact </li>
-              </a>
-            </ul>
-          </div>
-          <Link to='/login'>
-          <button className="loginbtn">
-            <img className="login-icon" src="/assets/loginIcon.svg" alt="" />{" "}
-            Login
-          </button></Link>
+          
+          <Link to="/login">
+            <button className="loginbtn">
+              <img className="login-icon" src="/assets/loginIcon.svg" alt="" />{" "}
+              Login
+            </button>
+          </Link>
         </div>
       </nav>
     </NavbarStyle>
@@ -61,7 +37,7 @@ export default Navbar;
 let NavbarStyle = styled.div(
   css`
     width: 95%;
-    margin: auto;
+    margin: 1rem auto 0 auto;
 
     .navbar {
       font-size: 24px;
@@ -85,13 +61,14 @@ let NavbarStyle = styled.div(
         border-radius: 6px;
         font-weight: 600;
         font-size: 20px;
+        cursor: pointer;
       }
       .login-icon {
         padding: 0 0.5rem;
       }
-      .logo_navbar img{
+      .logo_navbar img {
         /* transform: scale(0.6); */
-        width:8rem;
+        width: 8rem;
       }
     }
 
@@ -114,11 +91,11 @@ let NavbarStyle = styled.div(
           font-weight: 600;
           font-size: 1rem;
         }
-        .login-icon{
+        .login-icon {
           height: 1.2rem;
           padding: 0.4rem 0.4rem;
         }
-        .options_div{
+        .options_div {
           margin-left: -5rem;
         }
       }

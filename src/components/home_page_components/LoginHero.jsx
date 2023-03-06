@@ -6,17 +6,14 @@ import { Link } from "react-router-dom";
 const LoginHero = () => {
   return (
     <LoginHeroStyle>
-      <h3 className="head_login">LOGIN</h3>
+      <h3 className="head_login">Join us in the Initiative 🤝</h3>
       <div className="cards_login">
         <div className="card_login">
           <h4 className="card_head">For Candidates</h4>
 
-          <button className="login_btn_hero">Get Benifit</button>
-          <div className="login_signup">
-            <p>
-              Don’t have an account? <br></br>
-            </p>
-          </div>
+<a href="https://forms.gle/D8x12Jf2QnSSgz8h9" target="_blank" rel="noreferrer">
+          <button className="login_btn_hero">Get Hired</button>
+         </a>
         </div>
         <div className="card_login">
           <h4 className="card_head">For Recruiters</h4>
