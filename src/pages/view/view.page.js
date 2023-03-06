@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
 import { getAllCandidates } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
+import { AES, enc } from "crypto-js";
+const SECRET_KEY = "wq893258yt35gh8989";
+const DURATION = 1000 * 60 * 60 * 24;
 
 export default function View() {
   // const [dropdownstate, SetDropdownstate] = useState([false]);
@@ -23,10 +26,31 @@ export default function View() {
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
-    getAllCandidates().then((data) => {
-      SetApplicationData(data);
-      console.log(data[0]);
-    });
+    function getAndSetData() {
+      getAllCandidates().then((data) => {
+        SetApplicationData(data);
+        localStorage.setItem(
+          "candidates",
+          JSON.stringify({
+            date: new Date(),
+            data: AES.encrypt(JSON.stringify(data), SECRET_KEY).toString(),
+          })
+        );
+      });
+    }
+    let local = localStorage.getItem("candidates");
+    local = JSON.parse(local);
+    if (!local || new Date().getTime() - new Date(local.date).getTime() >= DURATION) {
+      getAndSetData();
+    } else {
+      if (!local.data) {
+        getAndSetData();
+      } else {
+        let data = AES.decrypt(local.data, SECRET_KEY);
+        data = JSON.parse(data.toString(enc.Utf8));
+        SetApplicationData(data);
+      }
+    }
   }, []);
 
   useEffect(() => {
