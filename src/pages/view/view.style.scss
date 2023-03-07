@@ -52,6 +52,7 @@
         font-weight: 500;
         font-size: 21px;
         margin-bottom: 5px;
+        margin-top: 20px;
       }
 
       h3 {
@@ -160,7 +161,8 @@
         align-items: center;
         width: 90%;
         background-color: #fafafa;
-        border-radius: 20px;
+        border-radius: 5px;
+        border-radius: 5px;
 
         .magnify {
           position: relative;
@@ -222,7 +224,7 @@
 
       .applications-container {
         width: 90%;
-        height: 600px;
+        height: 80vh;
         overflow-y: auto;
         overflow-x: hidden;
         position: relative;
