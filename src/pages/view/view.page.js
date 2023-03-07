@@ -6,12 +6,16 @@ import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Navigate } from "react-router-dom";
 import { AES, enc } from "crypto-js";
+import { IsEmailVerified } from "../NotVerified/NotVerified.page";
+import PageNotVerified from "../NotVerified/NotVerified.page";
+import { useNavigate } from "react-router";
 const SECRET_KEY = "wq893258yt35gh8989";
 const DURATION = 1000 * 60 * 60 * 24;
 
 export default function View() {
   // const [dropdownstate, SetDropdownstate] = useState([false]);
-  const [isVisible, SetIsvisible] = useState(false);
+  const navigate = useNavigate();
+    const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
   const [applicationData, SetApplicationData] = useState([]);
   const [filteredData, SetFilteredData] = useState([]);
@@ -28,6 +32,15 @@ export default function View() {
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
+    IsEmailVerified().then((res)=>{
+      console.log(res);
+      if(res===false)
+      {
+        navigate("/verifymail", { replace: true });
+        // return (<PageNotVerified></PageNotVerified>)
+      }
+      
+    })
     getAllCandidates().then((data) => {
       SetApplicationData(data);
     });

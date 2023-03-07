@@ -13,6 +13,7 @@ import ForgetPassword from "./pages/ForgetPassword.page";
 import ResetPassword from "./pages/ResetPassword.page";
 import "./App.scss";
 import PrivateRoute from "./components/privateRoute/privateRoute.component";
+import PageNotVerified from "./pages/NotVerified/NotVerified.page";
 import Appbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -85,7 +86,15 @@ function App() {
               </AnimatedPage>
             }
           ></Route>
-        </Routes>
+        <Route
+            path="/verifymail"
+            element={
+              <MainPageWrapper>
+                <PageNotVerified />
+              </MainPageWrapper>
+            }
+            ></Route>
+            </Routes>
       </AnimatePresence>
     </>
   );
