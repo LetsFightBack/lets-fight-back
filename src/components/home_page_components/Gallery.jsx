@@ -10,69 +10,39 @@ const Gallery = () => {
         <div className="card_gallery">
           <img src="/assets/NDTV.png" alt="" className="card_image_gallery" />
           <div className="content_gallery">
-            <div className="card_heading">NDTV India</div>
+            <div className="card_heading"> Featured With NDTV INDIA</div>
             <p>
-              {" "}
-              Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
-              Duledes makrogt och et jure. Mäsm besam emedan os inklusive
-              polynygon. Homong mäv faning beck. Lörem ipsum nevis prektigt om
-              hämura mön. Migisk far. Syr olig. Duledes makrogt och et jure.v
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-              sint at commodi esse iusto suscipit dolores! Ut soluta possimus
-              odit labore eligendi modi quos architecto? Dicta animi maiores
-              necessitatibus odio, libero odit voluptatibus dignissimos incidunt
-              magnam repellendus maxime nihil consequatur deleniti ipsam,
-              reprehenderit illo ab sit. Nostrum delectus sint debitis.{" "}
             </p>
           </div>
         </div>
-          <div className="horizontal_line"></div>
+         
+        <div className="horizontal_line"></div>
+
         <div className="card_gallery alternate_reverse">
+          <img
+            src="/assets/TimesOfIndia.png"
+            alt=""
+            className="card_image_gallery"
+          />
+          <div className="content_gallery align_right">
+            <div className="card_heading">  Published in Times of India</div>
+            <p >
+          
+            </p>
+          </div>
+        </div>
+        <div className="horizontal_line"></div>
+        <div className="card_gallery last ">
           <img
             src="/assets/TheHindu.jpeg"
             alt=""
 
             className="card_image_gallery "
           />
-          <div className="content_gallery align_right">
-            <div className="card_heading">The Hindu</div>
+          <div className="content_gallery ">
+            <div className="card_heading">  Initiative Highlighted by The Hindu</div>
             <p>
-              {" "}
-              Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
-              Duledes makrogt och et jure. Mäsm besam emedan os inklusive
-              polynygon. Homong mäv faning beck. Lörem ipsum nevis prektigt om
-              hämura mön. Migisk far. Syr olig. Duledes makrogt och et jure.v
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-              sint at commodi esse iusto suscipit dolores! Ut soluta possimus
-              odit labore eligendi modi quos architecto? Dicta animi maiores
-              necessitatibus odio, libero odit voluptatibus dignissimos incidunt
-              magnam repellendus maxime nihil consequatur deleniti ipsam,
-              reprehenderit illo ab sit. Nostrum delectus sint debitis.{" "}
-            </p>
-          </div>
-        </div>
-        <div className="horizontal_line"></div>
-
-        <div className="card_gallery last">
-          <img
-            src="/assets/TimesOfIndia.png"
-            alt=""
-            className="card_image_gallery"
-          />
-          <div className="content_gallery">
-            <div className="card_heading">Times Of India</div>
-            <p >
-              {" "}
-              Lörem ipsum nevis prektigt om hämura mön. Migisk far. Syr olig.
-              Duledes makrogt och et jure. Mäsm besam emedan os inklusive
-              polynygon. Homong mäv faning beck. Lörem ipsum nevis prektigt om
-              hämura mön. Migisk far. Syr olig. Duledes makrogt och et jure.v
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa
-              sint at commodi esse iusto suscipit dolores! Ut soluta possimus
-              odit labore eligendi modi quos architecto? Dicta animi maiores
-              necessitatibus odio, libero odit voluptatibus dignissimos incidunt
-              magnam repellendus maxime nihil consequatur deleniti ipsam,
-              reprehenderit illo ab sit. Nostrum delectus sint debitis.{" "}
+          
             </p>
           </div>
         </div>
@@ -101,7 +71,7 @@ let GalleryStyle = styled.div(
     }
     .card_gallery {
       display: flex;
-      align-items: center;
+     
       margin-bottom: 8rem;
     }
     .last {
@@ -119,10 +89,11 @@ let GalleryStyle = styled.div(
       padding: 0rem 3.75rem;
     }
     .card_heading {
-      font-size: 3rem;
+      font-size: 2.5rem;
       line-height: 4.5rem;
       margin-bottom: 1rem;
       text-decoration: underline;
+
     }
     .alternate_reverse {
       flex-direction: row-reverse;
