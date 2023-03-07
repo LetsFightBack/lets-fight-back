@@ -4,6 +4,7 @@ import {
     getAuth,
     onAuthStateChanged
 } from "firebase/auth";
+import { Container } from "react-bootstrap";
 
 
 export async function IsEmailVerified() {
@@ -33,10 +34,11 @@ export async function IsEmailVerified() {
 
 export default function PageNotVerified() {
     return (
-        <div>Kindly verify your mail.
-            <Link to="/login">
-                <Button variant="text">login</Button>
-            </Link>
-        </div>
+        <Container>
+            <br/>
+            <br/>
+            <br/>
+            <h4 style={{textAlign: "center"}}>Please confirm your email address by checking for the verification email we sent you, and then proceed to <a href="/login">login</a>.</h4>
+        </Container>
     );
 }
