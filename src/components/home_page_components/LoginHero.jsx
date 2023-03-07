@@ -47,9 +47,9 @@ export default LoginHero;
 let LoginHeroStyle = styled.div(
   css`
     box-sizing: border-box;
-    padding-bottom: 5.5rem;
+    padding-bottom: 8.5rem;
     .head_login {
-      padding-top: 3.5rem;
+      padding-top: 6.5rem;
       font-size: 48px;
       line-height: 72px;
       text-align: center;
@@ -70,6 +70,7 @@ let LoginHeroStyle = styled.div(
       border: 1px solid rgba(0, 0, 0, 0.12);
       box-shadow: 6px 8px 25px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
+      height: 50vh;
     }
     .card_head {
       font-size: 2rem;
@@ -113,7 +114,7 @@ let LoginHeroStyle = styled.div(
       }
       .card_login {
         width: 75%;
-
+        height: 42vh;
         margin: 3rem auto 0 auto;
       }
     }

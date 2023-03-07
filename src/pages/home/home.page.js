@@ -20,7 +20,7 @@ export default function Home() {
         <LoginHero/>
       <Gallery />
       
-      <p style={{textAlign:"center"}}>Made with 💙 by <a  href="https://bit.ly/lets-fight-back-initiative-1" target="_blank" rel="noreferrer" style={{fontWeight:"800",textDecoration:"none", color:"black"}}> #LetsFightBack</a></p>
+      <p style={{textAlign:"center", paddingTop:"1rem"}}>Made with 💙 by <a  href="https://bit.ly/lets-fight-back-initiative-1" target="_blank" rel="noreferrer" style={{fontWeight:"800",textDecoration:"none", color:"black"}}> #LetsFightBack</a></p>
 
       </HeroStyle>
     </>
