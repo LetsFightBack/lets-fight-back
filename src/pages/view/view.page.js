@@ -113,16 +113,16 @@ export default function View() {
         if (!filterConditions.expectedCTC) {
           ctcCond = true;
         } else {
-          ctcCond = ctcCond.includes(filterConditions.expectedCTC);
+          ctcCond = ctcCond?.includes(filterConditions.expectedCTC);
         }
 
         let searchCondition = true;
         if (searchField.length) {
           searchCondition =
-            candidate.fieldOfJob.includes(searchField) || candidate.skills.includes(searchField);
+            candidate.fieldOfJob?.includes(searchField) || candidate.skills?.includes(searchField);
         }
 
-        let yearCond = candidate.totalYearsOfexperience.includes(exp);
+        let yearCond = candidate.totalYearsOfexperience?.includes(exp);
 
         return ctcCond && yearCond && searchCondition;
       })
