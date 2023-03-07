@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export async function getAllCandidates() {
-  return await getAllDocs("candidate");
+  return await getAllDocs("Employee");
 }
 
 export function getLoginDetails() {
