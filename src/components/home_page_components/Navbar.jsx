@@ -65,6 +65,8 @@ let NavbarStyle = styled.div(
       }
       .login-icon {
         padding: 0 0.5rem;
+        height: 1.5rem;
+
       }
       .logo_navbar img {
         /* transform: scale(0.6); */
@@ -92,7 +94,7 @@ let NavbarStyle = styled.div(
           font-size: 1rem;
         }
         .login-icon {
-          height: 1.2rem;
+          height: 2rem;
           padding: 0.4rem 0.4rem;
         }
         .options_div {

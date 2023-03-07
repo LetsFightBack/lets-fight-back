@@ -46,6 +46,7 @@ let LandingStyle = styled.div(
       font-weight: 700;
       font-size: 101.779px;
       line-height: 124px;
+      margin-top: 2rem;
     }
     .heading2_hero {
       font-size: 1.5rem;
@@ -53,7 +54,6 @@ let LandingStyle = styled.div(
       font-weight: 700;
       font-family: sans-serif;
       color: #0378a6;
-      margin-top: -4rem;
       margin-left: 0.5rem;
     }
     .hero_image {
@@ -83,7 +83,6 @@ let LandingStyle = styled.div(
       font-size: 1.5rem;
       line-height: 23px;
    
-      margin-top: -1rem;
       margin-left: 0rem;
     }
       .content_hero {
