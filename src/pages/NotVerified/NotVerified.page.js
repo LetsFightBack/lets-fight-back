@@ -5,6 +5,8 @@ import {
     onAuthStateChanged
 } from "firebase/auth";
 import { Container } from "react-bootstrap";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../../utils/firebase/firebase.utils";
 
 
 export async function IsEmailVerified() {
@@ -33,6 +35,7 @@ export async function IsEmailVerified() {
 }
 
 export default function PageNotVerified() {
+    logEvent(analytics, "NotVerified Page Loaded");
     return (
         <Container>
             <br/>
