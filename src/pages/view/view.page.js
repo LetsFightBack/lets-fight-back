@@ -1,7 +1,7 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
+import { analytics, getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Navigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { AES, enc } from "crypto-js";
 import { IsEmailVerified } from "../NotVerified/NotVerified.page";
 import PageNotVerified from "../NotVerified/NotVerified.page";
 import { useNavigate } from "react-router";
+import { logEvent } from "firebase/analytics";
 const SECRET_KEY = "wq893258yt35gh8989";
 const DURATION = 1000 * 60 * 60 * 24;
 
@@ -141,6 +142,7 @@ export default function View() {
     };
   }, []);
 
+  logEvent(analytics, "View Page Loaded");
   return (
     <div className={isVisible ? "aa invisible" : "aa"}>
       {allowed && <Navigate to="/dashboard" replace={true} />}

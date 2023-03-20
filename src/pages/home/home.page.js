@@ -7,8 +7,11 @@ import Hero from "../../components/home_page_components/Hero";
 import Gallery from "../../components/home_page_components/Gallery";
 import WhoAreWe from "../../components/home_page_components/WhoAreWe";
 import LoginHero from "../../components/home_page_components/LoginHero";
+import { analytics } from "../../utils/firebase/firebase.utils";
+import { logEvent } from "firebase/analytics";
 
 export default function Home() {
+  logEvent(analytics, "Home Page Loaded");
   return (
     <>
       <HeroStyle>

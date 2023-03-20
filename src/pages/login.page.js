@@ -12,6 +12,8 @@ import "./loginsignup.style.scss";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
+import { analytics } from "../utils/firebase/firebase.utils";
+import { logEvent } from "firebase/analytics";
 
 export default function LoginCandidate() {
   const navigate = useNavigate();
@@ -85,6 +87,7 @@ export default function LoginCandidate() {
 
   };
 
+  logEvent(analytics, "Login Page Loaded");
   return (
     <div className="register">
     

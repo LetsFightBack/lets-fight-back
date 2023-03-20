@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import ToastContainer from  "../utils/Toast.js";
 import { toastOptions } from  "../utils/Toast.js";
 import { toast } from "react-toastify";
+import { analytics } from "../utils/firebase/firebase.utils";
+import { logEvent } from "firebase/analytics";
 
 export default function RegisterCandidate() {
   const navigate = useNavigate();
@@ -79,6 +81,7 @@ export default function RegisterCandidate() {
       border: "none",
     },
   };
+  logEvent(analytics, "Register Page Loaded");
   return (
     <div className="register">
       <p className="register__heading">Lets Fight Back!</p>

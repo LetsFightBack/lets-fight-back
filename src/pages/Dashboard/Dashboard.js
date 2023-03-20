@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { getHRDetail, saveDataToDB } from "../../utils/firebase/firebase.utils";
+import { analytics, getHRDetail, saveDataToDB } from "../../utils/firebase/firebase.utils";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Container } from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
+import { logEvent } from "firebase/analytics";
 
 
 export default function Dashboard() {
@@ -70,7 +71,7 @@ export default function Dashboard() {
         const { name, value } = event.target;
         setUserDetail({ ...userDetail, [name]: value });
     };
-
+    logEvent(analytics, "Dashboard Page Loaded");
     return (
     <Container>
         <br/>
