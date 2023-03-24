@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, where, query, doc, setDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 import {
   getAuth,
 } from "firebase/auth";
@@ -16,6 +17,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+// Initialize Analytics and get a reference to the service
+export const analytics = getAnalytics(app);
 
 export async function getAllCandidates() {
   return await getAllDocs("Employee");
