@@ -150,7 +150,7 @@ export default function LoginCandidate() {
 
         <div className="register__right__info">
           <p>
-            Already have an account?{" "}
+            Don't Have an Account?{" "}
             <Link to="/register">
               <span>Sign Up</span>
             </Link>
