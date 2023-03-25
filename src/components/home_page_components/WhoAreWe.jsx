@@ -31,7 +31,7 @@ const WhoAreWe = () => {
               Tejas was able to relate to the stress, and struggles faced by
               laid-off candidates and hence with some of his colleagues and
               juniors started the #LetsFightBack Initiative on 26th December.
-              Till now we have been able to able 800+ Laidoff Individuals, and
+              Till now we have been able to help 800+ Laidoff Individuals, and
               have partnered with 45+ HRs and Recruiters of top startups and
               MNCs in this tough time of recession. 🔥🤝
               <br />
@@ -40,7 +40,7 @@ const WhoAreWe = () => {
                 And we are just getting started... 🚀
               </span>
             </p>
-            <a href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5" target="_blank">
+            <a href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5" target="_blank" rel="noreferrer noopener">
             <button className="join_btn_hero"><WhatsAppIcon/> Join 800+ Individual Whatsapp Community</button></a>
           </div>
         </div>
