@@ -17,7 +17,7 @@ const WAPopup = () => {
               </div>
         <a
           href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5"
-          target="_blank"
+          target="_blank" rel="noreferrer noopener"
         >
           <button className="join_btn_wapopup">
             <WhatsAppIcon /> Join Now
@@ -29,7 +29,6 @@ const WAPopup = () => {
 };
 
 export default WAPopup;
-
 let PopupStyle = styled.div(
   (props) => css`
     position: fixed;
@@ -39,15 +38,17 @@ let PopupStyle = styled.div(
     border-radius: 10px;
     bottom: 0;
     right: 0;
-    width: 25vw;
+    max-width: 26vw;
     height: min-content;
-    background-color: #e3dada;
+    background-color: #0F8587;
+    color:white;
+    box-shadow: 2px 2px 5px black;
     a {
       text-decoration: none;
     }
     .content_wapopup {
         text-align: center;
-        font-weight: 600;
+        font-weight: 500;
       font-size: 1rem;
     }
     .close_btn_popup {
@@ -62,15 +63,14 @@ let PopupStyle = styled.div(
       margin-top: 1rem;
       border-radius: 10px;
       font-weight: 600;
-      background-color: #298358;
+      background-color: #0AA0A3;
       color: white;
-
       cursor: pointer;
       border: none;
     }
     @media only screen and (max-width: 620px) {
 
-  width: fit-content;
+  min-width: fit-content;
         }
   `
 );
