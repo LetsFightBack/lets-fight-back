@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import "./loginsignup.style.scss";
 import { toastOptions } from "../utils/Toast";
 import { toast } from "react-toastify";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../utils/firebase/firebase.utils";
 
 const sx_form_input = {
   color: "#8A8A8A",
@@ -47,6 +49,7 @@ toast.success("Email sent successfully!", {
       });
   };
 
+  logEvent(analytics, "Forgot Password Page Loaded");
   return (
     <div className="register">
       <p className="register__heading">Lets Fight Back!</p>

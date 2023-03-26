@@ -7,11 +7,17 @@ import Hero from "../../components/home_page_components/Hero";
 import Gallery from "../../components/home_page_components/Gallery";
 import WhoAreWe from "../../components/home_page_components/WhoAreWe";
 import LoginHero from "../../components/home_page_components/LoginHero";
+import { analytics } from "../../utils/firebase/firebase.utils";
+import { logEvent } from "firebase/analytics";
+import WAPopup from "../../components/home_page_components/WAPopup";
 
 export default function Home() {
+  logEvent(analytics, "Home Page Loaded");
+
   return (
     <>
       <HeroStyle>
+      <WAPopup />
         <div className="home">
           <Navbar />
           <Hero />
@@ -29,6 +35,7 @@ export default function Home() {
 
 let HeroStyle = styled.div(
   css`
+    position: relative;
     font-family: "Lato", sans-serif;
     overflow-x: hidden;
       

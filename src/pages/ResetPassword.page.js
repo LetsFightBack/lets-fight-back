@@ -10,6 +10,8 @@ import "./loginsignup.style.scss";
 
 import { toastOptions } from  "../utils/Toast.js";
 import { toast } from "react-toastify";
+import { logEvent } from "firebase/analytics";
+import { analytics } from "../utils/firebase/firebase.utils";
 const sx_form_input = {
   color: "#8A8A8A",
   border: "1px solid #D1D5DA",
@@ -51,7 +53,7 @@ const ResetPassword = () => {
         });
       });
   };
-
+  logEvent(analytics, "Reset Password Page Loaded");
   return (
     <div className="register">
          <p className="register__heading">
