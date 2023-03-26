@@ -13,11 +13,14 @@ const WAPopup = () => {
           <CloseIcon />
         </div>
         <div className="content_wapopup">
-        Join the <span style={{fontWeight:"800"}}> 1000+</span> members <span style={{fontWeight:"800"}}>#LetsFightBack</span>  Community and craft your fight-back journey 🚀  
-              </div>
+          Join the <span style={{ fontWeight: "800" }}> 1000+</span> members{" "}
+          <span style={{ fontWeight: "800" }}>#LetsFightBack</span> Community
+          and craft your fight-back journey 🚀
+        </div>
         <a
           href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5"
-          target="_blank" rel="noreferrer noopener"
+          target="_blank"
+          rel="noreferrer noopener"
         >
           <button className="join_btn_wapopup">
             <WhatsAppIcon /> Join Now
@@ -40,15 +43,16 @@ let PopupStyle = styled.div(
     right: 0;
     max-width: 26vw;
     height: min-content;
-    background-color: #0F8587;
-    color:white;
-    box-shadow: 2px 2px 5px black;
+    background-color: #fff;
+    color: black;
+    box-shadow: 2px 2px 10px 2px black;
+  
     a {
       text-decoration: none;
     }
     .content_wapopup {
-        text-align: center;
-        font-weight: 500;
+      text-align: center;
+      font-weight: 500;
       font-size: 1rem;
     }
     .close_btn_popup {
@@ -63,14 +67,13 @@ let PopupStyle = styled.div(
       margin-top: 1rem;
       border-radius: 10px;
       font-weight: 600;
-      background-color: #0AA0A3;
+      background-color:#298358;
       color: white;
       cursor: pointer;
       border: none;
     }
     @media only screen and (max-width: 620px) {
-
-  min-width: fit-content;
-        }
+      min-width: fit-content;
+    }
   `
 );
