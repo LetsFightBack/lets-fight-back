@@ -1,0 +1,59 @@
+.register {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: "Lato";
+	background-color: #162141;
+
+	&__container {
+		background: white;
+		border-radius: 30px;
+		min-height: 85vh;
+		min-width: 70%;
+		display: flex;
+		flex-direction: column;
+        align-items: center;
+	}
+
+	&__titleholder {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 14vh;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__logo {
+		width: 88px;
+        margin-right: 20px;
+		@media screen and (max-width: 1300px) {
+			width: 4rem;
+		}
+	}
+
+	&__title {
+		font-family: "Lato";
+		font-style: normal;
+		font-weight: 700;
+		font-size: 3.368125rem;
+		line-height: 50px;
+		color: #162141;
+
+		@media screen and (max-width: 1300px) {
+			font-size: 2rem;
+		}
+	}
+
+	&__divider {
+		width: 388.73px;
+		height: 0px;
+
+		border: 1.03638px solid rgba(0, 0, 0, 0.54);
+
+        @media screen and (max-width: 1300px) {
+			width: 200px;
+		}
+	}
+}
