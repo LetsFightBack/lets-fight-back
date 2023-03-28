@@ -1,7 +1,7 @@
 import { TextField, Typography } from "@mui/material";
 import "./form.style.scss";
 
-export default function EducationalDetails() {
+export default function EducationalDetails({form , setForm}) {
 	return (
 		<div className="form">
 			<div className="form__leftFields">
@@ -18,6 +18,8 @@ export default function EducationalDetails() {
 						id="filled-basic"
 						placeholder="Enter your college name"
 						variant="filled"
+                        value={form.college}
+                        onChange={(e) => setForm({...form, college: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -33,6 +35,8 @@ export default function EducationalDetails() {
 						id="filled-basic"
 						placeholder="Enter your year of passing"
 						variant="filled"
+                        value={form.yearOfPassing}
+                        onChange={(e) => setForm({...form, yearOfPassing: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -48,6 +52,8 @@ export default function EducationalDetails() {
 						id="filled-basic"
 						placeholder="if not applicable, enter NIL"
 						variant="filled"
+                        value={form.backlogs}
+                        onChange={(e) => setForm({...form, backlogs: e.target.value})}
 					/>
 				</div>
 			</div>
@@ -65,6 +71,8 @@ export default function EducationalDetails() {
 						id="filled-basic"
 						placeholder="Enter your branch"
 						variant="filled"
+                        value={form.branch}
+                        onChange={(e) => setForm({...form, branch: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -80,6 +88,8 @@ export default function EducationalDetails() {
 						id="filled-basic"
 						placeholder="Enter your CGPA"
 						variant="filled"
+                        value={form.CGPA}
+                        onChange={(e) => setForm({...form, CGPA: e.target.value})}
 					/>
 				</div>
 			</div>

@@ -8,14 +8,32 @@ import { Button, Typography } from "@mui/material";
 import LinksAndResume from "./steps/LandR";
 import EducationalDetails from "./steps/EducationalDetails";
 import PersonalDetails from "./steps/PersonalDetails";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const steps = ["Personal Details", "Education Details", "Links and Resume"];
 
 export default function CandidateRegistration() {
-    const smallScreen = useMediaQuery('(min-width:900px)');
+	const smallScreen = useMediaQuery("(min-width:900px)");
 	const [activeStep, setActiveStep] = useState(0);
 	const [skipped, setSkipped] = useState(new Set());
+	const [form, setForm] = useState({
+		firstName: "",
+		middleName: "",
+		lastName: "",
+		email: "",
+		phone: "",
+		college: "",
+		yearOfPassing: "",
+		backlogs: "",
+		branch: "",
+		CGPA: "",
+		codeChefID: "",
+		leetCodeID: "",
+		linkedIn: "",
+		codeForcesID: "",
+		gitHub: "",
+		resume: "",
+	});
 
 	const isStepOptional = (step) => {
 		return false;
@@ -25,20 +43,25 @@ export default function CandidateRegistration() {
 		return skipped.has(step);
 	};
 
-	const handleSteps = (step) => {
+	const handleSteps = (step, form, setForm) => {
 		switch (step) {
 			case 0:
-				return <PersonalDetails />;
+				return <PersonalDetails form={form} setForm={setForm} />;
 			case 1:
-				return <EducationalDetails />;
+				return <EducationalDetails form={form} setForm={setForm} />;
 			case 2:
-				return <LinksAndResume />;
+				return <LinksAndResume form={form} setForm={setForm} />;
 			default:
 				throw new Error("Unknown step");
 		}
 	};
 
 	const handleNext = () => {
+		if (activeStep === 2) {
+			console.log(form);
+			return;
+		}
+
 		let newSkipped = skipped;
 		if (isStepSkipped(activeStep)) {
 			newSkipped = new Set(newSkipped.values());
@@ -50,6 +73,10 @@ export default function CandidateRegistration() {
 	};
 
 	const handleBack = () => {
+		if (activeStep === 0) {
+			return;
+		}
+
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
@@ -77,7 +104,7 @@ export default function CandidateRegistration() {
 					<Stepper
 						activeStep={activeStep}
 						alternativeLabel
-						sx={{ width: "100%",mt:"-10px"}}
+						sx={{ width: "100%", mt: "-10px" }}
 					>
 						{steps.map((label, index) => {
 							return (
@@ -95,20 +122,22 @@ export default function CandidateRegistration() {
 						})}
 					</Stepper>
 				</div>
-				{handleSteps(activeStep)}
+				{handleSteps(activeStep,form,setForm)}
 				<div className="register__formControl">
-					<Button
-						variant="contained"
-						size="large"
-						sx={{
-							width: 200,
-							fontSize: "22px",
-							borderRadius: "9.3987px",
-						}}
-						onClick={handleBack}
-					>
-						Prev
-					</Button>
+					{activeStep !== 0 && (
+						<Button
+							variant="contained"
+							size="large"
+							sx={{
+								width: 200,
+								fontSize: "22px",
+								borderRadius: "9.3987px",
+							}}
+							onClick={handleBack}
+						>
+							Prev
+						</Button>
+					)}
 					<Button
 						variant="contained"
 						color="success"
@@ -120,7 +149,7 @@ export default function CandidateRegistration() {
 						}}
 						onClick={handleNext}
 					>
-						Next
+						{activeStep === steps.length - 1 ? "Finish" : "Next"}
 					</Button>
 				</div>
 			</div>

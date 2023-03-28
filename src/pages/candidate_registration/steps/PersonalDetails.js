@@ -1,7 +1,7 @@
 import { TextField, Typography } from "@mui/material";
 import "./form.style.scss";
 
-export default function PersonalDetails() {
+export default function PersonalDetails({form , setForm}) {
 	return (
 		<div className="form">
 			<div className="form__leftFields">
@@ -18,6 +18,8 @@ export default function PersonalDetails() {
 						id="filled-basic"
 						placeholder="Enter your first name"
 						variant="filled"
+                        value={form.firstName}
+                        onChange={(e) => setForm({...form, firstName: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -33,6 +35,8 @@ export default function PersonalDetails() {
 						id="filled-basic"
 						placeholder="Enter your middle name"
 						variant="filled"
+                        value={form.middleName}
+                        onChange={(e) => setForm({...form, middleName: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -48,6 +52,8 @@ export default function PersonalDetails() {
 							id="filled-basic"
 							placeholder="Enter your last name"
 							variant="filled"
+                            value={form.lastName}
+                            onChange={(e) => setForm({...form, lastName: e.target.value})}
 						/>
 				</div>
 			</div>
@@ -65,6 +71,8 @@ export default function PersonalDetails() {
 						id="filled-basic"
 						placeholder="Enter your email"
 						variant="filled"
+                        value={form.email}
+                        onChange={(e) => setForm({...form, email: e.target.value})}
 					/>
 				</div>
 				<div className="form__field">
@@ -80,6 +88,8 @@ export default function PersonalDetails() {
 						id="filled-basic"
 						placeholder="Enter your mobile number"
 						variant="filled"
+                        value={form.phone}
+                        onChange={(e) => setForm({...form, phone: e.target.value})}
 					/>
 				</div>
 			</div>
