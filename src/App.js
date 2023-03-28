@@ -66,7 +66,7 @@ function App() {
             path="/register"
             element={
               <AnimatedPage>
-                <RegisterCandidate />
+                <CandidateRegistration />
               </AnimatedPage>
             }
           ></Route>
