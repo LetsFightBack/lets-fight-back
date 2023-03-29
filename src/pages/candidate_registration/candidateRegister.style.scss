@@ -1,3 +1,7 @@
+*{
+	font-family: "Lato";
+}
+
 .register {
 	display: flex;
 	justify-content: center;
@@ -5,6 +9,10 @@
 	min-height: 100vh;
 	font-family: "Lato";
 	background-color: #162141;
+
+	@media screen and (max-width: 530px) {
+		background-color: white;
+	}
 
 	&__container {
 		background: white;
@@ -37,12 +45,16 @@
 		font-family: "Lato";
 		font-style: normal;
 		font-weight: 700;
-		font-size: 3.368125rem;
+		font-size: 3.168125rem;
 		line-height: 50px;
 		color: #162141;
 
 		@media screen and (max-width: 1300px) {
 			font-size: 2rem;
+		}
+
+		@media screen and (max-width: 530px) {
+			font-size: 1.5rem;
 		}
 	}
 

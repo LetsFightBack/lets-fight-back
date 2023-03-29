@@ -1,13 +1,20 @@
-import { TextField, Typography } from "@mui/material";
+import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
 export default function LinksAndResume({form , setForm}) {
+	const mobileScreen = useMediaQuery("(max-width:530px)");
+
 	return (
 		<div className="form">
+			{mobileScreen && (
+				<div className="form__titleHolder">
+					<h1 className="form__title">Links and Resume</h1>
+				</div>
+			)}
 			<div className="form__leftFields">
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -24,7 +31,7 @@ export default function LinksAndResume({form , setForm}) {
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -41,7 +48,7 @@ export default function LinksAndResume({form , setForm}) {
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -60,7 +67,7 @@ export default function LinksAndResume({form , setForm}) {
 			<div className="form__rightFields">
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -77,7 +84,7 @@ export default function LinksAndResume({form , setForm}) {
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -94,7 +101,7 @@ export default function LinksAndResume({form , setForm}) {
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>

@@ -1,13 +1,21 @@
-import { TextField, Typography } from "@mui/material";
+import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
-export default function PersonalDetails({form , setForm}) {
+export default function PersonalDetails({ form, setForm }) {
+	const mobileScreen = useMediaQuery("(max-width:530px)");
+
 	return (
 		<div className="form">
+			{mobileScreen && (
+				<div className="form__titleHolder">
+					<h1 className="form__title">Personal Details</h1>
+				</div>
+			)}
+
 			<div className="form__leftFields">
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -18,13 +26,15 @@ export default function PersonalDetails({form , setForm}) {
 						id="filled-basic"
 						placeholder="Enter your first name"
 						variant="filled"
-                        value={form.firstName}
-                        onChange={(e) => setForm({...form, firstName: e.target.value})}
+						value={form.firstName}
+						onChange={(e) =>
+							setForm({ ...form, firstName: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -35,32 +45,36 @@ export default function PersonalDetails({form , setForm}) {
 						id="filled-basic"
 						placeholder="Enter your middle name"
 						variant="filled"
-                        value={form.middleName}
-                        onChange={(e) => setForm({...form, middleName: e.target.value})}
+						value={form.middleName}
+						onChange={(e) =>
+							setForm({ ...form, middleName: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
 						Last Name
 					</Typography>
-						<TextField
-							fullWidth
-							id="filled-basic"
-							placeholder="Enter your last name"
-							variant="filled"
-                            value={form.lastName}
-                            onChange={(e) => setForm({...form, lastName: e.target.value})}
-						/>
+					<TextField
+						fullWidth
+						id="filled-basic"
+						placeholder="Enter your last name"
+						variant="filled"
+						value={form.lastName}
+						onChange={(e) =>
+							setForm({ ...form, lastName: e.target.value })
+						}
+					/>
 				</div>
 			</div>
 			<div className="form__rightFields">
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -71,13 +85,15 @@ export default function PersonalDetails({form , setForm}) {
 						id="filled-basic"
 						placeholder="Enter your email"
 						variant="filled"
-                        value={form.email}
-                        onChange={(e) => setForm({...form, email: e.target.value})}
+						value={form.email}
+						onChange={(e) =>
+							setForm({ ...form, email: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
 					<Typography
-						variant="h5"
+						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
@@ -88,8 +104,10 @@ export default function PersonalDetails({form , setForm}) {
 						id="filled-basic"
 						placeholder="Enter your mobile number"
 						variant="filled"
-                        value={form.phone}
-                        onChange={(e) => setForm({...form, phone: e.target.value})}
+						value={form.phone}
+						onChange={(e) =>
+							setForm({ ...form, phone: e.target.value })
+						}
 					/>
 				</div>
 			</div>

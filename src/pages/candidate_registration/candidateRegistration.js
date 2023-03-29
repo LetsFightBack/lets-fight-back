@@ -13,7 +13,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 const steps = ["Personal Details", "Education Details", "Links and Resume"];
 
 export default function CandidateRegistration() {
-	const smallScreen = useMediaQuery("(min-width:900px)");
+	const smallScreen = useMediaQuery("(min-width:1300px)");
+	const mobileScreen = useMediaQuery("(max-width:530px)");
 	const [activeStep, setActiveStep] = useState(0);
 	const [skipped, setSkipped] = useState(new Set());
 	const [form, setForm] = useState({
@@ -100,36 +101,38 @@ export default function CandidateRegistration() {
 					<img className="register__logo" src={logo} />
 					<h1 className="register__title">Candidate Registration</h1>
 				</div>
-				<div className="register__form">
-					<Stepper
-						activeStep={activeStep}
-						alternativeLabel
-						sx={{ width: "100%", mt: "-10px" }}
-					>
-						{steps.map((label, index) => {
-							return (
-								<Step key={label}>
-									<StepLabel>
-										<Typography
-											fontSize={smallScreen ? 32 : 18}
-											fontWeight="700"
-										>
-											{label}
-										</Typography>
-									</StepLabel>
-								</Step>
-							);
-						})}
-					</Stepper>
-				</div>
-				{handleSteps(activeStep,form,setForm)}
+				{!mobileScreen && (
+					<div className="register__form">
+						<Stepper
+							activeStep={activeStep}
+							alternativeLabel
+							sx={{ width: "100%", mt: "-10px" }}
+						>
+							{steps.map((label, index) => {
+								return (
+									<Step key={label}>
+										<StepLabel>
+											<Typography
+												fontSize={smallScreen ? 32 : 18}
+												fontWeight="700"
+											>
+												{label}
+											</Typography>
+										</StepLabel>
+									</Step>
+								);
+							})}
+						</Stepper>
+					</div>
+				)}
+				{handleSteps(activeStep, form, setForm)}
 				<div className="register__formControl">
 					{activeStep !== 0 && (
 						<Button
 							variant="contained"
-							size="large"
+							size={mobileScreen ? "medium" : "large"}
 							sx={{
-								width: 200,
+								width: mobileScreen ? 150 : 200,
 								fontSize: "22px",
 								borderRadius: "9.3987px",
 							}}
@@ -141,9 +144,9 @@ export default function CandidateRegistration() {
 					<Button
 						variant="contained"
 						color="success"
-						size="large"
+						size={mobileScreen ? "medium" : "large"}
 						sx={{
-							width: 200,
+							width: mobileScreen ? 150 : 200,
 							fontSize: "22px",
 							borderRadius: "9.3987px",
 						}}
