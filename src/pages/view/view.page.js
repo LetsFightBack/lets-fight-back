@@ -1,7 +1,12 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { analytics, getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
+import {
+  analytics,
+  getAllCandidates,
+  getHRDetail,
+  getLoginDetails,
+} from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Navigate } from "react-router-dom";
@@ -16,7 +21,7 @@ const DURATION = 1000 * 60 * 60 * 24;
 export default function View() {
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const navigate = useNavigate();
-    const [isVisible, SetIsvisible] = useState(false);
+  const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
   const [applicationData, SetApplicationData] = useState([]);
   const [filteredData, SetFilteredData] = useState([]);
@@ -33,15 +38,13 @@ export default function View() {
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
-    IsEmailVerified().then((res)=>{
+    IsEmailVerified().then((res) => {
       console.log(res);
-      if(res===false)
-      {
+      if (res === false) {
         navigate("/verifymail", { replace: true });
         // return (<PageNotVerified></PageNotVerified>)
       }
-      
-    })
+    });
     getAllCandidates().then((data) => {
       SetApplicationData(data);
     });
@@ -75,11 +78,11 @@ export default function View() {
   const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
-    getHRDetail().then(event => {
-      if (event.verificationStatus != "Verified") {
+    getHRDetail().then((event) => {
+      if (event.verificationStatus !== "Verified") {
         setAllowed(true);
       }
-  });
+    });
   }, []);
 
   useEffect(() => {
@@ -109,23 +112,28 @@ export default function View() {
     let exp = statusNo();
     SetFilteredData(
       applicationData.filter((candidate) => {
-        let ctcCond = candidate.expectedCTC;
-        ctcCond += " ";
-        if (!filterConditions.expectedCTC) {
-          ctcCond = true;
-        } else {
-          ctcCond = ctcCond?.includes(filterConditions.expectedCTC);
+        try {
+          let ctcCond = candidate.expectedCTC;
+          ctcCond += " ";
+          if (!filterConditions.expectedCTC) {
+            ctcCond = true;
+          } else {
+            ctcCond = ctcCond?.includes(filterConditions.expectedCTC);
+          }
+
+          let searchCondition = true;
+          if (searchField.length) {
+            searchCondition =
+              candidate.fieldOfJob?.toLocaleLowerCase().includes(searchField.toLocaleLowerCase()) ||
+              candidate.skills?.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
+          }
+
+          let yearCond = candidate.totalYearsOfexperience?.includes(exp);
+
+          return ctcCond && yearCond && searchCondition;
+        } catch {
+          return false;
         }
-
-        let searchCondition = true;
-        if (searchField.length) {
-          searchCondition =
-            candidate.fieldOfJob?.includes(searchField) || candidate.skills?.includes(searchField);
-        }
-
-        let yearCond = candidate.totalYearsOfexperience?.includes(exp);
-
-        return ctcCond && yearCond && searchCondition;
       })
     );
   }, [applicationData, searchField, filterConditions, filterRadios]);
