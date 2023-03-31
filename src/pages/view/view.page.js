@@ -1,6 +1,7 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
+import Select from "react-select";
 import {
   analytics,
   getAllCandidates,
@@ -26,6 +27,7 @@ export default function View() {
   const [applicationData, SetApplicationData] = useState([]);
   const [filteredData, SetFilteredData] = useState([]);
   const [filterRadios, SetFilterRadios] = useState(new Array(8).fill(false));
+  const [filterJob, SetFilterJob] = useState(null);
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
@@ -69,11 +71,17 @@ export default function View() {
 
   useEffect(() => {
     getHRDetail().then((event) => {
-      if (event.verificationStatus !== "Verified") {
-        setAllowed(true);
-      }
+      try {
+        if (event.verificationStatus !== "Verified") {
+          setAllowed(true);
+        }
+      } catch {}
     });
   }, []);
+
+  useEffect(() => {
+    console.log(filterJob);
+  }, [filterJob]);
 
   useEffect(() => {
     const statusNo = () => {
@@ -116,6 +124,7 @@ export default function View() {
             ) {
               ctcCond = expectedCTC.includes(filterConditions.expectedCTC.toLocaleLowerCase());
             } else {
+              // console.log(expectedCTC.match(/\d+/g), expectedCTC);
               function doesMatch() {
                 const arr = expectedCTC.match(/\d+/g);
                 arr.forEach((item) => {
@@ -136,15 +145,23 @@ export default function View() {
               candidate.skills?.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
           }
 
+          let jobCondition = true;
+          if (filterJob) {
+            jobCondition = candidate.fieldOfJob
+              ?.toLocaleLowerCase()
+              .includes(filterJob.value.toLocaleLowerCase());
+          }
+
           let yearCond = candidate.totalYearsOfexperience?.includes(exp);
 
-          return ctcCond && yearCond && searchCondition;
-        } catch {
+          return ctcCond && yearCond && searchCondition && jobCondition;
+        } catch (err) {
+          // console.log(err)
           return false;
         }
       })
     );
-  }, [applicationData, searchField, filterConditions, filterRadios]);
+  }, [applicationData, searchField, filterConditions, filterRadios, filterJob]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -184,14 +201,17 @@ export default function View() {
           />
           <hr />
 
-          {/* <h3>Field of Job</h3>
-          <RadioButtons
-            filterRadios={filterJob}
-            SetFilterRadios={SetFilterJob}
-            radioText={allJobs}
-            style={{ gridTemplateColumns: "1fr" }}
-          />
-          <hr /> */}
+          <h3>Field of Job</h3>
+          <div style={{ width: "65%" }}>
+            <Select
+              options={allJobs}
+              value={filterJob}
+              onChange={(value) => {
+                SetFilterJob(value);
+              }}
+            />
+          </div>
+          <hr />
 
           <h3>CTC</h3>
           <div className="inp-ctc">
@@ -326,3 +346,18 @@ function SearchBox({ isVisible, SetIsvisible, SetSearchField }) {
     </div>
   );
 }
+
+const allJobs = [
+  {
+    label: "Frontend Developer",
+    value: "front",
+  },
+  {
+    label: "Backend Developer",
+    value: "back",
+  },
+  {
+    label: "Product Manager",
+    value: "product",
+  },
+];

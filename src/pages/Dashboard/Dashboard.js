@@ -25,7 +25,6 @@ export default function Dashboard() {
   useEffect(() => {
     getHRDetail().then((event) => {
       if (event != null) {
-        console.log(event);
         setUserDetail(event);
       }
     });
