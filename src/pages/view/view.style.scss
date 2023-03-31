@@ -238,6 +238,12 @@
 
           // .application {
           // }
+
+          &__header {
+            &:first-child {
+              padding-left: -30px;
+            }
+          }
         }
       }
 

@@ -112,7 +112,11 @@ export default function View() {
       applicationData.filter((candidate) => {
         try {
           let ctcCond = false;
-          const expectedCTC = candidate.expectedCTC.toLocaleLowerCase();
+          try {
+            var expectedCTC = candidate?.expectedCTC?.toLocaleLowerCase();
+          } catch {
+            expectedCTC = "";
+          }
           if (!filterConditions.expectedCTC) {
             ctcCond = true;
           } else {
@@ -156,7 +160,7 @@ export default function View() {
 
           return ctcCond && yearCond && searchCondition && jobCondition;
         } catch (err) {
-          // console.log(err)
+          console.log(err);
           return false;
         }
       })
@@ -266,12 +270,12 @@ const MultiApplication = ({ data }) => {
     arr.push(<Application data={data[i]} key={i} />);
   }
   return (
-    <div className="applications">
-      <div className="applicationHeader">
+    <div className="applications ">
+      <div className="application applications__header" style={{ border: "none" }}>
         <h2>Name</h2>
-        <h2>Email</h2>
-        <h2>College</h2>
-        <h2>Company</h2>
+        <p>Email</p>
+        <p>College</p>
+        <p className="bl-r">Company</p>
       </div>
       {arr}
     </div>
