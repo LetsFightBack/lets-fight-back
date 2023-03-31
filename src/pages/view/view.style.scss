@@ -68,6 +68,9 @@
         grid-row-gap: 10px;
         width: 100%;
         justify-items: center;
+        label {
+          margin-left: 5px;
+        }
       }
 
       .filter2 {

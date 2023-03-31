@@ -25,21 +25,11 @@ export default function View() {
   const [searchField, SetSearchField] = useState("");
   const [applicationData, SetApplicationData] = useState([]);
   const [filteredData, SetFilteredData] = useState([]);
-  const [filterRadios, SetFilterRadios] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [filterRadios, SetFilterRadios] = useState(new Array(8).fill(false));
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
     IsEmailVerified().then((res) => {
-      console.log(res);
       if (res === false) {
         navigate("/verifymail", { replace: true });
         // return (<PageNotVerified></PageNotVerified>)
@@ -113,12 +103,30 @@ export default function View() {
     SetFilteredData(
       applicationData.filter((candidate) => {
         try {
-          let ctcCond = candidate.expectedCTC;
-          ctcCond += " ";
+          let ctcCond = false;
+          const expectedCTC = candidate.expectedCTC.toLocaleLowerCase();
           if (!filterConditions.expectedCTC) {
             ctcCond = true;
           } else {
-            ctcCond = ctcCond?.includes(filterConditions.expectedCTC);
+            if (
+              expectedCTC.includes("lpa") ||
+              expectedCTC.includes("l") ||
+              expectedCTC.includes("lakhs") ||
+              expectedCTC.includes("lakh")
+            ) {
+              ctcCond = expectedCTC.includes(filterConditions.expectedCTC.toLocaleLowerCase());
+            } else {
+              function doesMatch() {
+                const arr = expectedCTC.match(/\d+/g);
+                arr.forEach((item) => {
+                  if (item.includes(expectedCTC)) {
+                    console.log(item, expectedCTC);
+                    ctcCond = true;
+                  }
+                });
+              }
+              doesMatch();
+            }
           }
 
           let searchCondition = true;
@@ -155,7 +163,7 @@ export default function View() {
     <div className={isVisible ? "aa invisible" : "aa"}>
       {allowed && <Navigate to="/dashboard" replace={true} />}
       <div className="main">
-        <div className={isVisible ? "main-left visible" : "main-left"}>
+        <div className={isVisible ? "main-left visible" : "main-left"} style={{}}>
           <p className="filter2">
             <button
               onClick={() => {
@@ -175,6 +183,15 @@ export default function View() {
             radioText={["0-1", "1-2", "2-3", "3-5", "5-7", "7-10", "10-15", "15+"]}
           />
           <hr />
+
+          {/* <h3>Field of Job</h3>
+          <RadioButtons
+            filterRadios={filterJob}
+            SetFilterRadios={SetFilterJob}
+            radioText={allJobs}
+            style={{ gridTemplateColumns: "1fr" }}
+          />
+          <hr /> */}
 
           <h3>CTC</h3>
           <div className="inp-ctc">
@@ -230,22 +247,18 @@ const MultiApplication = ({ data }) => {
   }
   return (
     <div className="applications">
-      <div className="applicationHeader application__header">
+      <div className="applicationHeader">
         <h2>Name</h2>
-        <h2 className="application__email">Email</h2>
+        <h2>Email</h2>
         <h2>College</h2>
-        <h2 className="bl-r">Company</h2>
-        <h2 className="application__email">Email</h2>
-        <h2>College</h2>
-        <h2 className="bl-r">Company</h2>
-        <p></p>
+        <h2>Company</h2>
       </div>
       {arr}
     </div>
   );
 };
 
-function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
+function RadioButtons({ radioText, filterRadios, SetFilterRadios, style }) {
   const radiohandler = (n) => {
     n--;
     const temp = [...filterRadios];
@@ -260,7 +273,7 @@ function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
   };
 
   return (
-    <div className="filter-radios">
+    <div className="filter-radios" style={style}>
       {radioText.map((text, i) => {
         return (
           <div key={i}>
