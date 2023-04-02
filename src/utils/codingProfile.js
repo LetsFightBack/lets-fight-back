@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import { parse } from 'node-html-parser';
 
 const fetchGet = async (url) => {
     const response = await fetch(url, {
@@ -58,4 +59,24 @@ const leetcodeProfile = async (username) => {
     return data
 
 }
-console.log(await leetcodeProfile("jhamadhav"));
+
+const codechefProfile = async (username) => {
+    let url = `https://www.codechef.com/users/${username}/`
+    let data = null
+    try {
+        data = await fetch(url)
+        data = await data.text()
+
+        let root = parse(data)
+        data = root.querySelector('.rating-number').innerText
+        console.log(data);
+
+        // data = data["result"][0]
+        // console.log(data);
+    } catch (e) {
+        console.log(e);
+        return null
+    }
+    return data
+}
+console.log(await codechefProfile("jhamadhav28"));
