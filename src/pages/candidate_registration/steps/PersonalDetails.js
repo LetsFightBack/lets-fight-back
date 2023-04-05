@@ -19,14 +19,14 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						First Name
+						First Name *
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your first name"
-						variant="filled"
 						value={form.firstName}
+						required
+						className="form__input"
 						onChange={(e) =>
 							setForm({ ...form, firstName: e.target.value })
 						}
@@ -40,11 +40,10 @@ export default function PersonalDetails({ form, setForm }) {
 					>
 						Middle Name
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your middle name"
-						variant="filled"
+						className="form__input"
 						value={form.middleName}
 						onChange={(e) =>
 							setForm({ ...form, middleName: e.target.value })
@@ -59,11 +58,10 @@ export default function PersonalDetails({ form, setForm }) {
 					>
 						Last Name
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your last name"
-						variant="filled"
+						className="form__input"
 						value={form.lastName}
 						onChange={(e) =>
 							setForm({ ...form, lastName: e.target.value })
@@ -80,11 +78,10 @@ export default function PersonalDetails({ form, setForm }) {
 					>
 						Email
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your email"
-						variant="filled"
+						className="form__input"
 						value={form.email}
 						onChange={(e) =>
 							setForm({ ...form, email: e.target.value })
@@ -99,11 +96,10 @@ export default function PersonalDetails({ form, setForm }) {
 					>
 						Mobile Number
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your mobile number"
-						variant="filled"
+						className="form__input"
 						value={form.phone}
 						onChange={(e) =>
 							setForm({ ...form, phone: e.target.value })

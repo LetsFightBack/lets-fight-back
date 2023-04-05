@@ -1,7 +1,7 @@
 import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
-export default function LinksAndResume({form , setForm}) {
+export default function LinksAndResume({ form, setForm }) {
 	const mobileScreen = useMediaQuery("(max-width:530px)");
 
 	return (
@@ -20,13 +20,15 @@ export default function LinksAndResume({form , setForm}) {
 					>
 						Code Chef Handle
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+
+					<input
+						type="text"
 						placeholder="Enter your code chef handle"
-						variant="filled"
-                        value={form.codeChefID}
-                        onChange={(e) => setForm({...form, codeChefID: e.target.value})}
+						className="form__input"
+						value={form.branch}
+						onChange={(e) =>
+							setForm({ ...form, branch: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -37,13 +39,14 @@ export default function LinksAndResume({form , setForm}) {
 					>
 						Code Forces Handle
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your code forces handle"
-						variant="filled"
-                        value={form.codeForcesID}
-                        onChange={(e) => setForm({...form, codeForcesID: e.target.value})}
+						className="form__input"
+						value={form.codeForcesID}
+						onChange={(e) =>
+							setForm({ ...form, codeForcesID: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -52,15 +55,16 @@ export default function LinksAndResume({form , setForm}) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						LinkdIn Profile
+						Leet Code Handle
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
-						placeholder="Enter your LinkedIn profile link"
-						variant="filled"
-                        value={form.linkedIn}
-                        onChange={(e) => setForm({...form, linkedIn: e.target.value})}
+					<input
+						type="text"
+						placeholder="Enter your leet code handle"
+						className="form__input"
+						value={form.leetCodeID}
+						onChange={(e) =>
+							setForm({ ...form, leetCodeID: e.target.value })
+						}
 					/>
 				</div>
 			</div>
@@ -71,17 +75,19 @@ export default function LinksAndResume({form , setForm}) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Leet Code Handle
+						LinkdIn Profile
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
-						placeholder="Enter your leet code handle"
-						variant="filled"
-                        value={form.leetCodeID}
-                        onChange={(e) => setForm({...form, leetCodeID: e.target.value})}
+					<input
+						type="text"
+						placeholder="Enter your LinkedIn profile link"
+						className="form__input"
+						value={form.linkedIn}
+						onChange={(e) =>
+							setForm({ ...form, linkedIn: e.target.value })
+						}
 					/>
 				</div>
+
 				<div className="form__field">
 					<Typography
 						variant={mobileScreen ? "h6" : "h5"}
@@ -90,13 +96,14 @@ export default function LinksAndResume({form , setForm}) {
 					>
 						Github Profile
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your github profile link"
-						variant="filled"
-                        value={form.gitHub}
-                        onChange={(e) => setForm({...form, gitHub: e.target.value})}
+						className="form__input"
+						value={form.gitHub}
+						onChange={(e) =>
+							setForm({ ...form, gitHub: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -107,13 +114,14 @@ export default function LinksAndResume({form , setForm}) {
 					>
 						Resume
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your resume link"
-						variant="filled"
-                        value={form.resume}
-                        onChange={(e) => setForm({...form, resume: e.target.value})}
+						className="form__input"
+						value={form.resume}
+						onChange={(e) =>
+							setForm({ ...form, resume: e.target.value })
+						}
 					/>
 				</div>
 			</div>

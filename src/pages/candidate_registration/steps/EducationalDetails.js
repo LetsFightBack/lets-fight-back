@@ -1,7 +1,7 @@
 import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
-export default function EducationalDetails({form , setForm}) {
+export default function EducationalDetails({ form, setForm }) {
 	const mobileScreen = useMediaQuery("(max-width:530px)");
 
 	return (
@@ -20,13 +20,15 @@ export default function EducationalDetails({form , setForm}) {
 					>
 						College
 					</Typography>
-					<TextField
-						fullWidth				
-						id="filled-basic"
+
+					<input
+						type="text"
 						placeholder="Enter your college name"
-						variant="filled"
-                        value={form.college}
-                        onChange={(e) => setForm({...form, college: e.target.value})}
+						className="form__input"
+						value={form.college}
+						onChange={(e) =>
+							setForm({ ...form, college: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -37,13 +39,15 @@ export default function EducationalDetails({form , setForm}) {
 					>
 						Year of Passing
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+
+					<input
+						type="text"
 						placeholder="Enter your year of passing"
-						variant="filled"
-                        value={form.yearOfPassing}
-                        onChange={(e) => setForm({...form, yearOfPassing: e.target.value})}
+						className="form__input"
+						value={form.yearOfPassing}
+						onChange={(e) =>
+							setForm({ ...form, yearOfPassing: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -54,13 +58,15 @@ export default function EducationalDetails({form , setForm}) {
 					>
 						Backlogs
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+
+					<input
+						type="text"
 						placeholder="if not applicable, enter NIL"
-						variant="filled"
-                        value={form.backlogs}
-                        onChange={(e) => setForm({...form, backlogs: e.target.value})}
+						className="form__input"
+						value={form.backlogs}
+						onChange={(e) =>
+							setForm({ ...form, backlogs: e.target.value })
+						}
 					/>
 				</div>
 			</div>
@@ -73,13 +79,14 @@ export default function EducationalDetails({form , setForm}) {
 					>
 						Branch
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+					<input
+						type="text"
 						placeholder="Enter your branch"
-						variant="filled"
-                        value={form.branch}
-                        onChange={(e) => setForm({...form, branch: e.target.value})}
+						className="form__input"
+						value={form.branch}
+						onChange={(e) =>
+							setForm({ ...form, branch: e.target.value })
+						}
 					/>
 				</div>
 				<div className="form__field">
@@ -90,13 +97,15 @@ export default function EducationalDetails({form , setForm}) {
 					>
 						CGPA
 					</Typography>
-					<TextField
-						fullWidth
-						id="filled-basic"
+
+					<input
+						type="text"
 						placeholder="Enter your CGPA"
-						variant="filled"
-                        value={form.CGPA}
-                        onChange={(e) => setForm({...form, CGPA: e.target.value})}
+						className="form__input"
+						value={form.CGPA}
+						onChange={(e) =>
+							setForm({ ...form, CGPA: e.target.value })
+						}
 					/>
 				</div>
 			</div>
