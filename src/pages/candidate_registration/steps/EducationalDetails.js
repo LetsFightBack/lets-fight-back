@@ -18,7 +18,7 @@ export default function EducationalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						College
+						College *
 					</Typography>
 
 					<input
@@ -37,7 +37,7 @@ export default function EducationalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Year of Passing
+						Year of Passing *
 					</Typography>
 
 					<input
@@ -56,12 +56,12 @@ export default function EducationalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Backlogs
+						Backlogs *
 					</Typography>
 
 					<input
 						type="text"
-						placeholder="if not applicable, enter NIL"
+						placeholder="if not applicable, enter 0"
 						className="form__input"
 						value={form.backlogs}
 						onChange={(e) =>
@@ -77,7 +77,7 @@ export default function EducationalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Branch
+						Branch *
 					</Typography>
 					<input
 						type="text"
@@ -95,7 +95,7 @@ export default function EducationalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						CGPA
+						CGPA *
 					</Typography>
 
 					<input

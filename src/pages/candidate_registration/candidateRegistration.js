@@ -17,6 +17,7 @@ const steps = ["Personal Details", "Education Details","Job Details", "Links and
 export default function CandidateRegistration() {
 	const smallScreen = useMediaQuery("(min-width:1300px)");
 	const mobileScreen = useMediaQuery("(max-width:530px)");
+	const [errorText, setErrorText] = useState("");
 	const [activeStep, setActiveStep] = useState(0);
 	const [skipped, setSkipped] = useState(new Set());
 	const [open, setOpen] = useState(false);
@@ -85,6 +86,19 @@ export default function CandidateRegistration() {
 				form.email === "" ||
 				form.phone === "")
 		) {
+			setErrorText("Please fill all the fields");
+			handleOpen();
+			return;
+		}
+
+		if(activeStep===0 && !isEmailValid(form.email)) {
+			setErrorText("Please enter a valid email");
+			handleOpen();
+			return;
+		}
+
+		if(activeStep===0 && !isPhoneValid(form.phone)) {
+			setErrorText("Please enter a valid phone number");
 			handleOpen();
 			return;
 		}
@@ -97,6 +111,13 @@ export default function CandidateRegistration() {
 				form.CGPA === "" ||
 				form.backlogs === "")
 		) {
+			setErrorText("Please fill all the fields");
+			handleOpen();
+			return;
+		}
+
+		if(activeStep===1 && !isValidPassingYear(form.yearOfPassing)) {
+			setErrorText("Please enter a valid year of passing");
 			handleOpen();
 			return;
 		}
@@ -110,11 +131,16 @@ export default function CandidateRegistration() {
 				form.joiningDate === "" ||
 				form.achievements === "")
 		) {
+			setErrorText("Please fill all the fields");
 			handleOpen();
 			return;
 		}
 
-		// TODO: Add validation for links and resume
+		if(activeStep===3 && (form.gitHub==="" || form.linkedIn==="" || form.resume==="")) {
+			setErrorText("Please fill all the fields");
+			handleOpen();
+			return;
+		}
 
 		if (activeStep === 3) {
 			console.log(form);
@@ -139,6 +165,25 @@ export default function CandidateRegistration() {
 		setActiveStep((prevActiveStep) => prevActiveStep - 1);
 	};
 
+
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	const phoneRegex = /^\d{10}$/;
+	const yearRegex = /^(19|20)\d{2}$/;
+  
+
+	const isEmailValid = (email) => {
+	  return emailRegex.test(email);
+	};
+  
+
+	const isPhoneValid = (phone) => {
+	  return phoneRegex.test(phone);
+	};
+
+	const isValidPassingYear = (year) => {
+		return yearRegex.test(year);
+	};
+
 	return (
 		<div className="register">
 			<div className="register__container">
@@ -158,7 +203,7 @@ export default function CandidateRegistration() {
 									<Step key={label}>
 										<StepLabel>
 											<Typography
-												fontSize={smallScreen ? 32 : 18}
+												fontSize={smallScreen ? 26 : 18}
 												fontWeight="700"
 											>
 												{label}
@@ -187,7 +232,7 @@ export default function CandidateRegistration() {
 							alignItems: "center",
 						}}
 					>
-						Please enter all the required fields!
+						{errorText}
 					</Alert>
 				</Snackbar>
 				<div className="register__formControl">

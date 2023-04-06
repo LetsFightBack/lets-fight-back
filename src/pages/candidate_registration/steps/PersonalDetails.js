@@ -4,6 +4,9 @@ import "./form.style.scss";
 export default function PersonalDetails({ form, setForm }) {
 	const mobileScreen = useMediaQuery("(max-width:530px)");
 
+	  
+	
+
 	return (
 		<div className="form">
 			{mobileScreen && (
@@ -19,7 +22,7 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						First Name
+						First Name *
 					</Typography>
 					<input
 						type="text"
@@ -56,7 +59,7 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Last Name
+						Last Name *
 					</Typography>
 					<input
 						type="text"
@@ -76,7 +79,7 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Email
+						Email *
 					</Typography>
 					<input
 						type="text"
@@ -94,7 +97,7 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Mobile Number
+						Mobile Number *
 					</Typography>
 					<input
 						type="text"

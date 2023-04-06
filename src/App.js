@@ -66,6 +66,14 @@ function App() {
             path="/register"
             element={
               <AnimatedPage>
+                <RegisterCandidate />
+              </AnimatedPage>
+            }
+          ></Route>
+          <Route
+            path="/candidate-register"
+            element={
+              <AnimatedPage>
                 <CandidateRegistration />
               </AnimatedPage>
             }
