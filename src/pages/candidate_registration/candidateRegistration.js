@@ -122,24 +122,62 @@ export default function CandidateRegistration() {
 			return;
 		}
 
+		if(activeStep===1 && !isBacklogValid(form.backlogs)) {
+			setErrorText("Please enter a valid number of backlogs");
+			handleOpen();
+			return;
+		}
+
+		if(activeStep===1 && !isCgpaValid(form.CGPA)) {
+			setErrorText("Please enter a valid CGPA");
+			handleOpen();
+			return;
+		}
+
 		if (
 			activeStep === 2 &&
 			(form.preferredLocation === "" ||
 				form.totalYearsOfExperience === "" ||
 				form.fieldOfJob === "" ||
 				form.skills === "" || 
-				form.joiningDate === "" ||
-				form.achievements === "")
+				form.joiningDate === "")
 		) {
 			setErrorText("Please fill all the fields");
 			handleOpen();
 			return;
 		}
 
+		if(activeStep===3 && (form.totalYearsOfExperience!=="Fresher (Graduate)" && form.totalYearsOfExperience!=="Fresher (Post Graduate)")){
+			if(form.prevoiusCompany==="" || form.prevoiusJobTitle==="" || form.ExpectedCTC==="") {
+				setErrorText("Please fill all the fields");
+				handleOpen();
+				return;
+			}
+			if(!isExpectedCTCValid(form.ExpectedCTC)) {
+				setErrorText("Please enter a valid CTC");
+				handleOpen();
+				return;
+			}
+		}
+
+		if(activeStep===3 && (form.totalYearsOfExperience==="Fresher (Graduate)" || form.totalYearsOfExperience==="Fresher (Post Graduate)")){
+			if(form.codeChefID==="" || form.leetCodeID==="" || form.codeForcesID==="") {
+				setErrorText("Please fill all the fields");
+				handleOpen();
+				return;
+			}
+		}
+
 		if(activeStep===3 && (form.gitHub==="" || form.linkedIn==="" || form.resume==="")) {
 			setErrorText("Please fill all the fields");
 			handleOpen();
 			return;
+		}
+
+		if(form.totalYearsOfExperience!=="Fresher (Graduate)" && form.totalYearsOfExperience!=="Fresher (Post Graduate)"){
+			setForm({...form, codeChefID:"", leetCodeID:"", codeForcesID:""});
+		}else{
+			setForm({...form, prevoiusCompany:"", prevoiusJobTitle:"", ExpectedCTC:""});
 		}
 
 		if (activeStep === 3) {
@@ -167,8 +205,10 @@ export default function CandidateRegistration() {
 
 
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	const phoneRegex = /^\d{10}$/;
+	const phoneRegex = /^\+?\d{1,3}[- ]?\d{10}$/;
 	const yearRegex = /^(19|20)\d{2}$/;
+	const backlogRegex = /^\d{1}$/;
+	const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
   
 
 	const isEmailValid = (email) => {
@@ -183,6 +223,18 @@ export default function CandidateRegistration() {
 	const isValidPassingYear = (year) => {
 		return yearRegex.test(year);
 	};
+
+	const isBacklogValid = (backlog) => {
+		return backlogRegex.test(backlog);
+	  };
+	  
+	  const isCgpaValid = (cgpa) => {
+		return cgpaRegex.test(cgpa);
+	  };
+
+	  const isExpectedCTCValid = (ctc) => {
+		return /^\d+(\.\d{1,2})?$/.test(ctc) && parseFloat(ctc) > 0;
+	  };
 
 	return (
 		<div className="register">

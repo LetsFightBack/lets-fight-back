@@ -4,8 +4,15 @@ import "./form.style.scss";
 export default function PersonalDetails({ form, setForm }) {
 	const mobileScreen = useMediaQuery("(max-width:530px)");
 
-	  
-	
+	const handleFirstNameChange = (e) => {
+		const trimmedValue = e.target.value.trim();
+		setForm({ ...form, firstName: trimmedValue });
+	};
+
+	const handleLastNameChange = (e) => {
+		const trimmedValue = e.target.value.trim();
+		setForm({ ...form, lastName: trimmedValue });
+	};
 
 	return (
 		<div className="form">
@@ -30,9 +37,7 @@ export default function PersonalDetails({ form, setForm }) {
 						value={form.firstName}
 						required
 						className="form__input"
-						onChange={(e) =>
-							setForm({ ...form, firstName: e.target.value })
-						}
+						onChange={handleFirstNameChange}
 					/>
 				</div>
 				<div className="form__field">
@@ -66,9 +71,7 @@ export default function PersonalDetails({ form, setForm }) {
 						placeholder="Enter your last name"
 						className="form__input"
 						value={form.lastName}
-						onChange={(e) =>
-							setForm({ ...form, lastName: e.target.value })
-						}
+						onChange={handleLastNameChange}
 					/>
 				</div>
 			</div>
@@ -101,7 +104,7 @@ export default function PersonalDetails({ form, setForm }) {
 					</Typography>
 					<input
 						type="text"
-						placeholder="Enter your mobile number"
+						placeholder="Include country code"
 						className="form__input"
 						value={form.phone}
 						onChange={(e) =>

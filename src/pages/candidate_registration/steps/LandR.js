@@ -11,7 +11,8 @@ export default function LinksAndResume({ form, setForm }) {
 					<h1 className="form__title">Links and Resume</h1>
 				</div>
 			)}
-			{(form.totalYearsOfExperience !== "Fresher (Graduate)") || (form.totalYearsOfExperience !== "Fresher (Post Graduate)") ? (
+		
+			{(form.totalYearsOfExperience !== "Fresher (Graduate)") && (form.totalYearsOfExperience !== "Fresher (Post Graduate)") ? (
 				<div className="form__leftFields">
 					<div className="form__field">
 						<Typography
