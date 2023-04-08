@@ -17,6 +17,7 @@ import PageNotVerified from "./pages/NotVerified/NotVerified.page";
 import Appbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./pages/Dashboard/Dashboard";
+import CandidateRegistration from "./pages/candidate_registration/candidateRegistration";
 
 AOS.init();
 
@@ -66,6 +67,14 @@ function App() {
             element={
               <AnimatedPage>
                 <RegisterCandidate />
+              </AnimatedPage>
+            }
+          ></Route>
+          <Route
+            path="/candidate-register"
+            element={
+              <AnimatedPage>
+                <CandidateRegistration />
               </AnimatedPage>
             }
           ></Route>
