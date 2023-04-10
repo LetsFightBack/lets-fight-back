@@ -13,7 +13,7 @@ export default function LinksAndResume({ form, setForm }) {
       )}
 
       {form.totalYearsOfExperience !== "Fresher (Graduate)" &&
-      form.totalYearsOfExperience !== "Fresher (Post Graduate)" ? (
+        form.totalYearsOfExperience !== "Fresher (Post Graduate)" ? (
         <div className="form__leftFields">
           <div className="form__field">
             <Typography
@@ -63,7 +63,7 @@ export default function LinksAndResume({ form, setForm }) {
             </Typography>
             <input
               type="text"
-              placeholder="E.g - 10 LPA, 15 LPA, etc."
+              placeholder="E.g - 10 (in LPA)"
               className="form__input"
               value={form.ExpectedCTC}
               onChange={(e) => setForm({ ...form, ExpectedCTC: e.target.value })}
@@ -78,12 +78,12 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Chef Handle *
+              CodeChef Handle *
             </Typography>
 
             <input
               type="text"
-              placeholder="E.g - rohit_123, etc."
+              placeholder="E.g - rohit_123"
               className="form__input"
               value={form.codeChefID}
               onChange={(e) => setForm({ ...form, codeChefID: e.target.value })}
@@ -95,11 +95,11 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Forces Handle *
+              CodeForces Handle *
             </Typography>
             <input
               type="text"
-              placeholder="E.g - rohit_123, etc."
+              placeholder="E.g - rohit_123"
               className="form__input"
               value={form.codeForcesID}
               onChange={(e) =>
@@ -116,11 +116,11 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Leet Code Handle *
+              LeetCode Handle *
             </Typography>
             <input
               type="text"
-              placeholder="E.g - rohit_123, etc."
+              placeholder="E.g - rohit_123"
               className="form__input"
               value={form.leetCodeID}
               onChange={(e) => setForm({ ...form, leetCodeID: e.target.value })}
@@ -152,7 +152,7 @@ export default function LinksAndResume({ form, setForm }) {
             component="div"
             sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
           >
-            Github Profile *
+            GitHub Profile ID *
           </Typography>
           <input
             type="text"
