@@ -43,8 +43,8 @@ export default function JobDetils({ form, setForm }) {
 						}
 						className="form__sInput"
 					>
-						<option value="">
-							Select preferred job location
+						<option value="Any">
+							Any
 						</option>
 						<option value="Bangalore">Bangalore</option>
 						<option value="Mumbai">Mumbai</option>
@@ -88,7 +88,6 @@ export default function JobDetils({ form, setForm }) {
 							})
 						}
 					>
-						<option value="">Select an option</option>
 						<option value="Fresher (Graduate)">
 							Fresher (Graduate)
 						</option>
@@ -130,9 +129,6 @@ export default function JobDetils({ form, setForm }) {
 							setForm({ ...form, fieldOfJob: e.target.value })
 						}
 					>
-						<option value="">
-							Select your preferred field of job
-						</option>
 						<option value="Technology - Engineer ( Full Tech Stack)">
 							Technology - Engineer ( Full Tech Stack)
 						</option>
@@ -217,7 +213,7 @@ export default function JobDetils({ form, setForm }) {
 					</Typography>
 					<input
 						type="text"
-						placeholder="Enter your skills (separated by comma)"
+						placeholder="e.g Java, C++, etc"
 						className="form__input"
 						value={form.skills}
 						onChange={(e) =>
@@ -257,9 +253,9 @@ export default function JobDetils({ form, setForm }) {
 						Achievements
 					</Typography>
 
-					<input
+					<textarea
 						type="text"
-						placeholder="Enter your achievements (separated by comma)"
+						placeholder="Enter your achievements"
 						className="form__input"
 						value={form.achievements}
 						onChange={(e) =>

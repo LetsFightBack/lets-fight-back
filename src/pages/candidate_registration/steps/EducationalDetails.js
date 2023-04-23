@@ -42,7 +42,7 @@ export default function EducationalDetails({ form, setForm }) {
 
 					<input
 						type="text"
-						placeholder="Enter your year of passing"
+						placeholder="e.g. 2021"
 						className="form__input"
 						value={form.yearOfPassing}
 						onChange={(e) =>

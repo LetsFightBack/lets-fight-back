@@ -25,7 +25,7 @@ export default function LinksAndResume({ form, setForm }) {
 
 						<input
 							type="text"
-							placeholder="E.g - Google, Microsoft, Amazon, etc."
+							placeholder="E.g - Google, Microsoft, etc."
 							className="form__input"
 							value={form.prevoiusCompany}
 							onChange={(e) =>
@@ -64,7 +64,7 @@ export default function LinksAndResume({ form, setForm }) {
 						</Typography>
 						<input
 							type="text"
-							placeholder="E.g - 10 LPA, 15 LPA, etc."
+							placeholder="in LPA"
 							className="form__input"
 							value={form.ExpectedCTC}
 							onChange={(e) =>
@@ -81,7 +81,7 @@ export default function LinksAndResume({ form, setForm }) {
 							component="div"
 							sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 						>
-							Code Chef Handle *
+							CodeChef*
 						</Typography>
 
 						<input
