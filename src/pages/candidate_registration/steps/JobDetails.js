@@ -54,7 +54,7 @@ export default function JobDetils({ form, setForm }) {
 						<option value="Chennai">Chennai</option>
 						<option value="Ahmedabad">Ahmedabad</option>
 						<option value="Kochi">Kochi</option>
-						<option value="Gurgao">Gurgao</option>
+						<option value="Gurgao">Gurgaon</option>
 						<option value="Kolkata">Kolkata</option>
 						<option value="Noida">Noida</option>
 						<option value="Chandigarh">Chandigarh</option>
@@ -110,7 +110,7 @@ export default function JobDetils({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Feild of Job
+						Field of Job
 					</Typography>
 
 					{/* <input

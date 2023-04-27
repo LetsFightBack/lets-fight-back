@@ -142,7 +142,7 @@ export default function LinksAndResume({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						LinkdIn Profile *
+						LinkedIn Profile *
 					</Typography>
 					<input
 						type="text"
