@@ -1,7 +1,13 @@
 import "./view.style.scss";
 import { useState, useEffect } from "react";
 import Application from "../../components/application/application.component";
-import { analytics, getAllCandidates, getHRDetail, getLoginDetails } from "../../utils/firebase/firebase.utils";
+import Select from "react-select";
+import {
+  analytics,
+  getAllCandidates,
+  getHRDetail,
+  getLoginDetails,
+} from "../../utils/firebase/firebase.utils";
 import { Box, CircularProgress } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import { Navigate } from "react-router-dom";
@@ -16,32 +22,21 @@ const DURATION = 1000 * 60 * 60 * 24;
 export default function View() {
   // const [dropdownstate, SetDropdownstate] = useState([false]);
   const navigate = useNavigate();
-    const [isVisible, SetIsvisible] = useState(false);
+  const [isVisible, SetIsvisible] = useState(false);
   const [searchField, SetSearchField] = useState("");
   const [applicationData, SetApplicationData] = useState([]);
   const [filteredData, SetFilteredData] = useState([]);
-  const [filterRadios, SetFilterRadios] = useState([
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
+  const [filterRadios, SetFilterRadios] = useState(new Array(8).fill(false));
+  const [filterJob, SetFilterJob] = useState(null);
   const [filterConditions, SetFilterConditions] = useState({});
 
   useEffect(() => {
-    IsEmailVerified().then((res)=>{
-      console.log(res);
-      if(res===false)
-      {
+    IsEmailVerified().then((res) => {
+      if (res === false) {
         navigate("/verifymail", { replace: true });
         // return (<PageNotVerified></PageNotVerified>)
       }
-      
-    })
+    });
     getAllCandidates().then((data) => {
       SetApplicationData(data);
     });
@@ -75,12 +70,18 @@ export default function View() {
   const [allowed, setAllowed] = useState(false);
 
   useEffect(() => {
-    getHRDetail().then(event => {
-      if (event.verificationStatus != "Verified") {
-        setAllowed(true);
-      }
-  });
+    getHRDetail().then((event) => {
+      try {
+        if (event.verificationStatus !== "Verified") {
+          setAllowed(true);
+        }
+      } catch {}
+    });
   }, []);
+
+  useEffect(() => {
+    console.log(filterJob);
+  }, [filterJob]);
 
   useEffect(() => {
     const statusNo = () => {
@@ -109,26 +110,62 @@ export default function View() {
     let exp = statusNo();
     SetFilteredData(
       applicationData.filter((candidate) => {
-        let ctcCond = candidate.expectedCTC;
-        ctcCond += " ";
-        if (!filterConditions.expectedCTC) {
-          ctcCond = true;
-        } else {
-          ctcCond = ctcCond?.includes(filterConditions.expectedCTC);
+        try {
+          let ctcCond = false;
+          try {
+            var expectedCTC = candidate?.expectedCTC?.toLocaleLowerCase();
+          } catch {
+            expectedCTC = "";
+          }
+          if (!filterConditions.expectedCTC) {
+            ctcCond = true;
+          } else {
+            if (
+              expectedCTC.includes("lpa") ||
+              expectedCTC.includes("l") ||
+              expectedCTC.includes("lakhs") ||
+              expectedCTC.includes("lakh")
+            ) {
+              ctcCond = expectedCTC.includes(filterConditions.expectedCTC.toLocaleLowerCase());
+            } else {
+              // console.log(expectedCTC.match(/\d+/g), expectedCTC);
+              function doesMatch() {
+                const arr = expectedCTC.match(/\d+/g);
+                arr.forEach((item) => {
+                  if (item.includes(expectedCTC)) {
+                    console.log(item, expectedCTC);
+                    ctcCond = true;
+                  }
+                });
+              }
+              doesMatch();
+            }
+          }
+
+          let searchCondition = true;
+          if (searchField.length) {
+            searchCondition =
+              candidate.fieldOfJob?.toLocaleLowerCase().includes(searchField.toLocaleLowerCase()) ||
+              candidate.skills?.toLocaleLowerCase().includes(searchField.toLocaleLowerCase());
+          }
+
+          let jobCondition = true;
+          if (filterJob) {
+            jobCondition = candidate.fieldOfJob
+              ?.toLocaleLowerCase()
+              .includes(filterJob.value.toLocaleLowerCase());
+          }
+
+          let yearCond = candidate.totalYearsOfexperience?.includes(exp);
+
+          return ctcCond && yearCond && searchCondition && jobCondition;
+        } catch (err) {
+          console.log(err);
+          return false;
         }
-
-        let searchCondition = true;
-        if (searchField.length) {
-          searchCondition =
-            candidate.fieldOfJob?.includes(searchField) || candidate.skills?.includes(searchField);
-        }
-
-        let yearCond = candidate.totalYearsOfexperience?.includes(exp);
-
-        return ctcCond && yearCond && searchCondition;
       })
     );
-  }, [applicationData, searchField, filterConditions, filterRadios]);
+  }, [applicationData, searchField, filterConditions, filterRadios, filterJob]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -147,7 +184,7 @@ export default function View() {
     <div className={isVisible ? "aa invisible" : "aa"}>
       {allowed && <Navigate to="/dashboard" replace={true} />}
       <div className="main">
-        <div className={isVisible ? "main-left visible" : "main-left"}>
+        <div className={isVisible ? "main-left visible" : "main-left"} style={{}}>
           <p className="filter2">
             <button
               onClick={() => {
@@ -166,6 +203,18 @@ export default function View() {
             SetFilterRadios={SetFilterRadios}
             radioText={["0-1", "1-2", "2-3", "3-5", "5-7", "7-10", "10-15", "15+"]}
           />
+          <hr />
+
+          <h3>Field of Job</h3>
+          <div style={{ width: "65%" }}>
+            <Select
+              options={allJobs}
+              value={filterJob}
+              onChange={(value) => {
+                SetFilterJob(value);
+              }}
+            />
+          </div>
           <hr />
 
           <h3>CTC</h3>
@@ -221,23 +270,19 @@ const MultiApplication = ({ data }) => {
     arr.push(<Application data={data[i]} key={i} />);
   }
   return (
-    <div className="applications">
-      <div className="applicationHeader application__header">
+    <div className="applications ">
+      <div className="application applications__header" style={{ border: "none" }}>
         <h2>Name</h2>
-        <h2 className="application__email">Email</h2>
-        <h2>College</h2>
-        <h2 className="bl-r">Company</h2>
-        <h2 className="application__email">Email</h2>
-        <h2>College</h2>
-        <h2 className="bl-r">Company</h2>
-        <p></p>
+        <p>Email</p>
+        <p>College</p>
+        <p className="bl-r">Company</p>
       </div>
       {arr}
     </div>
   );
 };
 
-function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
+function RadioButtons({ radioText, filterRadios, SetFilterRadios, style }) {
   const radiohandler = (n) => {
     n--;
     const temp = [...filterRadios];
@@ -252,7 +297,7 @@ function RadioButtons({ radioText, filterRadios, SetFilterRadios }) {
   };
 
   return (
-    <div className="filter-radios">
+    <div className="filter-radios" style={style}>
       {radioText.map((text, i) => {
         return (
           <div key={i}>
@@ -305,3 +350,18 @@ function SearchBox({ isVisible, SetIsvisible, SetSearchField }) {
     </div>
   );
 }
+
+const allJobs = [
+  {
+    label: "Frontend Developer",
+    value: "front",
+  },
+  {
+    label: "Backend Developer",
+    value: "back",
+  },
+  {
+    label: "Product Manager",
+    value: "product",
+  },
+];

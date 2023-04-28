@@ -11,17 +11,14 @@ const LoginHero = () => {
         <div className="card_login">
           <h4 className="card_head">For Candidates</h4>
 
-<a href="https://forms.gle/D8x12Jf2QnSSgz8h9" target="_blank" rel="noreferrer">
-          <button className="login_btn_hero">Get Hired</button>
-         </a>
+          <a href="/candidate-register" target="_blank" rel="noreferrer">
+            <button className="login_btn_hero">Get Hired</button>
+          </a>
         </div>
         <div className="card_login">
           <h4 className="card_head">For Recruiters</h4>
           <Link to="/login">
-            <button
-              className="login_btn_hero"
-              style={{ background: "#298358" }}
-            >
+            <button className="login_btn_hero" style={{ background: "#298358" }}>
               Login
             </button>
           </Link>

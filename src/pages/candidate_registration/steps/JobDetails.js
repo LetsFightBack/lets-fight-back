@@ -2,26 +2,26 @@ import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
 export default function JobDetils({ form, setForm }) {
-	const mobileScreen = useMediaQuery("(max-width:530px)");
+  const mobileScreen = useMediaQuery("(max-width:530px)");
 
-	return (
-		<div className="form">
-			{mobileScreen && (
-				<div className="form__titleHolder">
-					<h1 className="form__title">Job Details</h1>
-				</div>
-			)}
-			<div className="form__leftFields">
-				<div className="form__field">
-					<Typography
-						variant={mobileScreen ? "h6" : "h5"}
-						component="div"
-						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
-					>
-						Preferred Job Location
-					</Typography>
+  return (
+    <div className="form">
+      {mobileScreen && (
+        <div className="form__titleHolder">
+          <h1 className="form__title">Job Details</h1>
+        </div>
+      )}
+      <div className="form__leftFields">
+        <div className="form__field">
+          <Typography
+            variant={mobileScreen ? "h6" : "h5"}
+            component="div"
+            sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
+          >
+            Preferred Job Location
+          </Typography>
 
-					{/* <input
+          {/* <input
 						type="text"
 						placeholder="Enter your preferred job location"
 						className="form__input"
@@ -69,7 +69,7 @@ export default function JobDetils({ form, setForm }) {
 						Total Year of Experience
 					</Typography>
 
-					{/* <input
+          {/* <input
 						type="text"
 						placeholder="Enter NiL if not applicable"
 						className="form__input"
@@ -113,7 +113,7 @@ export default function JobDetils({ form, setForm }) {
 						Field of Job
 					</Typography>
 
-					{/* <input
+          {/* <input
 						type="text"
 						placeholder="Enter your preferred feild of job"
 						className="form__input"
@@ -230,28 +230,26 @@ export default function JobDetils({ form, setForm }) {
 						When would be able to join
 					</Typography>
 
-					<select
-						className="form__sInput"
-						value={form.joiningDate}
-						onChange={(e) =>
-							setForm({ ...form, joiningDate: e.target.value })
-						}
-					>
-						<option value="">Select an option</option>
-						<option value="Immediately">Immediately</option>
-						<option value="1-7 Days">1-7 Days</option>
-						<option value="15-30 Days">15-30 Days</option>
-						<option value="1 Month+">1 Month+</option>
-					</select>
-				</div>
-				<div className="form__field">
-					<Typography
-						variant={mobileScreen ? "h6" : "h5"}
-						component="div"
-						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
-					>
-						Achievements
-					</Typography>
+          <select
+            className="form__sInput"
+            value={form.joiningDate}
+            onChange={(e) => setForm({ ...form, joiningDate: e.target.value })}
+          >
+            <option value="">Select an option</option>
+            <option value="Immediately">Immediately</option>
+            <option value="1-7 Days">1-7 Days</option>
+            <option value="15-30 Days">15-30 Days</option>
+            <option value="1 Month+">1 Month+</option>
+          </select>
+        </div>
+        <div className="form__field">
+          <Typography
+            variant={mobileScreen ? "h6" : "h5"}
+            component="div"
+            sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
+          >
+            Achievements
+          </Typography>
 
 					<textarea
 						type="text"
