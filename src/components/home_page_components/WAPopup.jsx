@@ -18,7 +18,7 @@ const WAPopup = () => {
           and craft your fight-back journey 🚀
         </div>
         <a
-          href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5"
+          href="https://chat.whatsapp.com/DN23wjZPQsIBZ0LIpVDDJQ"
           target="_blank"
           rel="noreferrer noopener"
         >
