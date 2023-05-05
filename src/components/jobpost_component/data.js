@@ -26,14 +26,33 @@ export const COLUMNS = [
         Header: 'Job Type',
         accessor: 'job_type',
         id: 3,
-        style: {
-            backgroundColor: "#407BFF", color: "white",
-            padding: "4px", borderRadius: "49px", fontSize: "15px",
-            fontWeight: "300", textAlign: "center",
-            // borderRight: 'solid 1px #CCCCCC',
-            margin: 5,
-            display: 'block',
-            cursor: 'pointer'
+        // style: {
+        //     backgroundColor: "#407BFF", color: "white",
+        //     padding: "4px", borderRadius: "49px", fontSize: "15px",
+        //     fontWeight: "300", textAlign: "center",
+        //     // borderRight: 'solid 1px #CCCCCC',
+        //     margin: 5,
+        //     display: 'block',
+        //     cursor: 'pointer'
+        // },
+        Cell: ({ cell: { value } }) => {
+            let backgroundColor;
+            if (value === 'Internship') {
+                backgroundColor = '#8c61cb';
+            } else if (value === 'Part Time') {
+                backgroundColor = '#de666f';
+            } else if (value === 'Full Time') {
+                backgroundColor = '#6188cb';
+            }
+            return <div style={{
+                backgroundColor, color: "white",
+                padding: "4px", borderRadius: "49px", fontSize: "15px",
+                fontWeight: "300", textAlign: "center",
+                // borderRight: 'solid 1px #CCCCCC',
+                margin: 5,
+                display: 'block',
+                cursor: 'pointer'
+            }}>{value}</div>;
         },
 
     },
@@ -85,7 +104,7 @@ export const COLUMNS = [
 export const DATA = [
     {
         company_name: 'Hello',
-        role: 'abc',
+        role: 'Frontend ',
         job_type: "Part Time",
         batch: "2024",
         date_of_posting: "22-05-2024",
@@ -94,7 +113,7 @@ export const DATA = [
     },
     {
         company_name: 'Amazon',
-        role: 'pqr',
+        role: 'Backend',
         job_type: "Full Time",
         batch: "2024",
         year_of_experience: "6 years",
@@ -103,7 +122,7 @@ export const DATA = [
     },
     {
         company_name: 'Microsoft',
-        role: 'mnc',
+        role: 'Full Stack',
         job_type: "Full Time",
         batch: "2024",
         year_of_experience: "6 years",
@@ -112,7 +131,7 @@ export const DATA = [
     },
     {
         company_name: 'Google',
-        role: 'kql',
+        role: 'Data Analyst',
         year_of_experience: "6 years",
         job_type: "Internship",
         batch: "2024",

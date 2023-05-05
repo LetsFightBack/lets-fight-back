@@ -58,7 +58,7 @@ const JobTables = () => {
                     ))}
                 </select>
             </div>
-            <table {...getTableProps()} style={{ width: "100%" }}>
+            <table {...getTableProps()} style={{ width: "100%" ,marginBottom:"2rem"}}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
