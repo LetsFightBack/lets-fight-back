@@ -11,10 +11,12 @@ import EducationalDetails from "./steps/EducationalDetails";
 import PersonalDetails from "./steps/PersonalDetails";
 import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import AuthPopup from "../../components/authPopup/authPopup";
 
 const steps = ["Personal Details", "Education Details", "Job Details", "Links and Resume"];
 
 export default function CandidateRegistration() {
+  const [openAuthPopup, setOpenAuthPopup] = useState(true);
   const smallScreen = useMediaQuery("(min-width:1300px)");
   const mobileScreen = useMediaQuery("(max-width:530px)");
   const [errorText, setErrorText] = useState("");
@@ -88,6 +90,12 @@ export default function CandidateRegistration() {
       return;
     }
 
+    if (activeStep === 0 && !isFirstNameValid(form.firstName)) {
+      setErrorText("Please enter a valid first name");
+      handleOpen();
+      return;
+    }
+
     if (activeStep === 0 && !isEmailValid(form.email)) {
       setErrorText("Please enter a valid email");
       handleOpen();
@@ -139,6 +147,7 @@ export default function CandidateRegistration() {
         form.skills === "" ||
         form.joiningDate === "")
     ) {
+      console.log(form);
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
@@ -161,16 +170,28 @@ export default function CandidateRegistration() {
       }
     }
 
-    // if(activeStep===3 && (form.totalYearsOfExperience==="Fresher (Graduate)" || form.totalYearsOfExperience==="Fresher (Post Graduate)")){
-    // 	if(form.codeChefID==="" || form.leetCodeID==="" || form.codeForcesID==="") {
-    // 		setErrorText("Please fill all the fields");
-    // 		handleOpen();
-    // 		return;
-    // 	}
-    // }
+    if (
+      activeStep === 3 &&
+      (form.totalYearsOfExperience === "Fresher (Graduate)" ||
+        form.totalYearsOfExperience === "Fresher (Post Graduate)")
+    ) {
+      if (form.codeChefID === "" || form.leetCodeID === "" || form.codeForcesID === "") {
+        setErrorText("Please fill all the fields");
+        handleOpen();
+        return;
+      }
+    }
 
-    if (activeStep === 3 && (form.linkedIn === "" || form.resume === "")) {
+    if (activeStep === 3 && (form.gitHub === "" || form.linkedIn === "" || form.resume === "")) {
       setErrorText("Please fill all the fields");
+      handleOpen();
+      return;
+    } else if (activeStep === 3 && !isResumeValid(form.resume)) {
+      setErrorText("Please upload a valid resume");
+      handleOpen();
+      return;
+    } else if (activeStep === 3 && !isLinkedInValid(form.linkedIn)) {
+      setErrorText("Please enter a valid LinkedIn link");
       handleOpen();
       return;
     }
@@ -181,7 +202,12 @@ export default function CandidateRegistration() {
     ) {
       setForm({ ...form, codeChefID: "", leetCodeID: "", codeForcesID: "" });
     } else {
-      setForm({ ...form, prevoiusCompany: "", prevoiusJobTitle: "", ExpectedCTC: "" });
+      setForm({
+        ...form,
+        prevoiusCompany: "",
+        prevoiusJobTitle: "",
+        ExpectedCTC: "",
+      });
     }
 
     if (activeStep === 3) {
@@ -212,6 +238,21 @@ export default function CandidateRegistration() {
   const yearRegex = /^(19|20)\d{2}$/;
   const backlogRegex = /^\d{1}$/;
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
+  const firstNameRegex = /^[a-zA-Z]+$/;
+  const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  const resumeRegex = /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
+
+  const isLinkedInValid = (linkedinUrl) => {
+    return linkedinRegex.test(linkedinUrl);
+  };
+
+  const isResumeValid = (resumeUrl) => {
+    return resumeRegex.test(resumeUrl);
+  };
+
+  const isFirstNameValid = (firstName) => {
+    return firstNameRegex.test(firstName);
+  };
 
   const isEmailValid = (email) => {
     return emailRegex.test(email);
@@ -239,9 +280,10 @@ export default function CandidateRegistration() {
 
   return (
     <div className="register">
+      <AuthPopup open={openAuthPopup} setOpen={setOpenAuthPopup} />
       <div className="register__container">
         <div className="register__titleholder">
-          <img className="register__logo" src={logo} />
+          <img className="register__logo" src={logo} alt="loading" />
           <h1 className="register__title">Candidate Registration</h1>
         </div>
         {!mobileScreen && (

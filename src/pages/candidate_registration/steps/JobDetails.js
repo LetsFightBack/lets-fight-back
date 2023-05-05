@@ -1,4 +1,4 @@
-import { TextField, Typography, useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
 export default function JobDetils({ form, setForm }) {
@@ -43,7 +43,7 @@ export default function JobDetils({ form, setForm }) {
             }
             className="form__sInput"
           >
-            <option value="">Select preferred job location</option>
+            <option value="Any">Any</option>
             <option value="Bangalore">Bangalore</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Pune">Pune</option>
@@ -52,7 +52,7 @@ export default function JobDetils({ form, setForm }) {
             <option value="Chennai">Chennai</option>
             <option value="Ahmedabad">Ahmedabad</option>
             <option value="Kochi">Kochi</option>
-            <option value="Gurgao">Gurgao</option>
+            <option value="Gurgao">Gurgaon</option>
             <option value="Kolkata">Kolkata</option>
             <option value="Noida">Noida</option>
             <option value="Chandigarh">Chandigarh</option>
@@ -86,7 +86,6 @@ export default function JobDetils({ form, setForm }) {
               })
             }
           >
-            <option value="">Select an option</option>
             <option value="Fresher (Graduate)">Fresher (Graduate)</option>
             <option value="Fresher (Post Graduate)">Fresher (Post Graduate)</option>
             <option value="0-1 Years">0-1 Years</option>
@@ -105,7 +104,7 @@ export default function JobDetils({ form, setForm }) {
             component="div"
             sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
           >
-            Feild of Job
+            Field of Job
           </Typography>
 
           {/* <input
@@ -122,7 +121,6 @@ export default function JobDetils({ form, setForm }) {
             value={form.fieldOfJob}
             onChange={(e) => setForm({ ...form, fieldOfJob: e.target.value })}
           >
-            <option value="">Select your preferred field of job</option>
             <option value="Technology - Engineer ( Full Tech Stack)">
               Technology - Engineer ( Full Tech Stack)
             </option>
@@ -179,7 +177,7 @@ export default function JobDetils({ form, setForm }) {
           </Typography>
           <input
             type="text"
-            placeholder="Enter your skills (separated by comma)"
+            placeholder="e.g Java, C++, etc"
             className="form__input"
             value={form.skills}
             onChange={(e) => setForm({ ...form, skills: e.target.value })}
@@ -215,9 +213,9 @@ export default function JobDetils({ form, setForm }) {
             Achievements
           </Typography>
 
-          <input
+          <textarea
             type="text"
-            placeholder="Enter your achievements (separated by comma)"
+            placeholder="Enter your achievements"
             className="form__input"
             value={form.achievements}
             onChange={(e) => setForm({ ...form, achievements: e.target.value })}

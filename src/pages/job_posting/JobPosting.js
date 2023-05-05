@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import JobTable from '../../components/jobpost_component/JobTable'
-
+import AuthPopup from '../../components/authPopup/authPopup'
 const JobPosting = () => {
+    const [openAuthPopup, setOpenAuthPopup] = useState(true);
+
     return (
         <>
+            <AuthPopup open={openAuthPopup} setOpen={setOpenAuthPopup} />
             <h3 style={{
                 textAlign: 'center', margin: "2rem 0", fontSize: "2rem", fontWeight: "700", color: " #162141",
             }}>Let’s get you back up</h3>

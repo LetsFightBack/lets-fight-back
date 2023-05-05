@@ -13,12 +13,12 @@ const WAPopup = () => {
           <CloseIcon />
         </div>
         <div className="content_wapopup">
-          Join the <span style={{ fontWeight: "800" }}> 1000+</span> members{" "}
-          <span style={{ fontWeight: "800" }}>#LetsFightBack</span> Community
-          and craft your fight-back journey 🚀
+          Join the <span style={{ fontWeight: "800" }}> 1689+</span> members{" "}
+          <span style={{ fontWeight: "800" }}>#LetsFightBack</span> Community and craft your
+          fight-back journey 🚀
         </div>
         <a
-          href="https://chat.whatsapp.com/EICCHIctPp0Ff8ECP1fnW5"
+          href="https://chat.whatsapp.com/DN23wjZPQsIBZ0LIpVDDJQ"
           target="_blank"
           rel="noreferrer noopener"
         >
@@ -46,7 +46,7 @@ let PopupStyle = styled.div(
     background-color: #fff;
     color: black;
     box-shadow: 2px 2px 10px 2px black;
-  
+
     a {
       text-decoration: none;
     }
@@ -67,7 +67,7 @@ let PopupStyle = styled.div(
       margin-top: 1rem;
       border-radius: 10px;
       font-weight: 600;
-      background-color:#298358;
+      background-color: #298358;
       color: white;
       cursor: pointer;
       border: none;
