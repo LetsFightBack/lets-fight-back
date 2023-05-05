@@ -92,14 +92,14 @@ const JobTables = () => {
                         return (
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
-                                    if (cell.column.id === 'apply')
+                                    if (cell.column.id === 7)
                                         return (
-                                            <td {...cell.getCellProps()}>
-                                                cell.render('Cell')
+                                            <td {...cell.getCellProps({ style: cell.column.style })}>
+                                                {cell.render('Cell')}
                                                 <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
-
                                             </td>
                                         )
+
                                     return (
                                         <td
                                             {...cell.getCellProps({ style: cell.column.style })}
@@ -113,7 +113,7 @@ const JobTables = () => {
                                         //     fontWeight: "300"
                                         // }}
                                         >
-                                            {cell.render('Cell')}
+                                            {cell.value === undefined ? "NA" : cell.render('Cell')}
                                         </td>
                                     )
                                 })}
