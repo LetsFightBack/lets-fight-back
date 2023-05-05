@@ -11,15 +11,12 @@ import EducationalDetails from "./steps/EducationalDetails";
 import PersonalDetails from "./steps/PersonalDetails";
 import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import AuthPopup from "../../components/authPopup/authPopup";
 
-const steps = [
-  "Personal Details",
-  "Education Details",
-  "Job Details",
-  "Links and Resume",
-];
+const steps = ["Personal Details", "Education Details", "Job Details", "Links and Resume"];
 
 export default function CandidateRegistration() {
+  const [openAuthPopup, setOpenAuthPopup] = useState(true);
   const smallScreen = useMediaQuery("(min-width:1300px)");
   const mobileScreen = useMediaQuery("(max-width:530px)");
   const [errorText, setErrorText] = useState("");
@@ -86,10 +83,7 @@ export default function CandidateRegistration() {
   const handleNext = () => {
     if (
       activeStep === 0 &&
-      (form.firstName === "" ||
-        form.lastName === "" ||
-        form.email === "" ||
-        form.phone === "")
+      (form.firstName === "" || form.lastName === "" || form.email === "" || form.phone === "")
     ) {
       setErrorText("Please fill all the fields");
       handleOpen();
@@ -164,11 +158,7 @@ export default function CandidateRegistration() {
       form.totalYearsOfExperience !== "Fresher (Graduate)" &&
       form.totalYearsOfExperience !== "Fresher (Post Graduate)"
     ) {
-      if (
-        form.prevoiusCompany === "" ||
-        form.prevoiusJobTitle === "" ||
-        form.ExpectedCTC === ""
-      ) {
+      if (form.prevoiusCompany === "" || form.prevoiusJobTitle === "" || form.ExpectedCTC === "") {
         setErrorText("Please fill all the fields");
         handleOpen();
         return;
@@ -185,21 +175,14 @@ export default function CandidateRegistration() {
       (form.totalYearsOfExperience === "Fresher (Graduate)" ||
         form.totalYearsOfExperience === "Fresher (Post Graduate)")
     ) {
-      if (
-        form.codeChefID === "" ||
-        form.leetCodeID === "" ||
-        form.codeForcesID === ""
-      ) {
+      if (form.codeChefID === "" || form.leetCodeID === "" || form.codeForcesID === "") {
         setErrorText("Please fill all the fields");
         handleOpen();
         return;
       }
     }
 
-    if (
-      activeStep === 3 &&
-      (form.gitHub === "" || form.linkedIn === "" || form.resume === "")
-    ) {
+    if (activeStep === 3 && (form.gitHub === "" || form.linkedIn === "" || form.resume === "")) {
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
@@ -208,10 +191,10 @@ export default function CandidateRegistration() {
       handleOpen();
       return;
     } else if (activeStep === 3 && !isLinkedInValid(form.linkedIn)) {
-	  setErrorText("Please enter a valid LinkedIn link");
-	  handleOpen();
-	  return;
-	}
+      setErrorText("Please enter a valid LinkedIn link");
+      handleOpen();
+      return;
+    }
 
     if (
       form.totalYearsOfExperience !== "Fresher (Graduate)" &&
@@ -256,10 +239,8 @@ export default function CandidateRegistration() {
   const backlogRegex = /^\d{1}$/;
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
   const firstNameRegex = /^[a-zA-Z]+$/;
-  const linkedinRegex =
-    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  const resumeRegex =
-    /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
+  const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  const resumeRegex = /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
 
   const isLinkedInValid = (linkedinUrl) => {
     return linkedinRegex.test(linkedinUrl);
@@ -299,26 +280,20 @@ export default function CandidateRegistration() {
 
   return (
     <div className="register">
+      <AuthPopup open={openAuthPopup} setOpen={setOpenAuthPopup} />
       <div className="register__container">
         <div className="register__titleholder">
-          <img className="register__logo" src={logo} />
+          <img className="register__logo" src={logo} alt="loading" />
           <h1 className="register__title">Candidate Registration</h1>
         </div>
         {!mobileScreen && (
           <div className="register__form">
-            <Stepper
-              activeStep={activeStep}
-              alternativeLabel
-              sx={{ width: "100%", mt: "-10px" }}
-            >
+            <Stepper activeStep={activeStep} alternativeLabel sx={{ width: "100%", mt: "-10px" }}>
               {steps.map((label, index) => {
                 return (
                   <Step key={label}>
                     <StepLabel>
-                      <Typography
-                        fontSize={smallScreen ? 26 : 18}
-                        fontWeight="700"
-                      >
+                      <Typography fontSize={smallScreen ? 26 : 18} fontWeight="700">
                         {label}
                       </Typography>
                     </StepLabel>
