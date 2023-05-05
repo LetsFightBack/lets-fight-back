@@ -1,0 +1,46 @@
+.filterJobBar {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 2rem 0 1rem 0;
+
+    .IconInputWrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+    }
+
+    input {
+        width: 40rem;
+        border-radius: 4px;
+        padding: 0.51rem;
+        padding-left: 2.2rem;
+        outline: none;
+        border: 1px solid #E0E0E0;
+    }
+
+    select {
+        background-color: #F8F8F8;
+        outline: none;
+        border-radius: 4px;
+        border: none;
+        width: 12rem;
+        padding: 0.5rem;
+        font-weight: 300;
+        font-family: 'Lato';
+    }
+}
+
+table {
+    border-collapse: collapse;
+}
+
+tr {
+    border: none;
+}
+
+td {
+    border-right: solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
+}

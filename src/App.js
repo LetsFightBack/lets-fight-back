@@ -108,6 +108,7 @@ function App() {
             path="/jobpost"
             element={
               <JobPosting />
+
             }
           />
         </Routes>

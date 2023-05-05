@@ -1,10 +1,7 @@
-import filterTypes from "./Filter"
-
 export const columns = [
     {
         Header: 'Company Name',
         accessor: 'company_name', // accessor is the "key" in the data
-        Filter: filterTypes
     },
     {
         Header: 'Role',

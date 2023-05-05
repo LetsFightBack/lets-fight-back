@@ -1,11 +1,10 @@
 import React, { useMemo, useState } from 'react'
 import { useTable, useSortBy, useFilters } from 'react-table'
-import filterTypes from './Filter';
-// import { columns as col } from './Columns'
+import './filter.style.scss'
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { COLUMNS, DATA } from './data';
-
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const JobTables = () => {
@@ -17,8 +16,17 @@ const JobTables = () => {
     const data = useMemo(() =>
         DATA, [])
 
+    const filterRows = useMemo(() => {
+        // console.log(filterColumn, filterInput);
+        if (filterColumn === '')
+            return data
+        return data.filter(row => {
+            return row[filterColumn]?.toLowerCase().includes(filterInput?.toLowerCase());
+        })
+
+    }, [filterColumn, filterInput, data])
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, } = useTable({
-        columns, data, initialState: {
+        columns, data: filterRows, initialState: {
             sortBy: [
                 {
                     id: 'date_of_posting ', desc: true
@@ -30,19 +38,20 @@ const JobTables = () => {
         useFilters,
         useSortBy)
 
-    // const filterRows = useMemo(() => 
-
-    // , [filterColumn, filterInput])
-
-
     return (
         <>
-            <div>
-                <label htmlFor="filterInput">Filter:</label>
-                <input type="text" id="filterInput" value={filterInput} onChange={e => setFilterInput(e.target.value)} />
+            <div className='filterJobBar' >
+                <div className='IconInputWrap'>
+                    <SearchIcon sx={{ position: 'absolute', left: "0.5rem" }} />
+                    <input type="text" id="filterInput" value={filterInput} onChange={e => {
+                        return (setFilterInput(e.target.value))
+                    }} />
+                </div>
+
                 <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
-                    <option value="">Select column</option>
+                    <option value="">Select Filter</option>
                     {COLUMNS.map(column => (
+                        column.accessor !== 'year_of_experience' && column.accessor !== 'batch' && column.accessor !== 'apply' && column.accessor !== 'date_of_posting' &&
                         <option key={column.accessor} value={column.accessor}>
                             {column.Header}
                         </option>
@@ -57,7 +66,7 @@ const JobTables = () => {
                                 <th
                                     {...column.getHeaderProps(column.getSortByToggleProps())}
                                     style={{
-
+                                        cursor:"pointer",
                                         fontSize: "1rem",
                                         textAlign: "center",
                                         background: '#FFF',
@@ -77,7 +86,7 @@ const JobTables = () => {
                         </tr>
                     ))}
                 </thead>
-                <tbody {...getTableBodyProps()}>
+                <tbody {...getTableBodyProps()} >
                     {rows.map(row => {
                         prepareRow(row)
                         return (
@@ -85,15 +94,16 @@ const JobTables = () => {
                                 {row.cells.map(cell => {
                                     return (
                                         <td
-                                            {...cell.getCellProps()}
-                                            style={{
-                                                padding: '10px',
-                                                textAlign: "center",
-                                                borderRight: 'solid 1px #CCCCCC  ',
-                                                background: '#fff',
-                                                color: "#000",
-                                                fontWeight: "300"
-                                            }}
+                                            {...cell.getCellProps({ style: cell.column.style })}
+
+                                        // style={{
+                                        //     padding: '10px',
+                                        //     textAlign: "center",
+                                        //     borderRight: 'solid 1px #CCCCCC  ',
+                                        //     background: '#fff',
+                                        //     color: "#000",
+                                        //     fontWeight: "300"
+                                        // }}
                                         >
                                             {cell.render('Cell')}
                                         </td>
