@@ -12,7 +12,12 @@ import PersonalDetails from "./steps/PersonalDetails";
 import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const steps = ["Personal Details", "Education Details", "Job Details", "Links and Resume"];
+const steps = [
+  "Personal Details",
+  "Education Details",
+  "Job Details",
+  "Links and Resume",
+];
 
 export default function CandidateRegistration() {
   const smallScreen = useMediaQuery("(min-width:1300px)");
@@ -81,9 +86,18 @@ export default function CandidateRegistration() {
   const handleNext = () => {
     if (
       activeStep === 0 &&
-      (form.firstName === "" || form.lastName === "" || form.email === "" || form.phone === "")
+      (form.firstName === "" ||
+        form.lastName === "" ||
+        form.email === "" ||
+        form.phone === "")
     ) {
       setErrorText("Please fill all the fields");
+      handleOpen();
+      return;
+    }
+
+    if (activeStep === 0 && !isFirstNameValid(form.firstName)) {
+      setErrorText("Please enter a valid first name");
       handleOpen();
       return;
     }
@@ -139,6 +153,7 @@ export default function CandidateRegistration() {
         form.skills === "" ||
         form.joiningDate === "")
     ) {
+      console.log(form);
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
@@ -149,7 +164,11 @@ export default function CandidateRegistration() {
       form.totalYearsOfExperience !== "Fresher (Graduate)" &&
       form.totalYearsOfExperience !== "Fresher (Post Graduate)"
     ) {
-      if (form.prevoiusCompany === "" || form.prevoiusJobTitle === "" || form.ExpectedCTC === "") {
+      if (
+        form.prevoiusCompany === "" ||
+        form.prevoiusJobTitle === "" ||
+        form.ExpectedCTC === ""
+      ) {
         setErrorText("Please fill all the fields");
         handleOpen();
         return;
@@ -161,19 +180,38 @@ export default function CandidateRegistration() {
       }
     }
 
-    // if(activeStep===3 && (form.totalYearsOfExperience==="Fresher (Graduate)" || form.totalYearsOfExperience==="Fresher (Post Graduate)")){
-    // 	if(form.codeChefID==="" || form.leetCodeID==="" || form.codeForcesID==="") {
-    // 		setErrorText("Please fill all the fields");
-    // 		handleOpen();
-    // 		return;
-    // 	}
-    // }
+    if (
+      activeStep === 3 &&
+      (form.totalYearsOfExperience === "Fresher (Graduate)" ||
+        form.totalYearsOfExperience === "Fresher (Post Graduate)")
+    ) {
+      if (
+        form.codeChefID === "" ||
+        form.leetCodeID === "" ||
+        form.codeForcesID === ""
+      ) {
+        setErrorText("Please fill all the fields");
+        handleOpen();
+        return;
+      }
+    }
 
-    if (activeStep === 3 && (form.linkedIn === "" || form.resume === "")) {
+    if (
+      activeStep === 3 &&
+      (form.gitHub === "" || form.linkedIn === "" || form.resume === "")
+    ) {
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
-    }
+    } else if (activeStep === 3 && !isResumeValid(form.resume)) {
+      setErrorText("Please upload a valid resume");
+      handleOpen();
+      return;
+    } else if (activeStep === 3 && !isLinkedInValid(form.linkedIn)) {
+	  setErrorText("Please enter a valid LinkedIn link");
+	  handleOpen();
+	  return;
+	}
 
     if (
       form.totalYearsOfExperience !== "Fresher (Graduate)" &&
@@ -181,7 +219,12 @@ export default function CandidateRegistration() {
     ) {
       setForm({ ...form, codeChefID: "", leetCodeID: "", codeForcesID: "" });
     } else {
-      setForm({ ...form, prevoiusCompany: "", prevoiusJobTitle: "", ExpectedCTC: "" });
+      setForm({
+        ...form,
+        prevoiusCompany: "",
+        prevoiusJobTitle: "",
+        ExpectedCTC: "",
+      });
     }
 
     if (activeStep === 3) {
@@ -212,6 +255,23 @@ export default function CandidateRegistration() {
   const yearRegex = /^(19|20)\d{2}$/;
   const backlogRegex = /^\d{1}$/;
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
+  const firstNameRegex = /^[a-zA-Z]+$/;
+  const linkedinRegex =
+    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  const resumeRegex =
+    /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
+
+  const isLinkedInValid = (linkedinUrl) => {
+    return linkedinRegex.test(linkedinUrl);
+  };
+
+  const isResumeValid = (resumeUrl) => {
+    return resumeRegex.test(resumeUrl);
+  };
+
+  const isFirstNameValid = (firstName) => {
+    return firstNameRegex.test(firstName);
+  };
 
   const isEmailValid = (email) => {
     return emailRegex.test(email);
@@ -246,12 +306,19 @@ export default function CandidateRegistration() {
         </div>
         {!mobileScreen && (
           <div className="register__form">
-            <Stepper activeStep={activeStep} alternativeLabel sx={{ width: "100%", mt: "-10px" }}>
+            <Stepper
+              activeStep={activeStep}
+              alternativeLabel
+              sx={{ width: "100%", mt: "-10px" }}
+            >
               {steps.map((label, index) => {
                 return (
                   <Step key={label}>
                     <StepLabel>
-                      <Typography fontSize={smallScreen ? 26 : 18} fontWeight="700">
+                      <Typography
+                        fontSize={smallScreen ? 26 : 18}
+                        fontWeight="700"
+                      >
                         {label}
                       </Typography>
                     </StepLabel>

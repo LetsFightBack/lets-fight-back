@@ -47,22 +47,24 @@ export default function EducationalDetails({ form, setForm }) {
             Year of Passing *
           </Typography>
 
-          <input
-            type="text"
-            placeholder="Enter your year of passing"
-            className="form__input"
-            value={form.yearOfPassing}
-            onChange={(e) => setForm({ ...form, yearOfPassing: e.target.value })}
-          />
-        </div>
-        <div className="form__field">
-          <Typography
-            variant={mobileScreen ? "h6" : "h5"}
-            component="div"
-            sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
-          >
-            Backlogs *
-          </Typography>
+					<input
+						type="text"
+						placeholder="e.g. 2021"
+						className="form__input"
+						value={form.yearOfPassing}
+						onChange={(e) =>
+							setForm({ ...form, yearOfPassing: e.target.value })
+						}
+					/>
+				</div>
+				<div className="form__field">
+					<Typography
+						variant={mobileScreen ? "h6" : "h5"}
+						component="div"
+						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
+					>
+						Backlogs *
+					</Typography>
 
           <input
             type="text"
