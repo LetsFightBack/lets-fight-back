@@ -5,7 +5,7 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { COLUMNS, DATA } from './data';
 import SearchIcon from '@mui/icons-material/Search';
-
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 
 const JobTables = () => {
 
@@ -58,7 +58,7 @@ const JobTables = () => {
                     ))}
                 </select>
             </div>
-            <table {...getTableProps()} style={{ width: "100%" ,marginBottom:"2rem"}}>
+            <table {...getTableProps()} style={{ width: "100%", marginBottom: "2rem" }}>
                 <thead>
                     {headerGroups.map(headerGroup => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
@@ -66,7 +66,7 @@ const JobTables = () => {
                                 <th
                                     {...column.getHeaderProps(column.getSortByToggleProps())}
                                     style={{
-                                        cursor:"pointer",
+                                        cursor: "pointer",
                                         fontSize: "1rem",
                                         textAlign: "center",
                                         background: '#FFF',
@@ -92,6 +92,14 @@ const JobTables = () => {
                         return (
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
+                                    if (cell.column.id === 'apply')
+                                        return (
+                                            <td {...cell.getCellProps()}>
+                                                cell.render('Cell')
+                                                <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
+
+                                            </td>
+                                        )
                                     return (
                                         <td
                                             {...cell.getCellProps({ style: cell.column.style })}

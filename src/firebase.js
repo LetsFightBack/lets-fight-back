@@ -70,12 +70,12 @@ export const createUserDocumentFromAuth = async (
 
     try {
       await setDoc(userDocRef, {
-        name:displayName,
-        email:email,
-        createdAt:createdAt,
-        linkedInId:null,
-        company:null,
-        verificationStatus:"NotVerified",
+        name: displayName,
+        email: email,
+        createdAt: createdAt,
+        linkedInId: null,
+        company: null,
+        verificationStatus: "NotVerified",
       });
     } catch (error) {
       console.log("error creating the user", error.message);
@@ -106,3 +106,22 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+
+export const getJobs = async () => {
+  const collectionRef = collection(db, "jobs");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  let res = []
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    res.push(doc.data());
+  });
+
+  return res;
+};
+
+
