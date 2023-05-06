@@ -1,6 +1,7 @@
 import { TextField, Typography, useMediaQuery } from "@mui/material";
 import "./form.style.scss";
 
+
 export default function PersonalDetails({ form, setForm }) {
 	const mobileScreen = useMediaQuery("(max-width:530px)");
 
@@ -76,7 +77,7 @@ export default function PersonalDetails({ form, setForm }) {
 				</div>
 			</div>
 			<div className="form__rightFields">
-				<div className="form__field">
+				{/* <div className="form__field">
 					<Typography
 						variant={mobileScreen ? "h6" : "h5"}
 						component="div"
@@ -89,11 +90,9 @@ export default function PersonalDetails({ form, setForm }) {
 						placeholder="Enter your email"
 						className="form__input"
 						value={form.email}
-						onChange={(e) =>
-							setForm({ ...form, email: e.target.value })
-						}
+						disabled
 					/>
-				</div>
+				</div> */}
 				<div className="form__field">
 					<Typography
 						variant={mobileScreen ? "h6" : "h5"}
@@ -107,9 +106,9 @@ export default function PersonalDetails({ form, setForm }) {
 						maxlength="12"
 						placeholder="Include country code"
 						className="form__input"
-						value={form.phone}
+						value={form.mobileNo}
 						onChange={(e) =>
-							setForm({ ...form, phone: e.target.value })
+							setForm({ ...form, mobileNo: e.target.value })
 						}
 					/>
 				</div>

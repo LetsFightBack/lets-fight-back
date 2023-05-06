@@ -63,11 +63,11 @@ const Modalmc = ({ handleClose, data, style }) => {
           </div>
         </div>
         <div className="bottom-button">
-          <button href={data?.resume} className="cancel-button" onClick={handleClose}>
+          <button href={data?.resumelink} className="cancel-button" onClick={handleClose}>
             Close
           </button>
           <button className="confirm-button">
-            <Link to={data?.resumeLink} target="_blank" rel="noreferrer">
+            <Link to={data?.resumelinkLink} target="_blank" rel="noreferrer">
               Resume
             </Link>
           </button>

@@ -12,46 +12,57 @@ import PersonalDetails from "./steps/PersonalDetails";
 import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthPopup from "../../components/authPopup/authPopup";
+import { getAuth } from "firebase/auth";
+import { addUserToDB } from "../../firebase";
 
-const steps = ["Personal Details", "Education Details", "Job Details", "Links and Resume"];
+const steps = [
+  "Personal Details",
+  "Education Details",
+  "Job Details",
+  "Links and Resume",
+];
 
 export default function CandidateRegistration() {
   const [openAuthPopup, setOpenAuthPopup] = useState(true);
   const smallScreen = useMediaQuery("(min-width:1300px)");
   const mobileScreen = useMediaQuery("(max-width:530px)");
   const [errorText, setErrorText] = useState("");
+  const [successText, setsuccessText] = useState("");
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set());
   const [open, setOpen] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const { currentUser } = getAuth();
   const [form, setForm] = useState({
     firstName: "",
     middleName: "",
     lastName: "",
     email: "",
-    phone: "",
+    mobileNo: "",
     college: "",
     yearOfPassing: "",
     backlogs: "",
     branch: "",
     CGPA: "",
-    preferredLocation: "",
-    totalYearsOfExperience: "",
+    preferredCity: "",
+    totalYearsOfexperience: "",
     fieldOfJob: "",
     skills: "",
-    joiningDate: "",
+    joinInfo: "",
     achievements: "",
     codeChefID: "",
     leetCodeID: "",
-    linkedIn: "",
+    linkedinProfile: "",
     codeForcesID: "",
     gitHub: "",
-    resume: "",
-    prevoiusCompany: "",
-    prevoiusJobTitle: "",
-    ExpectedCTC: "",
+    resumelink: "",
+    previousCompany: "",
+    prevoiusCompanyProfile: "",
+    expectedCTC: "",
   });
 
   const handleOpen = () => setOpen(true);
+  const handleSuccessOpen = () => setOpenSuccess(true);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -59,6 +70,13 @@ export default function CandidateRegistration() {
     }
 
     setOpen(false);
+  };
+  const handleSuccessClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSuccess(false);
   };
 
   const isStepSkipped = (step) => {
@@ -83,9 +101,10 @@ export default function CandidateRegistration() {
   const handleNext = () => {
     if (
       activeStep === 0 &&
-      (form.firstName === "" || form.lastName === "" || form.email === "" || form.phone === "")
+      (form.firstName === "" || form.lastName === "" || form.mobileNo === "")
     ) {
       setErrorText("Please fill all the fields");
+      console.log(form);
       handleOpen();
       return;
     }
@@ -96,14 +115,15 @@ export default function CandidateRegistration() {
       return;
     }
 
-    if (activeStep === 0 && !isEmailValid(form.email)) {
-      setErrorText("Please enter a valid email");
-      handleOpen();
-      return;
-    }
+    // if (activeStep === 0 && !isEmailValid(form.email)) {
+    //   setErrorText("Please enter a valid email");
+    //   console.log(form);
+    //   handleOpen();
+    //   return;
+    // }
 
-    if (activeStep === 0 && !isPhoneValid(form.phone)) {
-      setErrorText("Please enter a valid phone number");
+    if (activeStep === 0 && !ismobileNoValid(form.mobileNo)) {
+      setErrorText("Please enter a valid mobileNo number");
       handleOpen();
       return;
     }
@@ -141,11 +161,11 @@ export default function CandidateRegistration() {
 
     if (
       activeStep === 2 &&
-      (form.preferredLocation === "" ||
-        form.totalYearsOfExperience === "" ||
+      (form.preferredCity === "" ||
+        form.totalYearsOfexperience === "" ||
         form.fieldOfJob === "" ||
         form.skills === "" ||
-        form.joiningDate === "")
+        form.joinInfo === "")
     ) {
       console.log(form);
       setErrorText("Please fill all the fields");
@@ -155,15 +175,19 @@ export default function CandidateRegistration() {
 
     if (
       activeStep === 3 &&
-      form.totalYearsOfExperience !== "Fresher (Graduate)" &&
-      form.totalYearsOfExperience !== "Fresher (Post Graduate)"
+      form.totalYearsOfexperience !== "Fresher (Graduate)" &&
+      form.totalYearsOfexperience !== "Fresher (Post Graduate)"
     ) {
-      if (form.prevoiusCompany === "" || form.prevoiusJobTitle === "" || form.ExpectedCTC === "") {
+      if (
+        form.previousCompany === "" ||
+        form.prevoiusCompanyProfile === "" ||
+        form.expectedCTC === ""
+      ) {
         setErrorText("Please fill all the fields");
         handleOpen();
         return;
       }
-      if (!isExpectedCTCValid(form.ExpectedCTC)) {
+      if (!isexpectedCTCValid(form.expectedCTC)) {
         setErrorText("Please enter a valid CTC");
         handleOpen();
         return;
@@ -172,46 +196,69 @@ export default function CandidateRegistration() {
 
     if (
       activeStep === 3 &&
-      (form.totalYearsOfExperience === "Fresher (Graduate)" ||
-        form.totalYearsOfExperience === "Fresher (Post Graduate)")
+      (form.totalYearsOfexperience === "Fresher (Graduate)" ||
+        form.totalYearsOfexperience === "Fresher (Post Graduate)")
     ) {
-      if (form.codeChefID === "" || form.leetCodeID === "" || form.codeForcesID === "") {
+      if (
+        form.codeChefID === "" ||
+        form.leetCodeID === "" ||
+        form.codeForcesID === ""
+      ) {
         setErrorText("Please fill all the fields");
         handleOpen();
         return;
       }
     }
 
-    if (activeStep === 3 && (form.gitHub === "" || form.linkedIn === "" || form.resume === "")) {
+    if (
+      activeStep === 3 &&
+      (form.gitHub === "" ||
+        form.linkedinProfile === "" ||
+        form.resumelink === "")
+    ) {
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
-    } else if (activeStep === 3 && !isResumeValid(form.resume)) {
-      setErrorText("Please upload a valid resume");
+    } else if (activeStep === 3 && !isResumeValid(form.resumelink)) {
+      setErrorText("Please upload a valid resumelink");
       handleOpen();
       return;
-    } else if (activeStep === 3 && !isLinkedInValid(form.linkedIn)) {
-      setErrorText("Please enter a valid LinkedIn link");
+    } else if (
+      activeStep === 3 &&
+      !islinkedinProfileValid(form.linkedinProfile)
+    ) {
+      setErrorText("Please enter a valid linkedin profile link");
       handleOpen();
       return;
     }
 
     if (
-      form.totalYearsOfExperience !== "Fresher (Graduate)" &&
-      form.totalYearsOfExperience !== "Fresher (Post Graduate)"
+      form.totalYearsOfexperience !== "Fresher (Graduate)" &&
+      form.totalYearsOfexperience !== "Fresher (Post Graduate)"
     ) {
       setForm({ ...form, codeChefID: "", leetCodeID: "", codeForcesID: "" });
     } else {
       setForm({
         ...form,
-        prevoiusCompany: "",
-        prevoiusJobTitle: "",
-        ExpectedCTC: "",
+        previousCompany: "",
+        prevoiusCompanyProfile: "",
+        expectedCTC: "",
       });
     }
 
     if (activeStep === 3) {
-      console.log(form);
+      if (currentUser.email) {
+        setForm({ ...form, email: currentUser?.email });
+        console.log("form ", form);
+        addUserToDB(form)
+          .then(() => {
+            setsuccessText("Successfully added as a user!");
+            setOpenSuccess(true)
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
       return;
     }
 
@@ -233,8 +280,7 @@ export default function CandidateRegistration() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\+?\d{1,3}[- ]?\d{10}$/;
+  const mobileNoRegex = /^\+?\d{1,3}[- ]?\d{10}$/;
   const yearRegex = /^(19|20)\d{2}$/;
   const backlogRegex = /^\d{1}$/;
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
@@ -242,24 +288,20 @@ export default function CandidateRegistration() {
   const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
   const resumeRegex = /^https?:\/\/(drive\.google\.com\/(file\/d\/[^/]+\/?)|(open\?id=[^&]+&?))$/;
 
-  const isLinkedInValid = (linkedinUrl) => {
-    return linkedinRegex.test(linkedinUrl);
+  const islinkedinProfileValid = (linkedinProfileUrl) => {
+    return linkedinRegex.test(linkedinProfileUrl);
   };
 
-  const isResumeValid = (resumeUrl) => {
-    return resumeRegex.test(resumeUrl);
+  const isResumeValid = (resumelinkUrl) => {
+    return resumeRegex.test(resumelinkUrl);
   };
 
   const isFirstNameValid = (firstName) => {
     return firstNameRegex.test(firstName);
   };
 
-  const isEmailValid = (email) => {
-    return emailRegex.test(email);
-  };
-
-  const isPhoneValid = (phone) => {
-    return phoneRegex.test(phone);
+  const ismobileNoValid = (mobileNo) => {
+    return mobileNoRegex.test(mobileNo);
   };
 
   const isValidPassingYear = (year) => {
@@ -274,7 +316,7 @@ export default function CandidateRegistration() {
     return cgpaRegex.test(cgpa);
   };
 
-  const isExpectedCTCValid = (ctc) => {
+  const isexpectedCTCValid = (ctc) => {
     return /^\d+(\.\d{1,2})?$/.test(ctc) && parseFloat(ctc) > 0;
   };
 
@@ -288,12 +330,19 @@ export default function CandidateRegistration() {
         </div>
         {!mobileScreen && (
           <div className="register__form">
-            <Stepper activeStep={activeStep} alternativeLabel sx={{ width: "100%", mt: "-10px" }}>
+            <Stepper
+              activeStep={activeStep}
+              alternativeLabel
+              sx={{ width: "100%", mt: "-10px" }}
+            >
               {steps.map((label, index) => {
                 return (
                   <Step key={label}>
                     <StepLabel>
-                      <Typography fontSize={smallScreen ? 26 : 18} fontWeight="700">
+                      <Typography
+                        fontSize={smallScreen ? 26 : 18}
+                        fontWeight="700"
+                      >
                         {label}
                       </Typography>
                     </StepLabel>
@@ -321,6 +370,25 @@ export default function CandidateRegistration() {
             }}
           >
             {errorText}
+          </Alert>
+        </Snackbar>
+        <Snackbar
+          open={openSuccess}
+          autoHideDuration={6000}
+          onClose={handleSuccessClose}
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        >
+          <Alert
+            onClose={handleSuccessOpen}
+            severity="success"
+            sx={{
+              width: "100%",
+              fontSize: "25px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {successText}
           </Alert>
         </Snackbar>
         <div className="register__formControl">

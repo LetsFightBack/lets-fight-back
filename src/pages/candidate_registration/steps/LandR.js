@@ -12,8 +12,8 @@ export default function LinksAndResume({ form, setForm }) {
         </div>
       )}
 
-      {form.totalYearsOfExperience !== "Fresher (Graduate)" &&
-      form.totalYearsOfExperience !== "Fresher (Post Graduate)" ? (
+      {form.totalYearsOfexperience !== "Fresher (Graduate)" &&
+      form.totalYearsOfexperience !== "Fresher (Post Graduate)" ? (
         <div className="form__leftFields">
           <div className="form__field">
             <Typography
@@ -28,8 +28,8 @@ export default function LinksAndResume({ form, setForm }) {
               type="text"
               placeholder="E.g - Google, etc."
               className="form__input"
-              value={form.prevoiusCompany}
-              onChange={(e) => setForm({ ...form, prevoiusCompany: e.target.value })}
+              value={form.previousCompany}
+              onChange={(e) => setForm({ ...form, previousCompany: e.target.value })}
             />
           </div>
           <div className="form__field">
@@ -44,11 +44,11 @@ export default function LinksAndResume({ form, setForm }) {
               type="text"
               placeholder="E.g - Software Engineer, etc."
               className="form__input"
-              value={form.prevoiusJobTitle}
+              value={form.prevoiusCompanyProfile}
               onChange={(e) =>
                 setForm({
                   ...form,
-                  prevoiusJobTitle: e.target.value,
+                  prevoiusCompanyProfile: e.target.value,
                 })
               }
             />
@@ -65,8 +65,8 @@ export default function LinksAndResume({ form, setForm }) {
               type="number"
               placeholder="E.g - 10"
               className="form__input"
-              value={form.ExpectedCTC}
-              onChange={(e) => setForm({ ...form, ExpectedCTC: e.target.value })}
+              value={form.expectedCTC}
+              onChange={(e) => setForm({ ...form, expectedCTC: e.target.value })}
             />
           </div>
         </div>
@@ -139,10 +139,10 @@ export default function LinksAndResume({ form, setForm }) {
           </Typography>
           <input
             type="text"
-            placeholder="E.g - https://www.linkedin.com/in/rohit-123/"
+            placeholder="E.g - https://www.linkedinProfile.com/in/rohit-123/"
             className="form__input"
-            value={form.linkedIn}
-            onChange={(e) => setForm({ ...form, linkedIn: e.target.value })}
+            value={form.linkedinProfile}
+            onChange={(e) => setForm({ ...form, linkedinProfile: e.target.value })}
           />
         </div>
 
@@ -174,8 +174,8 @@ export default function LinksAndResume({ form, setForm }) {
             type="text"
             placeholder="Google drive resume link"
             className="form__input"
-            value={form.resume}
-            onChange={(e) => setForm({ ...form, resume: e.target.value })}
+            value={form.resumelink}
+            onChange={(e) => setForm({ ...form, resumelink: e.target.value })}
           />
         </div>
       </div>
