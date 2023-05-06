@@ -128,7 +128,7 @@ const JobTables = () => {
                                             if (cell.column.id === 5)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>
-                                                        {cell.value.join(', ')}
+                                                        {cell.value && cell.value.join(', ')}
                                                     </td>
                                                 )
                                             return (
