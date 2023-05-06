@@ -26,7 +26,7 @@ export default function LinksAndResume({ form, setForm }) {
 
             <input
               type="text"
-              placeholder="E.g - Google, Microsoft, Amazon, etc."
+              placeholder="E.g - Google, etc."
               className="form__input"
               value={form.prevoiusCompany}
               onChange={(e) => setForm({ ...form, prevoiusCompany: e.target.value })}
@@ -172,7 +172,7 @@ export default function LinksAndResume({ form, setForm }) {
           </Typography>
           <input
             type="text"
-            placeholder="Resume link"
+            placeholder="Google drive resume link"
             className="form__input"
             value={form.resume}
             onChange={(e) => setForm({ ...form, resume: e.target.value })}
