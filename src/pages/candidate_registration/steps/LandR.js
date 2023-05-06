@@ -26,7 +26,7 @@ export default function LinksAndResume({ form, setForm }) {
 
             <input
               type="text"
-              placeholder="E.g - Google, Microsoft, Amazon, etc."
+              placeholder="E.g - Google, Microsoft, etc."
               className="form__input"
               value={form.previousCompany}
               onChange={(e) => setForm({ ...form, previousCompany: e.target.value })}
@@ -59,11 +59,11 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Expected CTC *
+              Expected CTC (in LPA) *
             </Typography>
             <input
-              type="text"
-              placeholder="E.g - 10 LPA, 15 LPA, etc."
+              type="number"
+              placeholder="E.g - 10, 15"
               className="form__input"
               value={form.expectedCTC}
               onChange={(e) => setForm({ ...form, expectedCTC: e.target.value })}
@@ -78,7 +78,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Chef Handle *
+              Codechef Handle *
             </Typography>
 
             <input
@@ -95,7 +95,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Forces Handle *
+              Codeforces Handle *
             </Typography>
             <input
               type="text"
@@ -116,7 +116,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Leet Code Handle *
+              Leetcode Handle *
             </Typography>
             <input
               type="text"
@@ -135,7 +135,7 @@ export default function LinksAndResume({ form, setForm }) {
             component="div"
             sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
           >
-            linkedinProfile Profile *
+            LinkedIn Profile *
           </Typography>
           <input
             type="text"
@@ -172,7 +172,7 @@ export default function LinksAndResume({ form, setForm }) {
           </Typography>
           <input
             type="text"
-            placeholder="Resume link"
+            placeholder="Google drive resume link"
             className="form__input"
             value={form.resumelink}
             onChange={(e) => setForm({ ...form, resumelink: e.target.value })}

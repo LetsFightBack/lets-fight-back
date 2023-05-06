@@ -102,7 +102,7 @@ export default function PersonalDetails({ form, setForm }) {
 						Mobile Number *
 					</Typography>
 					<input
-						type="text"
+						type="number"
 						placeholder="Include country code"
 						className="form__input"
 						value={form.mobileNo}

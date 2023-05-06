@@ -83,7 +83,7 @@ export default function Dashboard() {
       <h2 style={{ textAlign: "center" }}>{WELCOME_MESSAGE}</h2>
       <br />
       <br />
-      {verificationStatus == "Recieved" && (
+      {verificationStatus === "Recieved" && (
         <Alert
           key="success"
           variant="success"
@@ -92,7 +92,7 @@ export default function Dashboard() {
           {SENT_FOR_VERIFICATION_MESSAGE}
         </Alert>
       )}
-      {verificationStatus == "Verified" && (
+      {verificationStatus === "Verified" && (
         <Alert
           key="success"
           variant="success"
@@ -173,7 +173,7 @@ function setEditClickedStatus(userDetails) {
 }
 
 function getFormStatusFromVerificationStatus(verificationStatus) {
-  if (verificationStatus == "NotVerified") {
+  if (verificationStatus === "NotVerified") {
     return false;
   } else {
     return true;

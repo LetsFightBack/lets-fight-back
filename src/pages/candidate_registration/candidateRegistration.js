@@ -280,31 +280,24 @@ export default function CandidateRegistration() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const mobileNoRegex = /^\+?\d{1,3}[- ]?\d{10}$/;
   const yearRegex = /^(19|20)\d{2}$/;
   const backlogRegex = /^\d{1}$/;
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
   const firstNameRegex = /^[a-zA-Z]+$/;
-  const linkedinProfileRegex =
-    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  const resumelinkRegex =
-    /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
+  const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
+  const resumeRegex = /^https?:\/\/(drive\.google\.com\/(file\/d\/[^/]+\/?)|(open\?id=[^&]+&?))$/;
 
   const islinkedinProfileValid = (linkedinProfileUrl) => {
-    return linkedinProfileRegex.test(linkedinProfileUrl);
+    return linkedinRegex.test(linkedinProfileUrl);
   };
 
   const isResumeValid = (resumelinkUrl) => {
-    return resumelinkRegex.test(resumelinkUrl);
+    return resumeRegex.test(resumelinkUrl);
   };
 
   const isFirstNameValid = (firstName) => {
     return firstNameRegex.test(firstName);
-  };
-
-  const isEmailValid = (email) => {
-    return emailRegex.test(email);
   };
 
   const ismobileNoValid = (mobileNo) => {
