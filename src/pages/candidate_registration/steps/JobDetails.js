@@ -25,20 +25,20 @@ export default function JobDetils({ form, setForm }) {
 						type="text"
 						placeholder="Enter your preferred job location"
 						className="form__input"
-						value={form.preferredLocation}
+						value={form.preferredCity}
 						onChange={(e) =>
 							setForm({
 								...form,
-								preferredLocation: e.target.value,
+								preferredCity: e.target.value,
 							})
 						}
 					/> */}
           <select
-            value={form.preferredLocation}
+            value={form.preferredCity}
             onChange={(e) =>
               setForm({
                 ...form,
-                preferredLocation: e.target.value,
+                preferredCity: e.target.value,
               })
             }
             className="form__sInput"
@@ -71,18 +71,18 @@ export default function JobDetils({ form, setForm }) {
 						type="text"
 						placeholder="Enter NiL if not applicable"
 						className="form__input"
-						value={form.totalYearsOfExperience}
+						value={form.totalYearsOfexperience}
 						onChange={(e) =>
-							setForm({ ...form, totalYearsOfExperience: e.target.value })
+							setForm({ ...form, totalYearsOfexperience: e.target.value })
 						}
 					/> */}
           <select
             className="form__sInput"
-            value={form.totalYearsOfExperience}
+            value={form.totalYearsOfexperience}
             onChange={(e) =>
               setForm({
                 ...form,
-                totalYearsOfExperience: e.target.value,
+                totalYearsOfexperience: e.target.value,
               })
             }
           >
@@ -194,8 +194,8 @@ export default function JobDetils({ form, setForm }) {
 
           <select
             className="form__sInput"
-            value={form.joiningDate}
-            onChange={(e) => setForm({ ...form, joiningDate: e.target.value })}
+            value={form.joinInfo}
+            onChange={(e) => setForm({ ...form, joinInfo: e.target.value })}
           >
             <option value="">Select an option</option>
             <option value="Immediately">Immediately</option>
