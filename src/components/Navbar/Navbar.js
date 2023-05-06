@@ -35,7 +35,7 @@ export default function Appbar() {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/view">View</Nav.Link>
-          <Nav.Link href="/jobpost">Job Post</Nav.Link>
+          <Nav.Link href="/jobpost">100+ Job Posting 🚀</Nav.Link>
         </Nav>
         <Nav>{isLoggedIn ? <Dropdown /> : <Nav.Link href="/login">Login</Nav.Link>}</Nav>
       </Container>
