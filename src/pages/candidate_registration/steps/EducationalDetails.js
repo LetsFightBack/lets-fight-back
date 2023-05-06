@@ -48,7 +48,8 @@ export default function EducationalDetails({ form, setForm }) {
           </Typography>
 
 					<input
-						type="text"
+						type="number"
+						maxlength="4"
 						placeholder="e.g. 2021"
 						className="form__input"
 						value={form.yearOfPassing}
@@ -67,7 +68,8 @@ export default function EducationalDetails({ form, setForm }) {
 					</Typography>
 
           <input
-            type="text"
+            type="number"
+	    maxlength="2"
             placeholder="if not applicable, enter 0"
             className="form__input"
             value={form.backlogs}
@@ -109,7 +111,8 @@ export default function EducationalDetails({ form, setForm }) {
           </Typography>
 
           <input
-            type="text"
+            type="number"
+	    maxlength="2"
             placeholder="Enter your CGPA"
             className="form__input"
             value={form.CGPA}
