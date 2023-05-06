@@ -240,7 +240,7 @@ export default function CandidateRegistration() {
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
   const firstNameRegex = /^[a-zA-Z]+$/;
   const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  const resumeRegex = /^https?:\/\/(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\/?[a-zA-Z0-9-_.~%&?=]+$/;
+  const resumeRegex = /^https?:\/\/(drive\.google\.com\/(file\/d\/[^/]+\/?)|(open\?id=[^&]+&?))$/;
 
   const isLinkedInValid = (linkedinUrl) => {
     return linkedinRegex.test(linkedinUrl);
