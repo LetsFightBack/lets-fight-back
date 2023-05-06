@@ -112,7 +112,6 @@ export default function EducationalDetails({ form, setForm }) {
 
           <input
             type="number"
-	    maxlength="2"
             placeholder="Enter your CGPA"
             className="form__input"
             value={form.CGPA}

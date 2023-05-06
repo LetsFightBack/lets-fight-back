@@ -26,7 +26,7 @@ export default function LinksAndResume({ form, setForm }) {
 
             <input
               type="text"
-              placeholder="E.g - Google, etc."
+              placeholder="E.g - Google, Microsoft, etc."
               className="form__input"
               value={form.previousCompany}
               onChange={(e) => setForm({ ...form, previousCompany: e.target.value })}
@@ -63,7 +63,7 @@ export default function LinksAndResume({ form, setForm }) {
             </Typography>
             <input
               type="number"
-              placeholder="E.g - 10"
+              placeholder="E.g - 10, 15"
               className="form__input"
               value={form.expectedCTC}
               onChange={(e) => setForm({ ...form, expectedCTC: e.target.value })}
@@ -116,7 +116,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Leet Code Handle *
+              Leetcode Handle *
             </Typography>
             <input
               type="text"
@@ -135,7 +135,7 @@ export default function LinksAndResume({ form, setForm }) {
             component="div"
             sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
           >
-            LinkedIn*
+            LinkedIn Profile *
           </Typography>
           <input
             type="text"

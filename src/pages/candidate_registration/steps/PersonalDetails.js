@@ -47,7 +47,7 @@ export default function PersonalDetails({ form, setForm }) {
 						component="div"
 						sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
 					>
-						Middle Name *
+						Middle Name
 					</Typography>
 					<input
 						type="text"
@@ -103,7 +103,6 @@ export default function PersonalDetails({ form, setForm }) {
 					</Typography>
 					<input
 						type="number"
-						maxlength="12"
 						placeholder="Include country code"
 						className="form__input"
 						value={form.mobileNo}
