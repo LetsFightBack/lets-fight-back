@@ -68,6 +68,9 @@
         grid-row-gap: 10px;
         width: 100%;
         justify-items: center;
+        label {
+          margin-left: 5px;
+        }
       }
 
       .filter2 {
@@ -235,6 +238,12 @@
 
           // .application {
           // }
+
+          &__header {
+            &:first-child {
+              padding-left: -30px;
+            }
+          }
         }
       }
 
@@ -261,13 +270,13 @@
   width: 65%;
 
   input {
-    background-color: #f3f3f3;
-    border: #ecebeb;
+    background-color: white;
+    border: hsl(0, 0%, 80%) 1px solid;
     padding: 10px 10px;
     width: 100%;
     font-size: 15px;
     font-weight: 500;
-    border-radius: 10px;
+    border-radius: 4px;
 
     &:focus {
       outline: none !important;

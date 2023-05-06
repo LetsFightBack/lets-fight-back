@@ -17,6 +17,8 @@ import PageNotVerified from "./pages/NotVerified/NotVerified.page";
 import Appbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./pages/Dashboard/Dashboard";
+import CandidateRegistration from "./pages/candidate_registration/candidateRegistration";
+import JobPosting from "./pages/job_posting/JobPosting";
 
 AOS.init();
 
@@ -43,14 +45,14 @@ function App() {
             path="/view"
             element={
               <PrivateRoute
-                component={<MainPageWrapper> <Appbar/> <View /> </MainPageWrapper>} />
+                component={<MainPageWrapper> <Appbar /> <View /> </MainPageWrapper>} />
             }
           ></Route>
           <Route
             path="/dashboard"
             element={
               <PrivateRoute
-                component={<MainPageWrapper> <Appbar/> <Dashboard/> </MainPageWrapper>} />
+                component={<MainPageWrapper> <Appbar /> <Dashboard /> </MainPageWrapper>} />
             }
           ></Route>
           <Route
@@ -66,6 +68,14 @@ function App() {
             element={
               <AnimatedPage>
                 <RegisterCandidate />
+              </AnimatedPage>
+            }
+          ></Route>
+          <Route
+            path="/candidate-register"
+            element={
+              <AnimatedPage>
+                <CandidateRegistration />
               </AnimatedPage>
             }
           ></Route>
@@ -86,15 +96,22 @@ function App() {
               </AnimatedPage>
             }
           ></Route>
-        <Route
+          <Route
             path="/verifymail"
             element={
               <MainPageWrapper>
                 <PageNotVerified />
               </MainPageWrapper>
             }
-            ></Route>
-            </Routes>
+          ></Route>
+          <Route
+            path="/jobpost"
+            element={
+              <JobPosting />
+
+            }
+          />
+        </Routes>
       </AnimatePresence>
     </>
   );

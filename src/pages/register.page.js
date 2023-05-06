@@ -68,6 +68,7 @@ export default function RegisterCandidate() {
       }
     }
   };
+  
   const sx_form_input = {
     color: "#8A8A8A",
     // background: "white",
