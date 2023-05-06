@@ -43,6 +43,9 @@ export default function JobDetils({ form, setForm }) {
             }
             className="form__sInput"
           >
+            <option value="">
+              Select
+            </option>
             <option value="Any">Any</option>
             <option value="Bangalore">Bangalore</option>
             <option value="Mumbai">Mumbai</option>
@@ -86,6 +89,9 @@ export default function JobDetils({ form, setForm }) {
               })
             }
           >
+            <option value="">
+              Select
+            </option>
             <option value="Fresher (Graduate)">Fresher (Graduate)</option>
             <option value="Fresher (Post Graduate)">Fresher (Post Graduate)</option>
             <option value="0-1 Years">0-1 Years</option>
@@ -121,6 +127,9 @@ export default function JobDetils({ form, setForm }) {
             value={form.fieldOfJob}
             onChange={(e) => setForm({ ...form, fieldOfJob: e.target.value })}
           >
+            <option value="">
+              Select
+            </option>
             <option value="Technology - Engineer ( Full Tech Stack)">
               Technology - Engineer ( Full Tech Stack)
             </option>
