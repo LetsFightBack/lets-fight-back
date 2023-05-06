@@ -86,6 +86,27 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => await signOut(auth);
 
+
+
+
+export const getJobs = async () => {
+  const collectionRef = collection(db, "jobs");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  let res = []
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    console.log(doc.id, " => ", doc.data());
+    res.push(doc.data());
+  });
+  // console.log(res);
+  return res;
+
+};
+
+
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 
 export const addVisitorToDB = async (email, name) => {

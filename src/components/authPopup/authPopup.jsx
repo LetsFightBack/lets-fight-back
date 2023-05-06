@@ -17,7 +17,7 @@ export default function AuthPopup({ open, setOpen }) {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         handleClose();
         addVisitorToDB(user.email, user.displayName);
       } else {
@@ -38,7 +38,7 @@ export default function AuthPopup({ open, setOpen }) {
       .catch((error) => {
         const errorMessage = error.message;
         setMessage("Try again");
-        console.log(errorMessage);
+        // console.log(errorMessage);
       });
   };
 
@@ -56,7 +56,7 @@ export default function AuthPopup({ open, setOpen }) {
               {message}
             </Typography>
 
-            <button type="button" class="login-with-google-btn" onClick={handleLogin}>
+            <button type="button" className="login-with-google-btn" onClick={handleLogin}>
               Sign in with Google
             </button>
           </div>
