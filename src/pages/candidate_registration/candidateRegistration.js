@@ -4,7 +4,7 @@ import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Snackbar from "@mui/material/Snackbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Button, Typography } from "@mui/material";
 import LinksAndResume from "./steps/LandR";
 import EducationalDetails from "./steps/EducationalDetails";
@@ -12,8 +12,8 @@ import PersonalDetails from "./steps/PersonalDetails";
 import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthPopup from "../../components/authPopup/authPopup";
-import { getAuth } from "firebase/auth";
-import { addUserToDB } from "../../firebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { addUserToDB, addVisitorToDB, auth } from "../../firebase";
 
 const steps = [
   "Personal Details",
@@ -21,6 +21,8 @@ const steps = [
   "Job Details",
   "Links and Resume",
 ];
+
+
 
 export default function CandidateRegistration() {
   const [openAuthPopup, setOpenAuthPopup] = useState(true);
@@ -60,6 +62,16 @@ export default function CandidateRegistration() {
     prevoiusCompanyProfile: "",
     expectedCTC: "",
   });
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // console.log(user);
+        setForm({...form,email:user.email})
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleOpen = () => setOpen(true);
   const handleSuccessOpen = () => setOpenSuccess(true);
@@ -219,7 +231,7 @@ export default function CandidateRegistration() {
       setErrorText("Please fill all the fields");
       handleOpen();
       return;
-    } else if (activeStep === 3 && !isResumeValid(form.resumelink)) {
+    } else if (activeStep === 3  && !isResumeValid(form.resumelink)) {
       setErrorText("Please upload a valid resumelink");
       handleOpen();
       return;
@@ -286,7 +298,7 @@ export default function CandidateRegistration() {
   const cgpaRegex = /^([0-9]|10)(\.[0-9]{1,2})?$/;
   const firstNameRegex = /^[a-zA-Z]+$/;
   const linkedinRegex = /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/;
-  const resumeRegex = /^https?:\/\/(drive\.google\.com\/(file\/d\/[^/]+\/?)|(open\?id=[^&]+&?))$/;
+  const resumeRegex = /^https?:\/\/(drive\.google\.com\/|(www\.)?drive.google.com\/)[a-zA-Z0-9-_./?=&]+$/;
 
   const islinkedinProfileValid = (linkedinProfileUrl) => {
     return linkedinRegex.test(linkedinProfileUrl);

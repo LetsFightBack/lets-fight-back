@@ -8,10 +8,10 @@ const JobPosting = () => {
     return (
         <>
             <AuthPopup open={openAuthPopup} setOpen={setOpenAuthPopup} />
-            <Appbar/>
+            {/* <Appbar/> */}
             <h3 style={{
                 textAlign: 'center', margin: "2rem 0", fontSize: "2rem", fontWeight: "700", color: " #162141",
-            }}>Let’s get you back up</h3>
+            }}>Job Posting</h3>
             <div style={{
                 maxWidth: "100%",
                 margin: "3rem 2rem",
