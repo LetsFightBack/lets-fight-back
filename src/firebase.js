@@ -101,8 +101,9 @@ export const getJobs = async () => {
     console.log(doc.id, " => ", doc.data());
     res.push(doc.data());
   });
-
+  // console.log(res);
   return res;
+
 };
 
 

@@ -1,7 +1,3 @@
-import { getJobs } from "../../firebase";
-
-
-
 
 export const COLUMNS = [
     {
@@ -12,6 +8,7 @@ export const COLUMNS = [
             width: "12rem",
             padding: '10px',
             textAlign: "center",
+            textTransform: "capitalize",
             // borderRight: 'solid 1px #CCCCCC  ',
             background: '#fff',
             color: "#000",
@@ -70,7 +67,8 @@ export const COLUMNS = [
                 fontWeight: "700", textAlign: "center",
                 textTransform: "uppercase",
                 // borderRight: 'solid 1px #CCCCCC',
-                margin: 5,
+                margin: "auto",
+                width:"8rem",
                 display: 'block',
                 cursor: 'pointer'
             }}>{value}</div>;
@@ -85,7 +83,7 @@ export const COLUMNS = [
         style: {
             color: "black",
             padding: "4px", borderRadius: "49px", fontSize: "medium",
-            fontWeight: "500", textAlign: "center",
+            fontWeight: "400", textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC',
             margin: 5,
             display: 'block',
@@ -94,11 +92,13 @@ export const COLUMNS = [
     },
     {
         Header: 'Location',
+        id: 8,
         accessor: 'location',
         style: {
             width: "12rem",
             padding: '10px',
             textAlign: "center",
+            textTransform: "capitalize",
             // borderRight: 'solid 1px #CCCCCC  ',
             background: '#fff',
             color: "#000",
@@ -147,94 +147,13 @@ export const COLUMNS = [
             padding: "4px", borderRadius: "5px", fontSize: "15px",
             fontWeight: "300", textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC  ',
-            margin: 5,
+            margin: "auto",
+            width:"6rem",
             display: 'block',
-            cursor: 'pointer'
+            cursor: 'pointer',
         },
         accessor: 'apply'
     }
 ]
 
-const jobs = async () => await getJobs();
 
-export const DATA = [
-    {
-        company_name: 'Hello',
-        role: 'Frontend ',
-        job_type: "Part Time",
-        batch: "2024",
-        date_of_posting: "22-05-2024",
-        apply: "Apply",
-        year_of_experience: "6 years"
-    },
-    {
-        company_name: 'Amazon',
-        role: 'Backend',
-        job_type: "Full Time",
-        batch: "2024",
-        year_of_experience: "6 years",
-        date_of_posting: "20-02-2024",
-        apply: "Apply"
-    },
-    {
-        company_name: 'Microsoft',
-        role: 'Full Stack',
-        job_type: "Full Time",
-        batch: "2024",
-        year_of_experience: "6 years",
-        date_of_posting: "16-01-2024",
-        apply: "Apply"
-    },
-    {
-        company_name: 'Google',
-        role: 'Data Analyst',
-        year_of_experience: "6 years",
-        job_type: "Internship",
-        batch: "2024",
-        date_of_posting: "1-12-2024",
-        apply: "Apply"
-    },
-    {
-        company_name: 'Google',
-        role: 'Data Analyst',
-        year_of_experience: "6 years",
-        job_type: "Internship",
-        batch: "2024",
-        date_of_posting: "1-12-2024",
-        apply: "Apply"
-    },
-    {
-        company_name: 'Google',
-        role: 'Data Analyst',
-        year_of_experience: "6 years",
-        job_type: "Internship",
-        batch: "2024",
-        date_of_posting: "1-12-2024",
-        apply: "Apply"
-    },
-    {
-        company_name: 'Google',
-        role: 'Data Analyst',
-        year_of_experience: "6 years",
-        job_type: "Internship",
-        batch: "2024",
-        date_of_posting: "1-12-2024",
-        apply: "Apply"
-    },
-
-
-
-]
-// console.log(typeof(jobs));
-// const data = jobs.map((job) => {
-//     return {
-//         company_name: job?.company,
-//         role: job?.role,
-//         location: job?.location || "NA",
-//         job_type: job?.jobType,
-//         date_of_posting: job?.postingDate || "NA",
-//         batch: job?.batch,
-//         apply: job?.applyLink
-//     }
-// })
-// console.log("data", data);
