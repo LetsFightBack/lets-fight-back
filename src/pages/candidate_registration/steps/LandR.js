@@ -59,11 +59,11 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Expected CTC *
+              Expected CTC (in LPA) *
             </Typography>
             <input
-              type="text"
-              placeholder="E.g - 10 LPA, 15 LPA, etc."
+              type="number"
+              placeholder="E.g - 10"
               className="form__input"
               value={form.ExpectedCTC}
               onChange={(e) => setForm({ ...form, ExpectedCTC: e.target.value })}
