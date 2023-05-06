@@ -20,10 +20,10 @@ const Navbar = () => {
         <div
         >
           
-          <Link to="/login">
+          <Link to="/jobpost">
             <button className="loginbtn">
               <img className="login-icon" src="/assets/loginIcon.svg" alt="" />{" "}
-              Login
+              Job Posts
             </button>
           </Link>
         </div>
