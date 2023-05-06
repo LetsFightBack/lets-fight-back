@@ -13,8 +13,8 @@ import JobDetails from "./steps/JobDetails";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthPopup from "../../components/authPopup/authPopup";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { addUserToDB, addVisitorToDB, auth } from "../../firebase";
-import {useNavigate} from "react-router-dom"
+import { addUserToDB, auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const steps = [
   "Personal Details",
