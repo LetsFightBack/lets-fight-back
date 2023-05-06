@@ -78,7 +78,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Chef Handle *
+              Codechef Handle *
             </Typography>
 
             <input
@@ -95,7 +95,7 @@ export default function LinksAndResume({ form, setForm }) {
               component="div"
               sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
             >
-              Code Forces Handle *
+              Codeforces Handle *
             </Typography>
             <input
               type="text"
@@ -135,7 +135,7 @@ export default function LinksAndResume({ form, setForm }) {
             component="div"
             sx={{ flexGrow: 1, my: "8px", fontWeight: "500" }}
           >
-            LinkedIn Profile *
+            LinkedIn*
           </Typography>
           <input
             type="text"
