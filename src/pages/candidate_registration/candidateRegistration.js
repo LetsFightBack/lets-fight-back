@@ -14,6 +14,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import AuthPopup from "../../components/authPopup/authPopup";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { addUserToDB, addVisitorToDB, auth } from "../../firebase";
+import {useNavigate} from "react-router-dom"
 
 const steps = [
   "Personal Details",
@@ -35,6 +36,7 @@ export default function CandidateRegistration() {
   const [open, setOpen] = useState(false);
   const [openSuccess, setOpenSuccess] = useState(false);
   const { currentUser } = getAuth();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     firstName: "",
     middleName: "",
@@ -266,6 +268,7 @@ export default function CandidateRegistration() {
           .then(() => {
             setsuccessText("Successfully added as a user!");
             setOpenSuccess(true)
+            setTimeout(()=>navigate("/jobpost"),2000)
           })
           .catch((err) => {
             console.log(err);
