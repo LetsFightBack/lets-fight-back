@@ -135,7 +135,7 @@ export const addVisitorToDB = async (email, name) => {
 
 
 export const addUserToDB = async (data) => {
-  const userDocRef = doc(db, "tempEmployee", data.email);
+  const userDocRef = doc(db, "Employee", data.email);
   const createdAt = new Date();
 
   try {
