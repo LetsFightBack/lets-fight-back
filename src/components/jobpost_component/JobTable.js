@@ -133,14 +133,7 @@ const JobTables = () => {
             {
                 <>
                     <div className='filterJobBar' >
-                        <div className='IconInputWrap'>
-                            <SearchIcon sx={{ position: 'absolute', left: "0.5rem" }} />
-                            <input type="text" id="filterInput" value={filterInput} onChange={e => {
-                                return (setFilterInput(e.target.value))
-                            }} />
-                        </div>
-
-                        <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
+                    <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
                             <option value="">Select Filter</option>
                             {COLUMNS.map(column => (
                                 column.accessor !== 'year_of_experience' && column.accessor !== 'batch' && column.accessor !== 'apply' && column.accessor !== 'date_of_posting' &&
@@ -149,6 +142,12 @@ const JobTables = () => {
                                 </option>
                             ))}
                         </select>
+                        <div className='IconInputWrap'>
+                            <SearchIcon sx={{ position: 'absolute', left: "0.5rem" }} />
+                            <input type="text" id="filterInput" value={filterInput} onChange={e => {
+                                return (setFilterInput(e.target.value))
+                            }} />
+                        </div> 
                     </div>
                     <table {...getTableProps()} style={{ width: "100%", marginBottom: "2rem" }}>
                         <thead>

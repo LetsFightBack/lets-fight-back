@@ -43,6 +43,8 @@ export const getCategoriesAndDocuments = async () => {
   return categoryMap;
 };
 
+
+
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
   if (!userAuth) return;
 
@@ -59,7 +61,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
         name: displayName,
         email: email,
         createdAt: createdAt,
-        linkedInId: null,
+        linkedinProfileId: null,
         company: null,
         verificationStatus: "NotVerified",
       });
@@ -123,6 +125,24 @@ export const addVisitorToDB = async (email, name) => {
       name,
       email,
       createdAt,
+    });
+  } catch (error) {
+    console.log("error creating the user", error.message);
+  }
+
+  return userDocRef;
+};
+
+
+export const addUserToDB = async (data) => {
+  const userDocRef = doc(db, "Employee", data.email);
+  const createdAt = new Date();
+
+  try {
+    await setDoc(userDocRef, {
+      ...data,
+      timeStamp:createdAt,
+      name:`${data.firstName} ${data.lastName}`
     });
   } catch (error) {
     console.log("error creating the user", error.message);

@@ -51,8 +51,8 @@ export default function Dashboard() {
       isValid = false;
     }
 
-    if (userDetail.linkedInId == null) {
-      errors.linkedInId = "LinkedIn Id is required";
+    if (userDetail.linkedinProfileId == null) {
+      errors.linkedinProfileId = "linkedinProfile Id is required";
       isValid = false;
     }
     setErrors(errors);
@@ -83,7 +83,7 @@ export default function Dashboard() {
       <h2 style={{ textAlign: "center" }}>{WELCOME_MESSAGE}</h2>
       <br />
       <br />
-      {verificationStatus == "Recieved" && (
+      {verificationStatus === "Recieved" && (
         <Alert
           key="success"
           variant="success"
@@ -92,7 +92,7 @@ export default function Dashboard() {
           {SENT_FOR_VERIFICATION_MESSAGE}
         </Alert>
       )}
-      {verificationStatus == "Verified" && (
+      {verificationStatus === "Verified" && (
         <Alert
           key="success"
           variant="success"
@@ -138,16 +138,16 @@ export default function Dashboard() {
           </Form.Group>
           <br />
           <Form.Group>
-            <Form.Label>LinkedIn Id</Form.Label>
+            <Form.Label>linkedinProfile Id</Form.Label>
             <Form.Control
               type="text"
-              name="linkedInId"
-              value={userDetail.linkedInId}
+              name="linkedinProfileId"
+              value={userDetail.linkedinProfileId}
               disabled={getFormStatusFromVerificationStatus(verificationStatus)}
               onChange={handleChange}
-              isInvalid={!!errors.linkedInId}
+              isInvalid={!!errors.linkedinProfileId}
             />
-            <Form.Control.Feedback type="invalid">{errors.linkedInId}</Form.Control.Feedback>
+            <Form.Control.Feedback type="invalid">{errors.linkedinProfileId}</Form.Control.Feedback>
           </Form.Group>
           <br />
           {Object.keys(errors).length > 0 && (
@@ -165,7 +165,7 @@ export default function Dashboard() {
 }
 
 function setEditClickedStatus(userDetails) {
-  if (userDetails.name == null || userDetails.company == null || userDetails.linkedInId == null) {
+  if (userDetails.name == null || userDetails.company == null || userDetails.linkedinProfileId == null) {
     return true;
   } else {
     return false;
@@ -173,7 +173,7 @@ function setEditClickedStatus(userDetails) {
 }
 
 function getFormStatusFromVerificationStatus(verificationStatus) {
-  if (verificationStatus == "NotVerified") {
+  if (verificationStatus === "NotVerified") {
     return false;
   } else {
     return true;

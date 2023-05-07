@@ -16,7 +16,7 @@ const Application = ({ data }) => {
       </p>
       <p className="bl-r">{data?.previousCompany}</p>
       <p className="p-right">
-        <a href={data?.resumeLink} target="_blank" rel="noreferrer">
+        <a href={data?.resumelinkLink} target="_blank" rel="noreferrer">
          <FcFile/>
         </a>
       </p>
