@@ -12,8 +12,6 @@ import MobileJobUI from './MobileUI';
 
 const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput }) => {
 
-    // const [filterInput, setFilterInput] = useState('');
-    // const [filterColumn, setFilterColumn] = useState('');
     const [DATA, setDATA] = useState([])
     const jobs = async () => {
         const s = await getJobs()
@@ -60,7 +58,6 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
         useFilters,
         useSortBy
     )
-
     return (
         <>
             {
@@ -127,6 +124,7 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
                                                         </a>
                                                     </td>
                                                 )
+                                            console.log(cell.column);
                                             if (cell.column.id === 5)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>
