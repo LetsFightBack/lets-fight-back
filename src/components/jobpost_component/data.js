@@ -68,7 +68,7 @@ export const COLUMNS = [
                 textTransform: "uppercase",
                 // borderRight: 'solid 1px #CCCCCC',
                 margin: "auto",
-                width:"8rem",
+                width: "8rem",
                 display: 'block',
                 cursor: 'pointer'
             }}>{value}</div>;
@@ -95,7 +95,7 @@ export const COLUMNS = [
         id: 8,
         accessor: 'location',
         style: {
-            width: "12rem",
+            width: "10rem",
             padding: '10px',
             textAlign: "center",
             textTransform: "capitalize",
@@ -127,7 +127,7 @@ export const COLUMNS = [
         id: 6,
         accessor: 'postingDate',
         style: {
-            width: "10rem",
+            width: "12rem",
             padding: '10px',
             textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC  ',
@@ -135,6 +135,12 @@ export const COLUMNS = [
             color: "#000",
             fontWeight: "300"
         },
+        sortType: (rowA, rowB, columnId) => {
+            const dateA = new Date(rowA.values[columnId]);
+            const dateB = new Date(rowB.values[columnId]);
+            return dateA.getTime() - dateB.getTime();
+        },
+        
 
     },
     {
@@ -148,7 +154,7 @@ export const COLUMNS = [
             fontWeight: "300", textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC  ',
             margin: "auto",
-            width:"6rem",
+            width: "6rem",
             display: 'block',
             cursor: 'pointer',
         },

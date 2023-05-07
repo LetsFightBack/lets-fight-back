@@ -27,12 +27,12 @@ const JobTables = () => {
     //     },
     //     "jobType": "Internship",
     //     "location": "Gurgaon",
-    //     "postingDate": "05-06-2024",
+    //     "postingDate": "2023-05-05",
     //     "companyName": "Siemens Energy "
     // },
     // {
     //     "companyName": "Faurecia",
-    //     "postingDate": "06-06-2024",
+    //     "postingDate": "2023-05-06",
     //     "applyLink": "https://faurecia.eightfold.ai/careers/job/563087396050746?domain=faurecia.com",
     //     "role": "Analyst - PSP",
     //     "batch": [
@@ -48,7 +48,7 @@ const JobTables = () => {
     // {
     //     "applyLink": "Associate Consultant",
     //     "role": "Associate Consultant",
-    //     "postingDate": "06-06-2024",
+    //     "postingDate": "2023-05-06",
     //     "companyName": " KPMG International",
     //     "timestamp": {
     //         "seconds": 1683397445,
@@ -68,7 +68,7 @@ const JobTables = () => {
     //     "applyLink": "https://sharechat.mynexthire.com/employer/jobs?src=careers&p=eyJwYWdlVHlwZSI6ImpkIiwiY3ZTb3VyY2UiOiJjYXJlZXJzIiwicmVxSWQiOjE0ODAsInJlcXVlc3RlciI6eyJpZCI6IiIsImNvZGUiOiIiLCJuYW1lIjoiIn0sInBhZ2UiOiJjYXJlZXJzIiwiYnVmaWx0ZXIiOi0xLCJjdXN0b21GaWVsZHMiOnt9fQ==",
     //     "location": "Bangalore",
     //     "role": "Software Developer-1 (React Native)",
-    //     "postingDate": "04-06-2024",
+    //     "postingDate": "2023-05-05",
     //     "batch": [
     //         "2020",
     //         "2021",
@@ -80,7 +80,7 @@ const JobTables = () => {
     //         "nanoseconds": 162000000
     //     }
     // }
-
+    
     // ])
     const [DATA, setDATA] = useState([])
     const jobs = async () => {
@@ -116,27 +116,29 @@ const JobTables = () => {
 
     }, [filterColumn, filterInput, data])
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, } = useTable({
-        columns, data: filterRows, initialState: {
+        columns, data: filterRows,
+        defaultColumn: { Filter: () => null },
+        initialState: {
             sortBy: [
                 {
-                    id: 'postingDate', desc: true
+                    id: 6, desc: true
                 }
             ]
         },
-        defaultColumn: { Filter: () => null },
     },
         useFilters,
-        useSortBy)
+        useSortBy
+    )
 
     return (
         <>
             {
                 <>
                     <div className='filterJobBar' >
-                    <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
+                        <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
                             <option value="">Select Filter</option>
                             {COLUMNS.map(column => (
-                                column.accessor !== 'year_of_experience' && column.accessor !== 'batch' && column.accessor !== 'apply' && column.accessor !== 'date_of_posting' &&
+                                column.accessor !== 'year_of_experience' && column.accessor !== 'location' && column.accessor !== 'batch' && column.accessor !== 'applyLink' && column.accessor !== 'postingDate' &&
                                 <option key={column.accessor} value={column.accessor}>
                                     {column.Header}
                                 </option>
@@ -147,7 +149,7 @@ const JobTables = () => {
                             <input type="text" id="filterInput" value={filterInput} onChange={e => {
                                 return (setFilterInput(e.target.value))
                             }} />
-                        </div> 
+                        </div>
                     </div>
                     <table {...getTableProps()} style={{ width: "100%", marginBottom: "2rem" }}>
                         <thead>
@@ -185,21 +187,23 @@ const JobTables = () => {
                                         {row.cells.map(cell => {
                                             if (cell.column.id === 7)
                                                 return (
-                                                    <a href={cell.value} target='_blank'>
-                                                        <td {...cell.getCellProps({ style: cell.column.style })}>
+                                                    <td {...cell.getCellProps({ style: cell.column.style })}>
+                                                        <a href={cell.value} target='_blank' style={{ textDecoration: "none", color: "white" }}>
                                                             {/* <button> */}
                                                             Apply
                                                             <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
                                                             {/* </button> */}
-                                                        </td>
-                                                    </a>
+                                                        </a>
+                                                    </td>
                                                 )
+                                            console.log(cell.column);
                                             if (cell.column.id === 5)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>
                                                         {cell.value.join(', ')}
                                                     </td>
                                                 )
+
                                             return (
                                                 <td
                                                     {...cell.getCellProps({ style: cell.column.style })}
