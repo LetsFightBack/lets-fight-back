@@ -18,6 +18,10 @@
         padding-left: 2.2rem;
         outline: none;
         border: 1px solid #E0E0E0;
+
+        @media screen and (max-width: 600px) {
+            width: 100%
+        }
     }
 
     select {
@@ -47,4 +51,3 @@
 a {
     text-decoration: none;
 }
-
