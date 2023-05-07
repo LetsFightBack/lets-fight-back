@@ -3,7 +3,7 @@ export const COLUMNS = [
     {
         Header: 'Company Name',
         id: 1,
-        accessor: 'company_name', // accessor is the "key" in the data
+        accessor: 'companyName', // accessor is the "key" in the data
         style: {
             width: "12rem",
             padding: '10px',
@@ -33,7 +33,7 @@ export const COLUMNS = [
 
     {
         Header: 'Job Type',
-        accessor: 'job_type',
+        accessor: 'jobType',
         id: 3,
         // style: {
         //     backgroundColor: "#407BFF", color: "white",
@@ -125,7 +125,7 @@ export const COLUMNS = [
     {
         Header: 'Date of Posting',
         id: 6,
-        accessor: 'date_of_posting',
+        accessor: 'postingDate',
         style: {
             width: "10rem",
             padding: '10px',
@@ -152,7 +152,7 @@ export const COLUMNS = [
             display: 'block',
             cursor: 'pointer',
         },
-        accessor: 'apply'
+        accessor: 'applyLink'
     }
 ]
 
