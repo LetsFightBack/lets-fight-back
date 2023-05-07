@@ -217,7 +217,6 @@ const JobTables = () => {
                                                 //     fontWeight: "300"
                                                 // }}
                                                 >
-
                                                     {/* { cell.render('Cell')} */}
                                                     {cell.value === undefined || cell.value === "" || cell.value === null ? "NA" : cell.render('Cell')}
                                                 </td>
