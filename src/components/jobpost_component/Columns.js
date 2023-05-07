@@ -1,7 +1,7 @@
 export const columns = [
     {
         Header: 'Company Name',
-        accessor: 'company_name', // accessor is the "key" in the data
+        accessor: 'companyName', // accessor is the "key" in the data
     },
     {
         Header: 'Role',
@@ -11,22 +11,22 @@ export const columns = [
     },
     {
         Header: 'Job Type',
-        accessor: 'job_type',
+        accessor: 'jobType',
     },
-    {
-        Header: "Year of Experience",
-        Header: "year_of_experience",
-    },
+    // {
+    //     Header: "Year of Experience",
+    //     Header: "year_of_experience",
+    // },
     {
         Header: 'Batch',
         accessor: 'batch',
     },
     {
         Header: 'Date of Posting',
-        accessor: 'date_of_posting',
+        accessor: 'postingDate',
     },
     {
         Header: 'Apply',
-        accessor: 'apply'
+        accessor: 'applyLink'
     }
 ]

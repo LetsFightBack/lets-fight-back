@@ -18,13 +18,13 @@ const JobTables = () => {
         const s = await getJobs()
         setDATA(s.map((job) => {
             return {
-                company_name: job?.companyName,
+                companyName: job?.companyName,
                 role: job?.role,
                 location: job?.location,
-                job_type: job?.jobType,
-                date_of_posting: job?.postingDate,
+                jobType: job?.jobType,
+                postingDate: job?.postingDate,
                 batch: job?.batch,
-                apply: job?.applyLink
+                applyLink: job?.applyLink
             }
         }))
     }
@@ -47,27 +47,28 @@ const JobTables = () => {
 
     }, [filterColumn, filterInput, data])
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, } = useTable({
-        columns, data: filterRows, initialState: {
+        columns, data: filterRows,
+        defaultColumn: { Filter: () => null },
+        initialState: {
             sortBy: [
                 {
-                    id: 'date_of_posting ', desc: true
+                    id: 6, desc: true
                 }
             ]
         },
-        defaultColumn: { Filter: () => null },
     },
         useFilters,
-        useSortBy)
-
+        useSortBy
+    )
     return (
         <>
             {
                 <>
                     <div className='filterJobBar' >
-                    <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
+                        <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
                             <option value="">Select Filter</option>
                             {COLUMNS.map(column => (
-                                column.accessor !== 'year_of_experience' && column.accessor !== 'batch' && column.accessor !== 'apply' && column.accessor !== 'date_of_posting' &&
+                                column.accessor !== 'year_of_experience' && column.accessor !== 'location' && column.accessor !== 'batch' && column.accessor !== 'applyLink' && column.accessor !== 'postingDate' &&
                                 <option key={column.accessor} value={column.accessor}>
                                     {column.Header}
                                 </option>
@@ -78,7 +79,7 @@ const JobTables = () => {
                             <input type="text" id="filterInput" value={filterInput} onChange={e => {
                                 return (setFilterInput(e.target.value))
                             }} />
-                        </div> 
+                        </div>
                     </div>
                     <table {...getTableProps()} style={{ width: "100%", marginBottom: "2rem" }}>
                         <thead>
@@ -116,19 +117,20 @@ const JobTables = () => {
                                         {row.cells.map(cell => {
                                             if (cell.column.id === 7)
                                                 return (
-                                                    <a href={cell.value} target='_blank'>
-                                                        <td {...cell.getCellProps({ style: cell.column.style })}>
+                                                    <td {...cell.getCellProps({ style: cell.column.style })}>
+                                                        <a href={cell.value} target='_blank' style={{ textDecoration: "none", color: "white" }}>
                                                             {/* <button> */}
-                                                                Apply
-                                                                <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
+                                                            Apply
+                                                            <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
                                                             {/* </button> */}
-                                                        </td>
-                                                    </a>
+                                                        </a>
+                                                    </td>
                                                 )
+                                            console.log(cell.column);
                                             if (cell.column.id === 5)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>
-                                                        {cell.value && cell.value.join(', ')}
+                                                        {cell.value.join(', ')}
                                                     </td>
                                                 )
                                             return (
@@ -144,6 +146,9 @@ const JobTables = () => {
                                                 //     fontWeight: "300"
                                                 // }}
                                                 >
+
+                                                    {/* { cell.render('Cell')} */}
+
                                                     {cell.value === undefined || cell.value === "" || cell.value === null ? "NA" : cell.render('Cell')}
                                                 </td>
                                             )

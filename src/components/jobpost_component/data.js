@@ -3,7 +3,7 @@ export const COLUMNS = [
     {
         Header: 'Company Name',
         id: 1,
-        accessor: 'company_name', // accessor is the "key" in the data
+        accessor: 'companyName', // accessor is the "key" in the data
         style: {
             width: "12rem",
             padding: '10px',
@@ -33,7 +33,7 @@ export const COLUMNS = [
 
     {
         Header: 'Job Type',
-        accessor: 'job_type',
+        accessor: 'jobType',
         id: 3,
         // style: {
         //     backgroundColor: "#407BFF", color: "white",
@@ -68,7 +68,7 @@ export const COLUMNS = [
                 textTransform: "uppercase",
                 // borderRight: 'solid 1px #CCCCCC',
                 margin: "auto",
-                width:"8rem",
+                width: "8rem",
                 display: 'block',
                 cursor: 'pointer'
             }}>{value}</div>;
@@ -95,7 +95,7 @@ export const COLUMNS = [
         id: 8,
         accessor: 'location',
         style: {
-            width: "12rem",
+            width: "10rem",
             padding: '10px',
             textAlign: "center",
             textTransform: "capitalize",
@@ -125,9 +125,9 @@ export const COLUMNS = [
     {
         Header: 'Date of Posting',
         id: 6,
-        accessor: 'date_of_posting',
+        accessor: 'postingDate',
         style: {
-            width: "10rem",
+            width: "12rem",
             padding: '10px',
             textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC  ',
@@ -135,6 +135,12 @@ export const COLUMNS = [
             color: "#000",
             fontWeight: "300"
         },
+        sortType: (rowA, rowB, columnId) => {
+            const dateA = new Date(rowA.values[columnId]);
+            const dateB = new Date(rowB.values[columnId]);
+            return dateA.getTime() - dateB.getTime();
+        },
+        
 
     },
     {
@@ -148,11 +154,11 @@ export const COLUMNS = [
             fontWeight: "300", textAlign: "center",
             // borderRight: 'solid 1px #CCCCCC  ',
             margin: "auto",
-            width:"6rem",
+            width: "6rem",
             display: 'block',
             cursor: 'pointer',
         },
-        accessor: 'apply'
+        accessor: 'applyLink'
     }
 ]
 
