@@ -7,12 +7,11 @@ import { COLUMNS } from './data';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import { getJobs } from "../../firebase";
+import MobileJobUI from './MobileUI';
 
 
-const JobTables = () => {
+const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput }) => {
 
-    const [filterInput, setFilterInput] = useState('');
-    const [filterColumn, setFilterColumn] = useState('');
     const [DATA, setDATA] = useState([])
     const jobs = async () => {
         const s = await getJobs()
@@ -30,7 +29,6 @@ const JobTables = () => {
     }
     useEffect(() => {
         jobs();
-
     }, [])
     const columns = useMemo(() =>
         COLUMNS, [COLUMNS])
@@ -63,7 +61,7 @@ const JobTables = () => {
     return (
         <>
             {
-                <>
+                <div className='d-none d-lg-block'>
                     <div className='filterJobBar' >
                         <select value={filterColumn} onChange={e => setFilterColumn(e.target.value)}>
                             <option value="">Select Filter</option>
@@ -133,22 +131,12 @@ const JobTables = () => {
                                                         {cell.value.join(', ')}
                                                     </td>
                                                 )
+
                                             return (
                                                 <td
                                                     {...cell.getCellProps({ style: cell.column.style })}
-
-                                                // style={{
-                                                //     padding: '10px',
-                                                //     textAlign: "center",
-                                                //     borderRight: 'solid 1px #CCCCCC  ',
-                                                //     background: '#fff',
-                                                //     color: "#000",
-                                                //     fontWeight: "300"
-                                                // }}
                                                 >
-
                                                     {/* { cell.render('Cell')} */}
-
                                                     {cell.value === undefined || cell.value === "" || cell.value === null ? "NA" : cell.render('Cell')}
                                                 </td>
                                             )
@@ -158,7 +146,10 @@ const JobTables = () => {
                             })}
                         </tbody>
                     </table>
-                </>}
+                </div>}
+            <div className='d-block  d-lg-none'>
+                <MobileJobUI DATA={data} />
+            </div>
         </>
     )
 }
