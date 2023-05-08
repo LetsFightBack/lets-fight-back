@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 const MobileJobUI = ({ DATA }) => {
+    
     const [expanded, setExpanded] = useState(false);
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
