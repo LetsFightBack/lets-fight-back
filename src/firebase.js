@@ -100,8 +100,10 @@ export const getJobs = async () => {
   let res = []
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data());
-    res.push(doc.data());
+    // console.log(doc.id, " => ", doc.data());
+    const id = doc.id;
+    const d = doc.data();
+    res.push({ ...d, id });
   });
   // console.log(res);
   return res;
@@ -141,8 +143,8 @@ export const addUserToDB = async (data) => {
   try {
     await setDoc(userDocRef, {
       ...data,
-      timeStamp:createdAt,
-      name:`${data.firstName} ${data.lastName}`
+      timeStamp: createdAt,
+      name: `${data.firstName} ${data.lastName}`
     });
   } catch (error) {
     console.log("error creating the user", error.message);
