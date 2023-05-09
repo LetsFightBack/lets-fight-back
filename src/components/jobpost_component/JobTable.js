@@ -17,6 +17,7 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
         const s = await getJobs()
         setDATA(s.map((job) => {
             return {
+                id: job?.id,
                 companyName: job?.companyName,
                 role: job?.role,
                 location: job?.location,
@@ -31,7 +32,7 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
         jobs();
     }, [])
     const columns = useMemo(() =>
-        COLUMNS, [COLUMNS])
+        COLUMNS, [])
     const data = useMemo(() =>
         DATA, [DATA])
 
@@ -116,7 +117,7 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
                                             if (cell.column.id === 7)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>
-                                                        <a href={cell.value} target='_blank' style={{ textDecoration: "none", color: "white" }}>
+                                                        <a href={cell.value} target='_blank' rel="noreferrer" style={{ textDecoration: "none", color: "white" }}>
                                                             {/* <button> */}
                                                             Apply
                                                             <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
@@ -124,7 +125,6 @@ const JobTables = ({ filterColumn, setFilterColumn, filterInput, setFilterInput 
                                                         </a>
                                                     </td>
                                                 )
-                                            console.log(cell.column);
                                             if (cell.column.id === 5)
                                                 return (
                                                     <td {...cell.getCellProps({ style: cell.column.style })}>

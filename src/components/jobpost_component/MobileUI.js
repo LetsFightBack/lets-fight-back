@@ -9,8 +9,8 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 const MobileJobUI = ({ DATA }) => {
+    
     const [expanded, setExpanded] = useState(false);
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
@@ -18,13 +18,12 @@ const MobileJobUI = ({ DATA }) => {
     const [filterColumn, setFilterColumn] = useState('');
 
     const filterRows = useMemo(() => {
-        // console.log(filterColumn, filterInput);
         if (filterColumn === '')
             return DATA
         const s = DATA.filter(row => {
             return row[filterColumn]?.toLowerCase().includes(filterInput?.toLowerCase());
         })
-        return s.sort((a, b) => new Date(b.postingDate) - new Date(a.postingDate));
+        return s.sort((a, b) => Date.parse(b.postingDate) - Date.parse(a.postingDate));
 
     }, [filterColumn, filterInput, DATA])
     return (
@@ -46,9 +45,9 @@ const MobileJobUI = ({ DATA }) => {
             {filterRows &&
                 filterRows.map((job, index) => {
                     return (<Accordion
-                        key={job.companyName}
-                        expanded={expanded === `panel${index}`}
-                        onChange={handleChange(`panel${index}`)}
+                        key={job.id}
+                        expanded={expanded === `panel${job.id}`}
+                        onChange={handleChange(`panel${job.id}`)}
                         sx={{
                             borderRadius: '0.61rem !important',
                             ".MuiSvgIcon-root": {
@@ -113,7 +112,7 @@ const MobileJobUI = ({ DATA }) => {
                                     <tr >
                                         <th style={{ padding: '0.61rem 0.81rem' }}>Apply Link</th>
                                         <td style={{ display: 'table-cell' }}>
-                                            <a href={job.applyLink} target="_blank" style={{ textDecoration: "none", color: "white", background: "#21C376", padding: "0.5rem 0.9rem", borderRadius: "0.9rem" }}>
+                                            <a href={job.applyLink} target="_blank" rel="noreferrer" style={{ textDecoration: "none", color: "white", background: "#21C376", padding: "0.5rem 0.9rem", borderRadius: "0.9rem" }}>
                                                 Apply
                                                 <ArrowOutwardIcon sx={{ marginLeft: "7px", fontSize: "12px" }} />
                                             </a></td>
