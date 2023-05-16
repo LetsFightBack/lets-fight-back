@@ -13,7 +13,7 @@ const WAPopup = () => {
           <CloseIcon />
         </div>
         <div className="content_wapopup">
-          Join the <span style={{ fontWeight: "800" }}> 1689+</span> members{" "}
+          Join the <span style={{ fontWeight: "800" }}> 1800+</span> members{" "}
           <span style={{ fontWeight: "800" }}>#LetsFightBack</span> Community and craft your
           fight-back journey 🚀
         </div>
