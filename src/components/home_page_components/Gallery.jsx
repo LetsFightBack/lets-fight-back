@@ -25,7 +25,7 @@ const Gallery = () => {
             className="card_image_gallery"
           />
           <div className="content_gallery align_right">
-            <div className="card_heading">  Published in The Hindu Buisness Line</div>
+            <div className="card_heading">  Published in The Hindu Business Line</div>
             <p >
           
             </p>
